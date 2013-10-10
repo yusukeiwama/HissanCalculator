@@ -23,7 +23,7 @@
 {
     [super viewDidLoad];
 	
-	hissanView.layer.cornerRadius = 30.0f;
+	hissanView.layer.cornerRadius = 50.0f;
 	
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {[self foriPhoneResizing];}
 	for (UIButton *aButton in numberKeyButtons) {
