@@ -2,12 +2,25 @@
 //  HCViewController.h
 //  HissanCalculator
 //
-//  Created by Daiki IIJIMA on 10/10/13.
+//  Created by Daiki IIJIMA on 10/6/13.
 //  Copyright (c) 2013 Daiki IIJIMA. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface HCViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIView *hissanView;
+
+- (IBAction)clearButton:(id)sender;
+- (IBAction)calculateButton:(id)sender;
+
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numberKeyButtons;
+@property (weak, nonatomic) IBOutlet UIButton *clearButton;
+@property (weak, nonatomic) IBOutlet UIButton *calculateButton;
+
 @end
+
+
+// storyboard と関連付けされているので、要確認。

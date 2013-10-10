@@ -13,15 +13,18 @@
 		A602220F18065A9700E7D932 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A602220D18065A9700E7D932 /* InfoPlist.strings */; };
 		A602221118065A9700E7D932 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A602221018065A9700E7D932 /* main.m */; };
 		A602221518065A9700E7D932 /* HCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A602221418065A9700E7D932 /* HCAppDelegate.m */; };
-		A602221818065A9800E7D932 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A602221618065A9800E7D932 /* Main_iPhone.storyboard */; };
-		A602221B18065A9800E7D932 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A602221918065A9800E7D932 /* Main_iPad.storyboard */; };
-		A602221E18065A9800E7D932 /* HCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A602221D18065A9800E7D932 /* HCViewController.m */; };
 		A602222018065A9800E7D932 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A602221F18065A9800E7D932 /* Images.xcassets */; };
 		A602222718065A9800E7D932 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602222618065A9800E7D932 /* XCTest.framework */; };
 		A602222818065A9800E7D932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602220418065A9700E7D932 /* Foundation.framework */; };
 		A602222918065A9800E7D932 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602220818065A9700E7D932 /* UIKit.framework */; };
 		A602223118065A9800E7D932 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A602222F18065A9800E7D932 /* InfoPlist.strings */; };
 		A602223318065A9800E7D932 /* HissanCalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A602223218065A9800E7D932 /* HissanCalculatorTests.m */; };
+		A602223E18065AD100E7D932 /* HCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A602223D18065AD100E7D932 /* HCViewController.m */; };
+		A602223F18065AD100E7D932 /* HCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A602223D18065AD100E7D932 /* HCViewController.m */; };
+		A602224118065AE900E7D932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A602224018065AE900E7D932 /* Main.storyboard */; };
+		A602224218065AE900E7D932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A602224018065AE900E7D932 /* Main.storyboard */; };
+		A602224518065B5400E7D932 /* HCInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A602224418065B5400E7D932 /* HCInputView.m */; };
+		A602224618065B5400E7D932 /* HCInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A602224418065B5400E7D932 /* HCInputView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,16 +48,18 @@
 		A602221218065A9700E7D932 /* HissanCalculator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HissanCalculator-Prefix.pch"; sourceTree = "<group>"; };
 		A602221318065A9700E7D932 /* HCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCAppDelegate.h; sourceTree = "<group>"; };
 		A602221418065A9700E7D932 /* HCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCAppDelegate.m; sourceTree = "<group>"; };
-		A602221718065A9800E7D932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
-		A602221A18065A9800E7D932 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		A602221C18065A9800E7D932 /* HCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HCViewController.h; sourceTree = "<group>"; };
-		A602221D18065A9800E7D932 /* HCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HCViewController.m; sourceTree = "<group>"; };
 		A602221F18065A9800E7D932 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A602222518065A9800E7D932 /* HissanCalculatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HissanCalculatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A602222618065A9800E7D932 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		A602222E18065A9800E7D932 /* HissanCalculatorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HissanCalculatorTests-Info.plist"; sourceTree = "<group>"; };
 		A602223018065A9800E7D932 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A602223218065A9800E7D932 /* HissanCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HissanCalculatorTests.m; sourceTree = "<group>"; };
+		A602223C18065AD100E7D932 /* HCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCViewController.h; sourceTree = "<group>"; };
+		A602223D18065AD100E7D932 /* HCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCViewController.m; sourceTree = "<group>"; };
+		A602224018065AE900E7D932 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A602224318065B5400E7D932 /* HCInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInputView.h; sourceTree = "<group>"; };
+		A602224418065B5400E7D932 /* HCInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInputView.m; sourceTree = "<group>"; };
+		A602224718065B6800E7D932 /* HCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCState.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,10 +121,12 @@
 			children = (
 				A602221318065A9700E7D932 /* HCAppDelegate.h */,
 				A602221418065A9700E7D932 /* HCAppDelegate.m */,
-				A602221618065A9800E7D932 /* Main_iPhone.storyboard */,
-				A602221918065A9800E7D932 /* Main_iPad.storyboard */,
-				A602221C18065A9800E7D932 /* HCViewController.h */,
-				A602221D18065A9800E7D932 /* HCViewController.m */,
+				A602224018065AE900E7D932 /* Main.storyboard */,
+				A602223C18065AD100E7D932 /* HCViewController.h */,
+				A602223D18065AD100E7D932 /* HCViewController.m */,
+				A602224718065B6800E7D932 /* HCState.h */,
+				A602224318065B5400E7D932 /* HCInputView.h */,
+				A602224418065B5400E7D932 /* HCInputView.m */,
 				A602221F18065A9800E7D932 /* Images.xcassets */,
 				A602220B18065A9700E7D932 /* Supporting Files */,
 			);
@@ -203,6 +210,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Daiki IIJIMA";
 				TargetAttributes = {
+					A602220018065A9700E7D932 = {
+						DevelopmentTeam = 6F7AWVE2J4;
+					};
 					A602222418065A9800E7D932 = {
 						TestTargetID = A602220018065A9700E7D932;
 					};
@@ -232,9 +242,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A602221B18065A9800E7D932 /* Main_iPad.storyboard in Resources */,
+				A602224118065AE900E7D932 /* Main.storyboard in Resources */,
 				A602222018065A9800E7D932 /* Images.xcassets in Resources */,
-				A602221818065A9800E7D932 /* Main_iPhone.storyboard in Resources */,
 				A602220F18065A9700E7D932 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +253,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A602223118065A9800E7D932 /* InfoPlist.strings in Resources */,
+				A602224218065AE900E7D932 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,8 +264,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A602221E18065A9800E7D932 /* HCViewController.m in Sources */,
+				A602223E18065AD100E7D932 /* HCViewController.m in Sources */,
 				A602221118065A9700E7D932 /* main.m in Sources */,
+				A602224518065B5400E7D932 /* HCInputView.m in Sources */,
 				A602221518065A9700E7D932 /* HCAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -265,6 +276,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A602223318065A9800E7D932 /* HissanCalculatorTests.m in Sources */,
+				A602223F18065AD100E7D932 /* HCViewController.m in Sources */,
+				A602224618065B5400E7D932 /* HCInputView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,22 +298,6 @@
 				A602220E18065A9700E7D932 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		A602221618065A9800E7D932 /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A602221718065A9800E7D932 /* Base */,
-			);
-			name = Main_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		A602221918065A9800E7D932 /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A602221A18065A9800E7D932 /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		A602222F18065A9800E7D932 /* InfoPlist.strings */ = {
@@ -393,9 +390,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HissanCalculator/HissanCalculator-Prefix.pch";
 				INFOPLIST_FILE = "HissanCalculator/HissanCalculator-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -406,9 +405,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HissanCalculator/HissanCalculator-Prefix.pch";
 				INFOPLIST_FILE = "HissanCalculator/HissanCalculator-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
