@@ -60,6 +60,7 @@
 		A602224318065B5400E7D932 /* HCInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInputView.h; sourceTree = "<group>"; };
 		A602224418065B5400E7D932 /* HCInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInputView.m; sourceTree = "<group>"; };
 		A602224718065B6800E7D932 /* HCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCState.h; sourceTree = "<group>"; };
+		A6283FD418065EB2002CFB7C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; name = README.md; path = ../HissanCalculator_/README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,7 @@
 				A602222C18065A9800E7D932 /* HissanCalculatorTests */,
 				A602220318065A9700E7D932 /* Frameworks */,
 				A602220218065A9700E7D932 /* Products */,
+				A6283FD418065EB2002CFB7C /* README.md */,
 			);
 			sourceTree = "<group>";
 		};
@@ -476,6 +478,7 @@
 				A602223818065A9800E7D932 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A602223918065A9800E7D932 /* Build configuration list for PBXNativeTarget "HissanCalculatorTests" */ = {
 			isa = XCConfigurationList;
@@ -484,6 +487,7 @@
 				A602223B18065A9800E7D932 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
