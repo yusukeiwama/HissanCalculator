@@ -25,6 +25,7 @@
 		A602224218065AE900E7D932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A602224018065AE900E7D932 /* Main.storyboard */; };
 		A602224518065B5400E7D932 /* HCInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A602224418065B5400E7D932 /* HCInputView.m */; };
 		A602224618065B5400E7D932 /* HCInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = A602224418065B5400E7D932 /* HCInputView.m */; };
+		A689669B180CED6200BD5CB5 /* HCCalculateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A689669A180CED6200BD5CB5 /* HCCalculateView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		A602224318065B5400E7D932 /* HCInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInputView.h; sourceTree = "<group>"; };
 		A602224418065B5400E7D932 /* HCInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInputView.m; sourceTree = "<group>"; };
 		A602224718065B6800E7D932 /* HCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCState.h; sourceTree = "<group>"; };
+		A6896699180CED6200BD5CB5 /* HCCalculateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCalculateView.h; sourceTree = "<group>"; };
+		A689669A180CED6200BD5CB5 /* HCCalculateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculateView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +130,8 @@
 				A602224718065B6800E7D932 /* HCState.h */,
 				A602224318065B5400E7D932 /* HCInputView.h */,
 				A602224418065B5400E7D932 /* HCInputView.m */,
+				A6896699180CED6200BD5CB5 /* HCCalculateView.h */,
+				A689669A180CED6200BD5CB5 /* HCCalculateView.m */,
 				A602221F18065A9800E7D932 /* Images.xcassets */,
 				A602220B18065A9700E7D932 /* Supporting Files */,
 			);
@@ -264,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A689669B180CED6200BD5CB5 /* HCCalculateView.m in Sources */,
 				A602223E18065AD100E7D932 /* HCViewController.m in Sources */,
 				A602221118065A9700E7D932 /* main.m in Sources */,
 				A602224518065B5400E7D932 /* HCInputView.m in Sources */,

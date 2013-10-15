@@ -1,14 +1,14 @@
 //
-//  HCInputView.m
+//  HCCalculateView.m
 //  HissanCalculator
 //
-//  Created by Daiki IIJIMA on 10/9/13.
+//  Created by Daiki IIJIMA on 10/15/13.
 //  Copyright (c) 2013 Daiki IIJIMA. All rights reserved.
 //
 
-#import "HCInputView.h"
+#import "HCCalculateView.h"
 
-@implementation HCInputView
+@implementation HCCalculateView
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -17,11 +17,6 @@
         // Initialization code
     }
     return self;
-}
-
--(id<HCState>) getNextState {
-    NSLog(@"This is State1");
-    return [[HCCalculateView alloc] init];
 }
 
 /*
