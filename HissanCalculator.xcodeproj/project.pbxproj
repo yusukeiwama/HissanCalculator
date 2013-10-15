@@ -170,9 +170,9 @@
 		A68966A2180D0D3800BD5CB5 /* StatePattern */ = {
 			isa = PBXGroup;
 			children = (
+				A602224718065B6800E7D932 /* HCState.h */,
 				A68966A6180DC75C00BD5CB5 /* HCCreateFomulaState.h */,
 				A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */,
-				A602224718065B6800E7D932 /* HCState.h */,
 				A689669F180D09B300BD5CB5 /* HCCalculationState.h */,
 				A68966A0180D09B300BD5CB5 /* HCCalculationState.m */,
 			);

@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "HCState.h"
 
+/**
+ HCStateプロコトルのConcrete Class。
+ 計算をする状態を示す。
+ */
+
 @interface HCCalculationState : NSObject <HCState>
 
 @end

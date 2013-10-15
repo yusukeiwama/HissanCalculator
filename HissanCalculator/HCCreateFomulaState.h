@@ -9,5 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "HCState.h"
 
+/**
+ HCStateプロコトルのConcrete Class。
+ 式を生成する状態を示す。
+ */
+
 @interface HCCreateFomulaState : NSObject <HCState>
+
 @end

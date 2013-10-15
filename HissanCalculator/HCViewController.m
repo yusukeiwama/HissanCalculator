@@ -24,7 +24,8 @@
 	hissanView.layer.cornerRadius = 50.0f;
 	
 	
-	/* state pattern test
+	/* 
+	//state pattern test
 	UIButton *aButton = [[UIButton alloc] init];
 	aButton.frame = CGRectMake(10, 10,
 							   hissanView.frame.size.width - 20,
