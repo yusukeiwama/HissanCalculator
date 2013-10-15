@@ -13,15 +13,8 @@
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
+    if (self) {}
     return self;
-}
-
--(id<HCState>) getNextState {
-    NSLog(@"This is State1");
-    return [[HCCalculateView alloc] init];
 }
 
 /*

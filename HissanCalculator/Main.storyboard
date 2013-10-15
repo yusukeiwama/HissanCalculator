@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" restorationIdentifier="hissanView" translatesAutoresizingMaskIntoConstraints="NO" id="NaG-tN-oDv" userLabel="hissanView" customClass="HCInputView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NaG-tN-oDv" userLabel="InputView" customClass="HCInputView">
                                 <rect key="frame" x="20" y="20" width="482" height="728"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.47058823529411764" green="0.78431372549019607" blue="0.62745098039215685" alpha="1" colorSpace="calibratedRGB"/>

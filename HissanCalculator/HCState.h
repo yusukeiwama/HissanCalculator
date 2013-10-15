@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @protocol HCState <NSObject>
-- (id<HCState>) getNextState;	// 更新処理を行い、次状態を返す
+- (id <HCState>) getNextState;	// 更新処理を行い、次状態を返す
 @end

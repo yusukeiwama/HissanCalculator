@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "HCCreateFomulaState.h"
+#import "HCCalculationState.h"
 
-@interface HCViewController : UIViewController
+@interface HCViewController : UIViewController {
+	id<HCState> state;
+}
 
 @property (weak, nonatomic) IBOutlet UIView *hissanView;
 

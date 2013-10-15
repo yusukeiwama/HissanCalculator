@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HCState.h"
 
-
-@interface HCInputView : UIView <HCState>
+@interface HCInputView : UIView
 
 @end
