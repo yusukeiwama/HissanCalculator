@@ -15,16 +15,15 @@
 	id<HCState> state;
 }
 
-@property (weak, nonatomic) IBOutlet UIView *hissanView;
-
-- (IBAction)clearButton:(id)sender;
+- (IBAction)clearButton:	(id)sender;
 - (IBAction)calculateButton:(id)sender;
 
-@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *numberKeyButtons;
-@property (weak, nonatomic) IBOutlet UIButton *clearButton;
-@property (weak, nonatomic) IBOutlet UIButton *calculateButton;
+@property (strong, nonatomic)	IBOutletCollection(UIButton) NSArray *numberKeyButtons;
+
+@property (weak, nonatomic)		IBOutlet UIView		*hissanView;
+@property (weak, nonatomic)		IBOutlet UIButton	*clearButton;
+@property (weak, nonatomic)		IBOutlet UIButton	*calculateButton;
 
 @end
-
 
 // storyboard と関連付けされているので、要確認。

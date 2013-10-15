@@ -10,7 +10,6 @@
 
 @interface HCViewController ()
 @end
-
 @implementation HCViewController
 
 @synthesize hissanView;

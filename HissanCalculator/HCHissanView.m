@@ -1,19 +1,21 @@
 //
-//  HCCalculateView.m
+//  HCHissanView.m
 //  HissanCalculator
 //
 //  Created by Daiki IIJIMA on 10/15/13.
 //  Copyright (c) 2013 Daiki IIJIMA. All rights reserved.
 //
 
-#import "HCCalculateView.h"
+#import "HCHissanView.h"
 
-@implementation HCCalculateView
+@implementation HCHissanView
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
-    if (self) {}
+    if (self) {
+        // Initialization code
+    }
     return self;
 }
 
