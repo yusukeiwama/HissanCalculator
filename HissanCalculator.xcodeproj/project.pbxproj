@@ -65,6 +65,7 @@
 		A68966A4180D160D00BD5CB5 /* HCHissanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHissanView.m; sourceTree = "<group>"; };
 		A68966A6180DC75C00BD5CB5 /* HCCreateFomulaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateFomulaState.h; sourceTree = "<group>"; };
 		A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateFomulaState.m; sourceTree = "<group>"; };
+		A68966A9180DCF6400BD5CB5 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +134,7 @@
 				A68966A4180D160D00BD5CB5 /* HCHissanView.m */,
 				A68966A2180D0D3800BD5CB5 /* StatePattern */,
 				A602221F18065A9800E7D932 /* Images.xcassets */,
+				A68966A9180DCF6400BD5CB5 /* docs */,
 				A602220B18065A9700E7D932 /* Supporting Files */,
 			);
 			path = HissanCalculator;
