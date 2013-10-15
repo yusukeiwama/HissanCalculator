@@ -10,5 +10,4 @@
 #import "HCState.h"
 
 @interface HCCreateFomulaState : NSObject <HCState>
-
 @end

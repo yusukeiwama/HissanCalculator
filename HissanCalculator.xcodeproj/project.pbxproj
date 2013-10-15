@@ -23,9 +23,9 @@
 		A602223F18065AD100E7D932 /* HCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A602223D18065AD100E7D932 /* HCViewController.m */; };
 		A602224118065AE900E7D932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A602224018065AE900E7D932 /* Main.storyboard */; };
 		A602224218065AE900E7D932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A602224018065AE900E7D932 /* Main.storyboard */; };
-		A689669E180D08E800BD5CB5 /* HCCreateFomulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = A689669D180D08E800BD5CB5 /* HCCreateFomulaState.m */; };
 		A68966A1180D09B300BD5CB5 /* HCCalculationState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A0180D09B300BD5CB5 /* HCCalculationState.m */; };
 		A68966A5180D160D00BD5CB5 /* HCHissanView.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A4180D160D00BD5CB5 /* HCHissanView.m */; };
+		A68966A8180DC75C00BD5CB5 /* HCCreateFomulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,12 +59,12 @@
 		A602223D18065AD100E7D932 /* HCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCViewController.m; sourceTree = "<group>"; };
 		A602224018065AE900E7D932 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A602224718065B6800E7D932 /* HCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCState.h; sourceTree = "<group>"; };
-		A689669C180D08E800BD5CB5 /* HCCreateFomulaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HCCreateFomulaState.h; path = ../HCCreateFomulaState.h; sourceTree = "<group>"; };
-		A689669D180D08E800BD5CB5 /* HCCreateFomulaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HCCreateFomulaState.m; path = ../HCCreateFomulaState.m; sourceTree = "<group>"; };
 		A689669F180D09B300BD5CB5 /* HCCalculationState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCalculationState.h; sourceTree = "<group>"; };
 		A68966A0180D09B300BD5CB5 /* HCCalculationState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculationState.m; sourceTree = "<group>"; };
 		A68966A3180D160D00BD5CB5 /* HCHissanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHissanView.h; sourceTree = "<group>"; };
 		A68966A4180D160D00BD5CB5 /* HCHissanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHissanView.m; sourceTree = "<group>"; };
+		A68966A6180DC75C00BD5CB5 /* HCCreateFomulaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateFomulaState.h; sourceTree = "<group>"; };
+		A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateFomulaState.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,9 +170,9 @@
 		A68966A2180D0D3800BD5CB5 /* StatePattern */ = {
 			isa = PBXGroup;
 			children = (
+				A68966A6180DC75C00BD5CB5 /* HCCreateFomulaState.h */,
+				A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */,
 				A602224718065B6800E7D932 /* HCState.h */,
-				A689669C180D08E800BD5CB5 /* HCCreateFomulaState.h */,
-				A689669D180D08E800BD5CB5 /* HCCreateFomulaState.m */,
 				A689669F180D09B300BD5CB5 /* HCCalculationState.h */,
 				A68966A0180D09B300BD5CB5 /* HCCalculationState.m */,
 			);
@@ -281,7 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A689669E180D08E800BD5CB5 /* HCCreateFomulaState.m in Sources */,
+				A68966A8180DC75C00BD5CB5 /* HCCreateFomulaState.m in Sources */,
 				A68966A5180D160D00BD5CB5 /* HCHissanView.m in Sources */,
 				A602223E18065AD100E7D932 /* HCViewController.m in Sources */,
 				A602221118065A9700E7D932 /* main.m in Sources */,

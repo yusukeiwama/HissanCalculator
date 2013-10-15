@@ -20,11 +20,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
 	state = [[HCCreateFomulaState alloc] init];
-	
 	hissanView.layer.cornerRadius = 50.0f;
 	
+	
+	/* state pattern test
 	UIButton *aButton = [[UIButton alloc] init];
 	aButton.frame = CGRectMake(10, 10,
 							   hissanView.frame.size.width - 20,
@@ -32,7 +32,8 @@
 	[aButton setTitle:@"Update" forState:UIControlStateNormal];
 	[aButton addTarget:self action:@selector(tapped:) forControlEvents:UIControlEventTouchUpInside];
 	[self.view addSubview:aButton];
-	
+	*/
+	 
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {[self foriPhoneResizing];}
 	for (UIButton *aButton in numberKeyButtons) {
 		[aButton addTarget:self action:@selector(numberKeyTapped:) forControlEvents:UIControlEventTouchUpInside];
