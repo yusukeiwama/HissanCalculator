@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+
 #import "HCCreateFomulaState.h"
 #import "HCCalculationState.h"
+#import "HCHissanView.h"
 
 @interface HCViewController : UIViewController {
 	id<HCState> state;
@@ -20,9 +22,9 @@
 
 @property (strong, nonatomic)	IBOutletCollection(UIButton) NSArray *numberKeyButtons;
 
-@property (weak, nonatomic)		IBOutlet UIView		*hissanView;
-@property (weak, nonatomic)		IBOutlet UIButton	*clearButton;
-@property (weak, nonatomic)		IBOutlet UIButton	*calculateButton;
+@property (weak, nonatomic)	IBOutlet HCHissanView	*hissanView;
+@property (weak, nonatomic)	IBOutlet UIButton		*clearButton;
+@property (weak, nonatomic)	IBOutlet UIButton		*calculateButton;
 
 @end
 
