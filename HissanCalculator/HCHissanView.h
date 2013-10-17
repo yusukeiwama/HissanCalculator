@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HCHissanView : UIView
+/**
+ 筆算の計算式を出力するViewである。
+ Stateパターンで場合分けし、表示方式を変える。
+ */
 
+@interface HCHissanView : UIView
 @end
