@@ -12,7 +12,6 @@
 @end
 
 NSInteger int_state = 0; // 仮に状態を表す整数。今後stateプロトコルに準拠させる。
-
 @implementation HCViewController
 
 @synthesize hissanView;
@@ -22,49 +21,59 @@ NSInteger int_state = 0; // 仮に状態を表す整数。今後stateプロト�
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-	state = [[HCCreateFomulaState alloc] init];
+	[super viewDidLoad];
 	
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {[self foriPhoneResizing];}
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+		[self foriPhoneResizing];
+	}
+	if ([state isKindOfClass:[HCCreateFomulaState class]]) {
+		[hissanView arrangeInputView];
+	} else {
+		[hissanView arrangeHissanView];
+	}
 	for (UIButton *aButton in numberKeyButtons) {
-		[aButton addTarget:self action:@selector(numberKeyTapped:) forControlEvents:UIControlEventTouchUpInside];
+		[aButton addTarget:self
+								action:@selector(numberKeyTapped:)
+		  forControlEvents:UIControlEventTouchUpInside];
 	}
 }
 
 - (void)tapped:(UIButton *)button {
-	state = [state getNextState];
+	hissanView.state = [state getNextState];
 }
 
 - (void)didReceiveMemoryWarning
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 - (void)numberKeyTapped:(UIButton *)aButton
 {
 	//NSLog(@"Tapped at %d button.", (int)aButton.tag);
 	
+	UILabel *aLabel = [[UILabel alloc] init];
 	if (int_state > 4) int_state = 4;
 	
 	switch (int_state) {
 		case 0:
-			((UILabel *)[hissanView.labels objectAtIndex:2]).text = [NSString stringWithFormat:@"%d", aButton.tag];
+			aLabel = ((UILabel *)[hissanView.labels objectAtIndex:2]);
 			break;
 		case 1:
-			((UILabel *)[hissanView.labels objectAtIndex:3]).text = [NSString stringWithFormat:@"%d", aButton.tag];
+			aLabel = ((UILabel *)[hissanView.labels objectAtIndex:3]);
 			break;
 		case 2:
-			((UILabel *)[hissanView.labels objectAtIndex:6]).text = [NSString stringWithFormat:@"%d", aButton.tag];
+			aLabel = ((UILabel *)[hissanView.labels objectAtIndex:6]);
 			break;
 		case 3:
-			((UILabel *)[hissanView.labels objectAtIndex:7]).text = [NSString stringWithFormat:@"%d", aButton.tag];
+			aLabel = ((UILabel *)[hissanView.labels objectAtIndex:7]);
 			break;
 		case 4:
 			break;
 		default:
 			break;
 	}
+	aLabel.text = [NSString stringWithFormat:@"%d", aButton.tag];
 	int_state++;
 }
 

@@ -17,12 +17,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" restorationIdentifier="HissanView" translatesAutoresizingMaskIntoConstraints="NO" id="NaG-tN-oDv" userLabel="HissanView" customClass="HCHissanView">
-                                <rect key="frame" x="20" y="20" width="482" height="728"/>
+                                <rect key="frame" x="20" y="20" width="500" height="728"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.23529411764705882" green="0.39215686274509803" blue="0.31372549019607843" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="500" id="8fg-On-fRM"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjC-Jk-QqW">
-                                <rect key="frame" x="522" y="170" width="154" height="137"/>
+                                <rect key="frame" x="540" y="170" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="1">
@@ -30,7 +33,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HD9-cz-78H">
-                                <rect key="frame" x="686" y="170" width="154" height="137"/>
+                                <rect key="frame" x="698" y="170" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="2">
@@ -38,7 +41,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gc1-dp-AI1">
-                                <rect key="frame" x="850" y="170" width="154" height="137"/>
+                                <rect key="frame" x="856" y="170" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="3">
@@ -46,7 +49,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9I-wC-Xx0">
-                                <rect key="frame" x="522" y="317" width="154" height="137"/>
+                                <rect key="frame" x="540" y="317" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="4">
@@ -54,7 +57,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcF-HD-VL9">
-                                <rect key="frame" x="686" y="317" width="154" height="137"/>
+                                <rect key="frame" x="698" y="317" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="5">
@@ -62,7 +65,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEK-fF-Si7">
-                                <rect key="frame" x="850" y="317" width="154" height="137"/>
+                                <rect key="frame" x="856" y="317" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="6">
@@ -70,7 +73,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epX-53-RR5">
-                                <rect key="frame" x="522" y="464" width="154" height="137"/>
+                                <rect key="frame" x="540" y="464" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="7">
@@ -78,7 +81,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6pd-by-Uv0">
-                                <rect key="frame" x="686" y="464" width="154" height="137"/>
+                                <rect key="frame" x="698" y="464" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="8">
@@ -86,7 +89,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="icP-lN-oFG">
-                                <rect key="frame" x="850" y="464" width="154" height="137"/>
+                                <rect key="frame" x="856" y="464" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="9">
@@ -94,7 +97,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAr-uD-7Y1">
-                                <rect key="frame" x="522" y="611" width="154" height="137"/>
+                                <rect key="frame" x="540" y="611" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="0">
@@ -102,7 +105,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h2P-XB-Wan">
-                                <rect key="frame" x="686" y="611" width="318" height="137"/>
+                                <rect key="frame" x="698" y="611" width="306" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="計算">
@@ -113,15 +116,23 @@
                                 </connections>
                             </button>
                             <button opaque="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tfa-mB-rwg">
-                                <rect key="frame" x="522" y="23" width="482" height="137"/>
+                                <rect key="frame" x="540" y="23" width="227" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
-                                <state key="normal" title="全消去">
+                                <state key="normal" title="AC">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="clearButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="obv-si-Gu4"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ghD-Zr-6RG">
+                                <rect key="frame" x="777" y="20" width="227" height="140"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                <state key="normal" title="C">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.78431372549019607" green="1" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
@@ -129,7 +140,6 @@
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="gc1-dp-AI1" secondAttribute="height" id="0eB-ru-dH9"/>
                             <constraint firstItem="TAr-uD-7Y1" firstAttribute="top" secondItem="epX-53-RR5" secondAttribute="bottom" constant="10" id="1Uj-lM-Hu2"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="width" secondItem="HD9-cz-78H" secondAttribute="width" id="2Ue-Tt-Kvw"/>
-                            <constraint firstItem="tfa-mB-rwg" firstAttribute="width" secondItem="NaG-tN-oDv" secondAttribute="width" id="2aZ-uz-fKx"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="jcF-HD-VL9" secondAttribute="height" id="2vk-a0-aI7"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="icP-lN-oFG" secondAttribute="height" id="56n-zb-Rl8"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="width" secondItem="icP-lN-oFG" secondAttribute="width" id="5GN-Hh-BHP"/>
@@ -152,13 +162,15 @@
                             <constraint firstItem="epX-53-RR5" firstAttribute="top" secondItem="d9I-wC-Xx0" secondAttribute="bottom" constant="10" id="PFt-JU-cQT"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="height" secondItem="6pd-by-Uv0" secondAttribute="height" id="PsA-FO-IOP"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="top" secondItem="tfa-mB-rwg" secondAttribute="bottom" constant="10" id="Q5h-CQ-v6N"/>
+                            <constraint firstItem="ghD-Zr-6RG" firstAttribute="width" secondItem="tfa-mB-rwg" secondAttribute="width" id="QT0-wc-y6E"/>
+                            <constraint firstItem="gc1-dp-AI1" firstAttribute="top" secondItem="ghD-Zr-6RG" secondAttribute="bottom" constant="10" id="RvN-ci-Ikm"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="d9I-wC-Xx0" secondAttribute="height" id="SEu-8i-Xbl"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="lEK-fF-Si7" secondAttribute="height" id="Tbw-SG-dWn"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="height" secondItem="jcF-HD-VL9" secondAttribute="height" id="UPC-SI-72S"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="height" secondItem="icP-lN-oFG" secondAttribute="height" id="VfV-61-NMd"/>
-                            <constraint firstAttribute="trailing" secondItem="tfa-mB-rwg" secondAttribute="trailing" constant="20" id="VoP-8w-i1b"/>
                             <constraint firstItem="zjC-Jk-QqW" firstAttribute="top" secondItem="tfa-mB-rwg" secondAttribute="bottom" constant="10" id="W1z-Wd-9Da"/>
                             <constraint firstAttribute="trailing" secondItem="lEK-fF-Si7" secondAttribute="trailing" constant="20" id="WiI-oV-3Cv"/>
+                            <constraint firstItem="ghD-Zr-6RG" firstAttribute="leading" secondItem="tfa-mB-rwg" secondAttribute="trailing" constant="10" id="XnZ-lq-zHk"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="height" secondItem="TAr-uD-7Y1" secondAttribute="height" id="YMI-Pm-kZ0"/>
                             <constraint firstItem="jcF-HD-VL9" firstAttribute="leading" secondItem="d9I-wC-Xx0" secondAttribute="trailing" constant="10" id="YZJ-c9-vOs"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="width" secondItem="d9I-wC-Xx0" secondAttribute="width" id="ZaP-2K-aev"/>
@@ -180,6 +192,7 @@
                             <constraint firstAttribute="trailing" secondItem="gc1-dp-AI1" secondAttribute="trailing" constant="20" id="leY-Q5-nCQ"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="HD9-cz-78H" secondAttribute="height" id="mGS-pU-z9O"/>
                             <constraint firstItem="HD9-cz-78H" firstAttribute="leading" secondItem="zjC-Jk-QqW" secondAttribute="trailing" constant="10" id="mfg-4N-ZQi"/>
+                            <constraint firstAttribute="trailing" secondItem="ghD-Zr-6RG" secondAttribute="trailing" constant="20" id="n0M-9b-suW"/>
                             <constraint firstAttribute="trailing" secondItem="icP-lN-oFG" secondAttribute="trailing" constant="20" id="n2Q-mn-nXV"/>
                             <constraint firstItem="icP-lN-oFG" firstAttribute="top" secondItem="lEK-fF-Si7" secondAttribute="bottom" constant="10" id="oDN-FN-mWa"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="TAr-uD-7Y1" secondAttribute="height" id="odr-ed-ntj"/>
@@ -188,6 +201,7 @@
                             <constraint firstItem="epX-53-RR5" firstAttribute="leading" secondItem="NaG-tN-oDv" secondAttribute="trailing" constant="20" id="sg5-yO-zKH"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="height" secondItem="epX-53-RR5" secondAttribute="height" id="tfz-aC-eUD"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="epX-53-RR5" secondAttribute="height" id="w0d-rW-HJg"/>
+                            <constraint firstItem="ghD-Zr-6RG" firstAttribute="top" secondItem="msu-wy-ckO" secondAttribute="bottom" id="xIx-nh-jaY"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="top" secondItem="6pd-by-Uv0" secondAttribute="bottom" constant="10" id="xT6-qR-79r"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="width" secondItem="lEK-fF-Si7" secondAttribute="width" id="xj6-BU-wgh"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="width" secondItem="6pd-by-Uv0" secondAttribute="width" id="z6F-go-j0o"/>

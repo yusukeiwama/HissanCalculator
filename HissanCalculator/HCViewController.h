@@ -27,7 +27,9 @@
 
 @property (strong, nonatomic)	IBOutletCollection(UIButton) NSArray *numberKeyButtons;
 
-/** 筆算を表示するView 内容は動的に生成する。HCHissanViewカスタムクラスを参照。 */
+/** 筆算を表示するView 内容は動的に生成する。
+ 
+ HCHissanViewカスタムクラスを参照。 */
 @property (weak, nonatomic)	IBOutlet HCHissanView	*hissanView;
 /** 消去ボタン */
 @property (weak, nonatomic)	IBOutlet UIButton		*clearButton;
