@@ -23,6 +23,7 @@
 		A602223F18065AD100E7D932 /* HCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A602223D18065AD100E7D932 /* HCViewController.m */; };
 		A602224118065AE900E7D932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A602224018065AE900E7D932 /* Main.storyboard */; };
 		A602224218065AE900E7D932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A602224018065AE900E7D932 /* Main.storyboard */; };
+		A620CD401814C6900030C1EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A620CD3F1814C6900030C1EC /* QuartzCore.framework */; };
 		A68966A1180D09B300BD5CB5 /* HCCalculationState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A0180D09B300BD5CB5 /* HCCalculationState.m */; };
 		A68966A5180D160D00BD5CB5 /* HCHissanView.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A4180D160D00BD5CB5 /* HCHissanView.m */; };
 		A68966A8180DC75C00BD5CB5 /* HCCreateFomulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */; };
@@ -55,14 +56,15 @@
 		A602222E18065A9800E7D932 /* HissanCalculatorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HissanCalculatorTests-Info.plist"; sourceTree = "<group>"; };
 		A602223018065A9800E7D932 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A602223218065A9800E7D932 /* HissanCalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HissanCalculatorTests.m; sourceTree = "<group>"; };
-		A602223C18065AD100E7D932 /* HCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCViewController.h; sourceTree = "<group>"; };
-		A602223D18065AD100E7D932 /* HCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCViewController.m; sourceTree = "<group>"; };
+		A602223C18065AD100E7D932 /* HCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HCViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		A602223D18065AD100E7D932 /* HCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HCViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A602224018065AE900E7D932 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A602224718065B6800E7D932 /* HCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCState.h; sourceTree = "<group>"; };
+		A620CD3F1814C6900030C1EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A689669F180D09B300BD5CB5 /* HCCalculationState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCalculationState.h; sourceTree = "<group>"; };
 		A68966A0180D09B300BD5CB5 /* HCCalculationState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculationState.m; sourceTree = "<group>"; };
 		A68966A3180D160D00BD5CB5 /* HCHissanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHissanView.h; sourceTree = "<group>"; };
-		A68966A4180D160D00BD5CB5 /* HCHissanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCHissanView.m; sourceTree = "<group>"; };
+		A68966A4180D160D00BD5CB5 /* HCHissanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HCHissanView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A68966A6180DC75C00BD5CB5 /* HCCreateFomulaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateFomulaState.h; sourceTree = "<group>"; };
 		A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateFomulaState.m; sourceTree = "<group>"; };
 		A68966A9180DCF6400BD5CB5 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = SOURCE_ROOT; };
@@ -73,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A620CD401814C6900030C1EC /* QuartzCore.framework in Frameworks */,
 				A602220718065A9700E7D932 /* CoreGraphics.framework in Frameworks */,
 				A602220918065A9700E7D932 /* UIKit.framework in Frameworks */,
 				A602220518065A9700E7D932 /* Foundation.framework in Frameworks */,
@@ -114,6 +117,7 @@
 		A602220318065A9700E7D932 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A620CD3F1814C6900030C1EC /* QuartzCore.framework */,
 				A602220418065A9700E7D932 /* Foundation.framework */,
 				A602220618065A9700E7D932 /* CoreGraphics.framework */,
 				A602220818065A9700E7D932 /* UIKit.framework */,
