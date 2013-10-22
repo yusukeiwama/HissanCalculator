@@ -23,11 +23,13 @@
 
 /** 表示するラベルを格納しておく*/
 @property NSMutableArray *labels;
+
 /** Viewの状態を示す。 HCState で実現する。*/
 @property HCCreateFomulaState *state;
 
 /** 数式入力のViewを生成*/
 - (void)arrangeInputView;
+
 /** 計算結果を表示するViewを生成*/
 - (void)arrangeHissanView;
 

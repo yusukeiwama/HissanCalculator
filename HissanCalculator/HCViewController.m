@@ -12,6 +12,7 @@
 @end
 
 NSInteger int_state = 0; // 仮に状態を表す整数。今後stateプロトコルに準拠させる。
+
 @implementation HCViewController
 
 @synthesize hissanView;
@@ -26,11 +27,13 @@ NSInteger int_state = 0; // 仮に状態を表す整数。今後stateプロト�
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
 		[self foriPhoneResizing];
 	}
+	
 	if ([state isKindOfClass:[HCCreateFomulaState class]]) {
 		[hissanView arrangeInputView];
 	} else {
 		[hissanView arrangeHissanView];
 	}
+	
 	for (UIButton *aButton in numberKeyButtons) {
 		[aButton addTarget:self
 								action:@selector(numberKeyTapped:)
@@ -79,7 +82,6 @@ NSInteger int_state = 0; // 仮に状態を表す整数。今後stateプロト�
 
 - (IBAction)clearButton:(id)sender {
 	//NSLog(@"clearButton tapped.");
-	
 	int_state = 0;
 	for (UILabel *aLabel in hissanView.labels) {
 		aLabel.text = @"";
@@ -88,10 +90,12 @@ NSInteger int_state = 0; // 仮に状態を表す整数。今後stateプロト�
 
 - (IBAction)calculateButton:(id)sender {
 	NSLog(@"calcButton tapped.");
+	int_state = 5;
 }
 
 - (void)foriPhoneResizing
 {
+	// フォントサイズの調整
 	int font_size = 1;
 	UIButton *refferenceButton = [numberKeyButtons objectAtIndex:0];
 	CGSize tmp_size = [refferenceButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font_size]}];
