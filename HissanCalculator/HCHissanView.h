@@ -19,7 +19,12 @@
  StateパターンのContextにあたる。
  */
 
-@interface HCHissanView : UIView
+@interface HCHissanView : UIView {
+}
+
+@property UILabel *leftIntegerLabel;
+@property UILabel *rightIntegerLabel;
+@property UIView *operatorSelectorView;
 
 /** 表示するラベルを格納しておく*/
 @property NSMutableArray *labels;
