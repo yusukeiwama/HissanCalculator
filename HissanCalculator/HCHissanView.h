@@ -20,6 +20,8 @@
  */
 
 @interface HCHissanView : UIView {
+	NSInteger margin;
+
 }
 
 @property UILabel *leftIntegerLabel;

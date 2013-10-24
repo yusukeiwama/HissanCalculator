@@ -27,6 +27,11 @@
 		A68966A1180D09B300BD5CB5 /* HCCalculationState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A0180D09B300BD5CB5 /* HCCalculationState.m */; };
 		A68966A5180D160D00BD5CB5 /* HCHissanView.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A4180D160D00BD5CB5 /* HCHissanView.m */; };
 		A68966A8180DC75C00BD5CB5 /* HCCreateFomulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */; };
+		A6B342D718189AF400D63DAC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602220618065A9700E7D932 /* CoreGraphics.framework */; };
+		A6B342D818189AF700D63DAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A620CD3F1814C6900030C1EC /* QuartzCore.framework */; };
+		A6B342D918189BBF00D63DAC /* HCHissanView.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A4180D160D00BD5CB5 /* HCHissanView.m */; };
+		A6B342DA18189BCC00D63DAC /* HCCreateFomulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */; };
+		A6B342DB18189BCF00D63DAC /* HCCalculationState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A0180D09B300BD5CB5 /* HCCalculationState.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +91,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B342D818189AF700D63DAC /* QuartzCore.framework in Frameworks */,
+				A6B342D718189AF400D63DAC /* CoreGraphics.framework in Frameworks */,
 				A602222718065A9800E7D932 /* XCTest.framework in Frameworks */,
 				A602222918065A9800E7D932 /* UIKit.framework in Frameworks */,
 				A602222818065A9800E7D932 /* Foundation.framework in Frameworks */,
@@ -300,8 +307,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B342DA18189BCC00D63DAC /* HCCreateFomulaState.m in Sources */,
 				A602223318065A9800E7D932 /* HissanCalculatorTests.m in Sources */,
+				A6B342D918189BBF00D63DAC /* HCHissanView.m in Sources */,
 				A602223F18065AD100E7D932 /* HCViewController.m in Sources */,
+				A6B342DB18189BCF00D63DAC /* HCCalculationState.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +422,7 @@
 		A602223718065A9800E7D932 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -419,7 +430,10 @@
 				GCC_PREFIX_HEADER = "HissanCalculator/HissanCalculator-Prefix.pch";
 				INFOPLIST_FILE = "HissanCalculator/HissanCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -427,6 +441,7 @@
 		A602223818065A9800E7D932 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -434,7 +449,10 @@
 				GCC_PREFIX_HEADER = "HissanCalculator/HissanCalculator-Prefix.pch";
 				INFOPLIST_FILE = "HissanCalculator/HissanCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

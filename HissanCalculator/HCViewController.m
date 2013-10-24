@@ -39,7 +39,7 @@ const NSInteger margin = 10;
 	
 	for (UIButton *aButton in numberKeyButtons) {
 		[aButton addTarget:self
-					action:@selector(numberKeyTapped:)
+								action:@selector(numberKeyTapped:)
 		  forControlEvents:UIControlEventTouchUpInside];
 	}
 	
@@ -50,16 +50,16 @@ const NSInteger margin = 10;
 - (void)tapped:(UITapGestureRecognizer *)recognizer {
 	NSLog(@"tapped");
 	[UIView animateWithDuration:0.5f
-					 animations:^{
-						 hissanView.operatorSelectorView.frame = CGRectMake(hissanView.bounds.origin.x + margin,
-																			hissanView.bounds.origin.y + margin + (int)(hissanView.bounds.size.height - hissanView.bounds.size.width),
-																			hissanView.bounds.size.width - 2 * margin,
-																			hissanView.bounds.size.width - 2 * margin);
-					 }];
+									 animations:^{
+										 hissanView.operatorSelectorView.frame = CGRectMake(hissanView.bounds.origin.x + margin,
+																																				hissanView.bounds.origin.y + margin + (int)((hissanView.bounds.size.height - hissanView.bounds.size.width) / 2),
+																																				hissanView.bounds.size.width - 2 * margin,
+																																				hissanView.bounds.size.width - 2 * margin);
+									 }];
 	for (UIButton *aButton in hissanView.operatorSelectorView.subviews) {
 		aButton.userInteractionEnabled = YES;
 		[aButton addTarget:self
-					action:@selector(operatorSelected:)
+								action:@selector(operatorSelected:)
 		  forControlEvents:UIControlEventTouchUpInside];
 	}
 }
