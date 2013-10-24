@@ -110,7 +110,7 @@
                                 <rect key="frame" x="698" y="611" width="306" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
-                                <state key="normal" title="計算">
+                                <state key="normal" title="入力">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>

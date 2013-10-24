@@ -32,6 +32,8 @@
 		A6B342D918189BBF00D63DAC /* HCHissanView.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A4180D160D00BD5CB5 /* HCHissanView.m */; };
 		A6B342DA18189BCC00D63DAC /* HCCreateFomulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */; };
 		A6B342DB18189BCF00D63DAC /* HCCalculationState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A0180D09B300BD5CB5 /* HCCalculationState.m */; };
+		A6CC80B01818B0E7005DEFB3 /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CC80AF1818B0E7005DEFB3 /* InputView.xib */; };
+		A6CC80B31818B19B005DEFB3 /* CalculateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CC80B21818B19B005DEFB3 /* CalculateView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,8 @@
 		A68966A6180DC75C00BD5CB5 /* HCCreateFomulaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateFomulaState.h; sourceTree = "<group>"; };
 		A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateFomulaState.m; sourceTree = "<group>"; };
 		A68966A9180DCF6400BD5CB5 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = SOURCE_ROOT; };
+		A6CC80AF1818B0E7005DEFB3 /* InputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
+		A6CC80B21818B19B005DEFB3 /* CalculateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalculateView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,11 +142,11 @@
 			children = (
 				A602221318065A9700E7D932 /* HCAppDelegate.h */,
 				A602221418065A9700E7D932 /* HCAppDelegate.m */,
-				A602224018065AE900E7D932 /* Main.storyboard */,
 				A602223C18065AD100E7D932 /* HCViewController.h */,
 				A602223D18065AD100E7D932 /* HCViewController.m */,
 				A68966A3180D160D00BD5CB5 /* HCHissanView.h */,
 				A68966A4180D160D00BD5CB5 /* HCHissanView.m */,
+				A6CC80B11818B17F005DEFB3 /* ViewDesign */,
 				A68966A2180D0D3800BD5CB5 /* StatePattern */,
 				A602221F18065A9800E7D932 /* Images.xcassets */,
 				A68966A9180DCF6400BD5CB5 /* docs */,
@@ -190,6 +194,16 @@
 				A68966A0180D09B300BD5CB5 /* HCCalculationState.m */,
 			);
 			name = StatePattern;
+			sourceTree = "<group>";
+		};
+		A6CC80B11818B17F005DEFB3 /* ViewDesign */ = {
+			isa = PBXGroup;
+			children = (
+				A602224018065AE900E7D932 /* Main.storyboard */,
+				A6CC80AF1818B0E7005DEFB3 /* InputView.xib */,
+				A6CC80B21818B19B005DEFB3 /* CalculateView.xib */,
+			);
+			name = ViewDesign;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,6 +287,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A602224118065AE900E7D932 /* Main.storyboard in Resources */,
+				A6CC80B31818B19B005DEFB3 /* CalculateView.xib in Resources */,
+				A6CC80B01818B0E7005DEFB3 /* InputView.xib in Resources */,
 				A602222018065A9800E7D932 /* Images.xcassets in Resources */,
 				A602220F18065A9700E7D932 /* InfoPlist.strings in Resources */,
 			);

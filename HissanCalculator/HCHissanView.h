@@ -27,6 +27,9 @@
 @property UILabel *leftIntegerLabel;
 @property UILabel *rightIntegerLabel;
 @property UIView *operatorSelectorView;
+@property UILabel	*operatorLabel;
+
+@property NSInteger downSpace;
 
 /** 表示するラベルを格納しておく*/
 @property NSMutableArray *labels;
