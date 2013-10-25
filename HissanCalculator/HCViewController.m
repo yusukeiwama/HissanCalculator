@@ -18,36 +18,44 @@ const NSInteger margin = 10;
 
 @implementation HCViewController
 
-@synthesize hissanView;
-@synthesize numberKeyButtons;
+//@synthesize hissanView;
+//@synthesize numberKeyButtons;
 @synthesize clearButton;
-@synthesize functionButton;
+//@synthesize functionButton;
 
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
 	
+	// デバイスがiPhoneだった場合、サイズの調整を行う。
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-		[self foriPhoneResizing];
+		//[self foriPhoneResizing];
 	}
 	
-	[hissanView arrangeInputView];
-	[self context];
+	// xibから読み込むテスト
+	NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"InputView"
+																													 owner: self
+																												 options: nil];
+	inputView = [topLevelObjects objectAtIndex:0];
+	inputView.frame = CGRectMake(inputView.frame.origin.x + 2 * margin,
+													inputView.frame.origin.y + 2 * margin,
+													inputView.frame.size.width,
+													inputView.frame.size.height);
+	[self.view addSubview:inputView];
 	
-	/*if ([state isKindOfClass:[HCCreateFomulaState class]]) {
-	 [hissanView arrangeInputView];
-	 } else {
-	 [hissanView arrangeHissanView];
-	 }*/
+	//[hissanView arrangeInputView];
+	//[self context];
 	
+	/*
 	for (UIButton *aButton in numberKeyButtons) {
 		[aButton addTarget:self
 								action:@selector(numberKeyTapped:)
 		  forControlEvents:UIControlEventTouchUpInside];
 	}
+	 */
 	
-	UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-	[hissanView.operatorSelectorView addGestureRecognizer:recognizer];
+	//UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+	//[hissanView.operatorSelectorView addGestureRecognizer:recognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,7 +64,7 @@ const NSInteger margin = 10;
 	// Dispose of any resources that can be recreated.
 }
 
-
+/*
 - (void)context
 {
 	if (int_state == 0) {
@@ -139,7 +147,7 @@ const NSInteger margin = 10;
 {
 	//NSLog(@"Tapped at %d button.", (int)aButton.tag);
 	
-	/*
+	/
 	 UILabel *aLabel = [[UILabel alloc] init];
 	 if (int_state > 4) int_state = 4;
 	 
@@ -163,7 +171,7 @@ const NSInteger margin = 10;
 	 }
 	 aLabel.text = [NSString stringWithFormat:@"%d", aButton.tag];
 	 int_state++;
-	 */
+	 /
 	
 	if (int_state == 0) {
 		leftNumber = leftNumber * 10 + aButton.tag;
@@ -176,10 +184,11 @@ const NSInteger margin = 10;
 	}
 	[self context];
 }
-
+*/
+ 
 - (IBAction)clearButton:(id)sender {
 	//NSLog(@"clearButton tapped.");
-	[self context];
+	/*[self context];
 	int_state = 0;
 	leftNumber = 0;
 	rightNumber = 0;
@@ -206,9 +215,11 @@ const NSInteger margin = 10;
     aButton.frame = frame;
 		[aButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
 		aButton.hidden = NO;
-	}
+	}*/
+	inputView.hidden = YES;
 }
 
+/*
 - (IBAction)functionButton:(id)sender {
 	[self context];
 	int_state++;
@@ -232,5 +243,6 @@ const NSInteger margin = 10;
 	[clearButton.titleLabel setFont:[UIFont systemFontOfSize:font_size]];
 	[functionButton.titleLabel setFont:[UIFont systemFontOfSize:font_size]];
 }
+*/
 
 @end

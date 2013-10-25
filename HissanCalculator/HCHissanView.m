@@ -10,19 +10,20 @@
 
 @implementation HCHissanView
 
-@synthesize aboveIntegerLabel;
-@synthesize belowIntegerLabel;
-@synthesize operatorSelectorView;
-@synthesize operatorLabel;
+//@synthesize aboveIntegerLabel;
+//@synthesize belowIntegerLabel;
+//@synthesize operatorSelectorView;
+//@synthesize operatorLabel;
+//
+//@synthesize operatorSelecterViewDefaultPosition;
+//@synthesize operatorSelectButtonDefaultPositions;
+//
+//@synthesize downSpace;
+//
+//@synthesize state;
+//@synthesize labels;
 
-@synthesize operatorSelecterViewDefaultPosition;
-@synthesize operatorSelectButtonDefaultPositions;
-
-@synthesize downSpace;
-
-@synthesize state;
-@synthesize labels;
-
+/*
 // using xib files or story board.
 -(id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -35,7 +36,9 @@
 	}
 	return self;
 }
+ */
 
+/*
 - (void)arrangeInputView
 {
 	operatorSelectorView = [[UIView alloc] init];
@@ -169,4 +172,5 @@
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect {}
+ */
 @end
