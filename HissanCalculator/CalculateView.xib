@@ -9,7 +9,20 @@
         <view contentMode="scaleToFill" id="CYY-zR-GDA" customClass="HCHissanView">
             <rect key="frame" x="0.0" y="0.0" width="500" height="728"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is CalculateView" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUa-vd-JwB">
+                    <rect key="frame" x="20" y="346" width="278" height="36"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" red="0.23529411759999999" green="0.3921568627" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="DUa-vd-JwB" secondAttribute="centerY" id="S0n-wC-S48"/>
+                <constraint firstItem="DUa-vd-JwB" firstAttribute="leading" secondItem="CYY-zR-GDA" secondAttribute="leading" constant="20" id="dFQ-c4-4Se"/>
+            </constraints>
             <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
         </view>
     </objects>

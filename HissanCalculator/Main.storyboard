@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NaG-tN-oDv" userLabel="HissanView">
-                                <rect key="frame" x="20" y="20" width="500" height="728"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NaG-tN-oDv" userLabel="BaseView">
+                                <rect key="frame" x="20" y="80" width="500" height="668"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -51,7 +51,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9I-wC-Xx0">
-                                <rect key="frame" x="540" y="317" width="148" height="137"/>
+                                <rect key="frame" x="540" y="317" width="148" height="136"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="4">
@@ -75,7 +75,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="epX-53-RR5">
-                                <rect key="frame" x="540" y="464" width="148" height="137"/>
+                                <rect key="frame" x="540" y="463" width="148" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="7">
@@ -99,7 +99,7 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TAr-uD-7Y1">
-                                <rect key="frame" x="540" y="611" width="148" height="137"/>
+                                <rect key="frame" x="540" y="610" width="148" height="138"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="100"/>
                                 <state key="normal" title="0">
@@ -136,10 +136,21 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hissan Calculator" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A63-C6-3DO">
+                                <rect key="frame" x="20" y="20" width="500" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="1n7-Hr-fKL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="TimesNewRomanPS-ItalicMT" family="Times New Roman" pointSize="60"/>
+                                <color key="textColor" red="0.058823529411764705" green="0.23529411764705882" blue="0.078431372549019607" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.78431372549019607" green="1" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="gc1-dp-AI1" secondAttribute="height" id="0eB-ru-dH9"/>
+                            <constraint firstItem="NaG-tN-oDv" firstAttribute="top" secondItem="A63-C6-3DO" secondAttribute="bottom" id="0g6-wF-ZHD"/>
                             <constraint firstItem="TAr-uD-7Y1" firstAttribute="top" secondItem="epX-53-RR5" secondAttribute="bottom" constant="10" id="1Uj-lM-Hu2"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="width" secondItem="HD9-cz-78H" secondAttribute="width" id="2Ue-Tt-Kvw"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="jcF-HD-VL9" secondAttribute="height" id="2vk-a0-aI7"/>
@@ -148,6 +159,7 @@
                             <constraint firstItem="NaG-tN-oDv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="5Qp-Vd-SVz"/>
                             <constraint firstItem="6pd-by-Uv0" firstAttribute="top" secondItem="jcF-HD-VL9" secondAttribute="bottom" constant="10" id="5ds-Ro-G4a"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="height" secondItem="lEK-fF-Si7" secondAttribute="height" id="5il-Pn-A5b"/>
+                            <constraint firstItem="A63-C6-3DO" firstAttribute="width" secondItem="NaG-tN-oDv" secondAttribute="width" id="6C3-eE-ZcU"/>
                             <constraint firstItem="icP-lN-oFG" firstAttribute="leading" secondItem="6pd-by-Uv0" secondAttribute="trailing" constant="10" id="6NA-3L-xgS"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="leading" secondItem="HD9-cz-78H" secondAttribute="trailing" constant="10" id="6NO-7j-RDs"/>
                             <constraint firstItem="d9I-wC-Xx0" firstAttribute="top" secondItem="zjC-Jk-QqW" secondAttribute="bottom" constant="10" id="BYq-H2-Rl4"/>
@@ -157,7 +169,6 @@
                             <constraint firstItem="6pd-by-Uv0" firstAttribute="leading" secondItem="epX-53-RR5" secondAttribute="trailing" constant="10" id="IhZ-mf-BYH"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="zjC-Jk-QqW" secondAttribute="height" id="Jhw-KU-GdL"/>
                             <constraint firstItem="hpQ-s7-UHm" firstAttribute="top" secondItem="NaG-tN-oDv" secondAttribute="bottom" constant="20" id="KCP-go-12m"/>
-                            <constraint firstItem="NaG-tN-oDv" firstAttribute="top" secondItem="msu-wy-ckO" secondAttribute="bottom" id="KHM-yH-j9x"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="height" secondItem="d9I-wC-Xx0" secondAttribute="height" id="Mh1-45-xud"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="leading" secondItem="TAr-uD-7Y1" secondAttribute="trailing" constant="10" id="Otw-t6-qgh"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="tfa-mB-rwg" secondAttribute="height" id="OyE-dt-QVC"/>
@@ -172,6 +183,7 @@
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="height" secondItem="icP-lN-oFG" secondAttribute="height" id="VfV-61-NMd"/>
                             <constraint firstItem="zjC-Jk-QqW" firstAttribute="top" secondItem="tfa-mB-rwg" secondAttribute="bottom" constant="10" id="W1z-Wd-9Da"/>
                             <constraint firstAttribute="trailing" secondItem="lEK-fF-Si7" secondAttribute="trailing" constant="20" id="WiI-oV-3Cv"/>
+                            <constraint firstItem="A63-C6-3DO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Xd8-7D-0Eg"/>
                             <constraint firstItem="ghD-Zr-6RG" firstAttribute="leading" secondItem="tfa-mB-rwg" secondAttribute="trailing" constant="10" id="XnZ-lq-zHk"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="height" secondItem="TAr-uD-7Y1" secondAttribute="height" id="YMI-Pm-kZ0"/>
                             <constraint firstItem="jcF-HD-VL9" firstAttribute="leading" secondItem="d9I-wC-Xx0" secondAttribute="trailing" constant="10" id="YZJ-c9-vOs"/>
@@ -193,6 +205,7 @@
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="width" secondItem="jcF-HD-VL9" secondAttribute="width" id="kaY-Fi-Lz3"/>
                             <constraint firstAttribute="trailing" secondItem="gc1-dp-AI1" secondAttribute="trailing" constant="20" id="leY-Q5-nCQ"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="HD9-cz-78H" secondAttribute="height" id="mGS-pU-z9O"/>
+                            <constraint firstItem="A63-C6-3DO" firstAttribute="top" secondItem="msu-wy-ckO" secondAttribute="bottom" id="meO-lb-Vah"/>
                             <constraint firstItem="HD9-cz-78H" firstAttribute="leading" secondItem="zjC-Jk-QqW" secondAttribute="trailing" constant="10" id="mfg-4N-ZQi"/>
                             <constraint firstAttribute="trailing" secondItem="ghD-Zr-6RG" secondAttribute="trailing" constant="20" id="n0M-9b-suW"/>
                             <constraint firstAttribute="trailing" secondItem="icP-lN-oFG" secondAttribute="trailing" constant="20" id="n2Q-mn-nXV"/>
@@ -205,6 +218,7 @@
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="height" secondItem="epX-53-RR5" secondAttribute="height" id="w0d-rW-HJg"/>
                             <constraint firstItem="ghD-Zr-6RG" firstAttribute="top" secondItem="msu-wy-ckO" secondAttribute="bottom" id="xIx-nh-jaY"/>
                             <constraint firstItem="h2P-XB-Wan" firstAttribute="top" secondItem="6pd-by-Uv0" secondAttribute="bottom" constant="10" id="xT6-qR-79r"/>
+                            <constraint firstItem="tfa-mB-rwg" firstAttribute="leading" secondItem="A63-C6-3DO" secondAttribute="trailing" constant="20" id="xZX-Zl-Kgr"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="width" secondItem="lEK-fF-Si7" secondAttribute="width" id="xj6-BU-wgh"/>
                             <constraint firstItem="gc1-dp-AI1" firstAttribute="width" secondItem="6pd-by-Uv0" secondAttribute="width" id="z6F-go-j0o"/>
                             <constraint firstItem="d9I-wC-Xx0" firstAttribute="leading" secondItem="NaG-tN-oDv" secondAttribute="trailing" constant="20" id="zCj-DK-RHl"/>
@@ -213,9 +227,9 @@
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
+                        <outlet property="baseView" destination="NaG-tN-oDv" id="8Dz-26-3iw"/>
                         <outlet property="clearButton" destination="tfa-mB-rwg" id="nPP-tD-IRk"/>
                         <outlet property="functionButton" destination="h2P-XB-Wan" id="fMD-Ht-cYG"/>
-                        <outlet property="hissanView" destination="NaG-tN-oDv" id="8rn-6l-iXa"/>
                         <outletCollection property="numberKeyButtons" destination="d9I-wC-Xx0" id="dJG-ck-SLw"/>
                         <outletCollection property="numberKeyButtons" destination="zjC-Jk-QqW" id="GgD-kN-may"/>
                         <outletCollection property="numberKeyButtons" destination="HD9-cz-78H" id="O5i-2c-Uo6"/>
@@ -230,7 +244,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-207" y="-239"/>
+            <point key="canvasLocation" x="-212" y="-213"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
