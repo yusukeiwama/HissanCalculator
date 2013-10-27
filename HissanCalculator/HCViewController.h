@@ -10,7 +10,7 @@
 
 #import "HCCreateFomulaState.h"
 #import "HCCalculationState.h"
-#import "HCHissanView.h"
+#import "HCInputView.h"
 
 /**
  画面のコントローラ。ボタンアクションなどの管理を行う。

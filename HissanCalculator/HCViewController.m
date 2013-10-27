@@ -36,6 +36,7 @@ const NSInteger margin = 10;
 	}
 	
 	// xibから読み込むテスト -> 成功(Oct 27)
+	/*
 	NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"InputView"
 															 owner: self
 														   options: nil];
@@ -46,8 +47,20 @@ const NSInteger margin = 10;
 								 baseView.frame.size.height);
 	inputView.hidden = YES;
 	[self.view addSubview:inputView];
+	*/
 	
-	nibObjects = [[NSBundle mainBundle] loadNibNamed:@"CalculateView"
+	
+	// 以下の方針で確定。xibを読むのはカスタムクラスで行う。(Oct 28)
+	HCInputView *inputer = [[HCInputView alloc] init];
+	inputer.frame = CGRectMake(baseView.frame.origin.x,
+							   baseView.frame.origin.y,
+							   baseView.frame.size.width,
+							   baseView.frame.size.height);
+	inputer.hidden = NO;
+	[self.view addSubview:inputer];
+	
+	
+	NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"CalculateView"
 													owner: self
 												  options: nil];
 	calculateView = [nibObjects objectAtIndex:0];
