@@ -12,6 +12,8 @@
 	NSInteger margin;
 }
 
+@property UIView *aLine;
+
 @property UILabel *aboveIntegerLabel;
 @property UILabel *belowIntegerLabel;
 @property UIView *operatorSelectorView;

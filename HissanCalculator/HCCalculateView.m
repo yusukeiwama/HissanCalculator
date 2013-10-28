@@ -24,13 +24,13 @@
 		self.layer.cornerRadius = 20.0f;
 		self.clipsToBounds = YES;
 		//NSLog(@"calView : %@", [nibObjects description]);
-		
-		[self arrangeCalculateView];
-		
 	}
 	return self;
 }
 
+
+// 桁数を引数に動的に生成できるようにする:現時点では2桁と2桁演算になっている
+// 数学的に一般化が必要
 - (void)arrangeCalculateView
 {
 	for (int i = 0; i < 5; i++) {

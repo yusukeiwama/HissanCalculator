@@ -10,6 +10,7 @@
 
 @implementation HCInputView
 
+@synthesize aLine;
 @synthesize aboveIntegerLabel;
 @synthesize belowIntegerLabel;
 @synthesize operatorSelectorView;
@@ -18,13 +19,15 @@
 @synthesize operatorSelecterViewDefaultPosition;
 @synthesize operatorSelectButtonDefaultPositions;
 
-
 - (id)initWithFrame:(CGRect)frame
 {
 	self = [super initWithFrame:frame];
 	if (self) {
 		// Initialization code
+		
 		margin = 10;
+		
+		// xibファイルを読み込み、クラスのカスタムビューとして指定
 		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"InputView"
 																												owner: self
 																											options: nil];
@@ -34,10 +37,11 @@
 		//NSLog(@"iptView : %@", [nibObjects description]);
 		
 		// 以下の様にサブビューを読み込まないと操作できないので注意。
-		aboveIntegerLabel = self.subviews[0];
-		belowIntegerLabel = self.subviews[1];
-		operatorSelectorView = self.subviews[2];
-		operatorLabel = self.subviews[3];
+		aLine = self.subviews[0];
+		aboveIntegerLabel = self.subviews[1];
+		belowIntegerLabel = self.subviews[2];
+		operatorSelectorView = self.subviews[3];
+		operatorLabel = self.subviews[4];
 	}
 	return self;
 }
@@ -56,19 +60,12 @@
 	operatorSelectorView.clipsToBounds = YES;
 	
 	operatorSelecterViewDefaultPosition = operatorSelectorView.frame;
-	
 	[self dynamicOperatorButtonArrange];
 	
-	
-	operatorLabel.frame = operatorSelectorView.frame;
-	operatorLabel.textAlignment = NSTextAlignmentCenter;
-	[operatorLabel setFont:[UIFont systemFontOfSize:150]];
-	[operatorLabel setTextColor:[UIColor whiteColor]];
 	operatorLabel.hidden = YES;
-	//[self addSubview:operatorLabel];
 }
 
-// Xibに直接書くと複雑になり、デバッグが難しくなるので動的に生成する。
+// xibに直接書くと複雑になり、デバッグが難しくなるので動的に生成する。
 - (void)dynamicOperatorButtonArrange
 {
 	NSValue *value;
@@ -76,8 +73,10 @@
 	
 	for (int i = 0; i < 4; i++) {
 		UIButton *aButton = [[UIButton alloc] init];
-		aButton.frame = CGRectMake(operatorSelectorView.bounds.origin.x + (i % 2) * (int)(operatorSelectorView.bounds.size.width / 2) + margin,
-															 operatorSelectorView.bounds.origin.y + (i / 2) * (int)(operatorSelectorView.bounds.size.height / 2) + margin,
+		aButton.frame = CGRectMake(operatorSelectorView.bounds.origin.x
+															 + (i % 2) * (int)(operatorSelectorView.bounds.size.width / 2) + margin,
+															 operatorSelectorView.bounds.origin.y
+															 + (i / 2) * (int)(operatorSelectorView.bounds.size.height / 2) + margin,
 															 (int)(operatorSelectorView.bounds.size.width / 2) - 2 * margin,
 															 (int)(operatorSelectorView.bounds.size.height / 2) - 2 * margin);
 		aButton.backgroundColor = operatorSelectorView.backgroundColor;
