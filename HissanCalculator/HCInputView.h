@@ -12,16 +12,13 @@
 	NSInteger margin;
 }
 
+@property UILabel *aboveIntegerLabel;
+@property UILabel *belowIntegerLabel;
 @property UIView *operatorSelectorView;
 @property UILabel	*operatorLabel;
 
 @property CGRect operatorSelecterViewDefaultPosition;
 @property NSArray *operatorSelectButtonDefaultPositions;
-
-@property NSInteger downSpace;
-
-@property UILabel *aboveIntegerLabel;
-@property UILabel *belowIntegerLabel;
 
 - (void)arrangeInputView;
 

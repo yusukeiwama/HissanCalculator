@@ -18,6 +18,7 @@
 @synthesize operatorSelecterViewDefaultPosition;
 @synthesize operatorSelectButtonDefaultPositions;
 
+
 - (id)initWithFrame:(CGRect)frame
 {
 	self = [super initWithFrame:frame];
@@ -35,21 +36,40 @@
 		// 以下の様にサブビューを読み込まないと操作できないので注意。
 		aboveIntegerLabel = self.subviews[0];
 		belowIntegerLabel = self.subviews[1];
-		//operatorSelectorView = self.subviews[2];
-		//operatorLabel = self.subviews[3];
-		
+		operatorSelectorView = self.subviews[2];
+		operatorLabel = self.subviews[3];
 	}
 	return self;
 }
 
 - (void)arrangeInputView
 {
-	aboveIntegerLabel.text = @"9999";
-  belowIntegerLabel.text = @"0000";
+	aboveIntegerLabel.layer.cornerRadius = 20.0f;
+	aboveIntegerLabel.clipsToBounds = YES;
 	
+	belowIntegerLabel.layer.cornerRadius = 20.0f;
+	belowIntegerLabel.clipsToBounds = YES;
+	
+	operatorSelectorView.layer.cornerRadius = 20.0f;
+	[[operatorSelectorView layer] setBorderColor:[[UIColor whiteColor] CGColor]];
+	[[operatorSelectorView layer] setBorderWidth:1.0];
+	operatorSelectorView.clipsToBounds = YES;
+	
+	operatorSelecterViewDefaultPosition = operatorSelectorView.frame;
+	
+	[self dynamicOperatorButtonArrange];
+	
+	
+	operatorLabel.frame = operatorSelectorView.frame;
+	operatorLabel.textAlignment = NSTextAlignmentCenter;
+	[operatorLabel setFont:[UIFont systemFontOfSize:150]];
+	[operatorLabel setTextColor:[UIColor whiteColor]];
+	operatorLabel.hidden = YES;
+	//[self addSubview:operatorLabel];
 }
 
-- (void)embedButton
+// Xibに直接書くと複雑になり、デバッグが難しくなるので動的に生成する。
+- (void)dynamicOperatorButtonArrange
 {
 	NSValue *value;
 	CGRect rect;
@@ -85,6 +105,7 @@
 			default:
 				break;
 		}
+		
 		[aButton setTitle:operator forState:UIControlStateNormal];
 		[aButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 		[aButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
@@ -92,17 +113,6 @@
 		aButton.userInteractionEnabled = NO;
 		[operatorSelectorView addSubview:aButton];
 	}
-}
-
-- (void)embedOperatorView
-{
-	operatorLabel = [[UILabel alloc] init];
-	operatorLabel.frame = operatorSelectorView.frame;
-	operatorLabel.textAlignment = NSTextAlignmentCenter;
-	[operatorLabel setFont:[UIFont systemFontOfSize:150]];
-	[operatorLabel setTextColor:[UIColor whiteColor]];
-	operatorLabel.hidden = YES;
-	[self addSubview:operatorLabel];
 }
 
 /*

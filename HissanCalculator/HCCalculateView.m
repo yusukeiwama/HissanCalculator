@@ -24,6 +24,9 @@
 		self.layer.cornerRadius = 20.0f;
 		self.clipsToBounds = YES;
 		//NSLog(@"calView : %@", [nibObjects description]);
+		
+		[self arrangeCalculateView];
+		
 	}
 	return self;
 }

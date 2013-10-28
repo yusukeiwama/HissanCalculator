@@ -20,9 +20,6 @@ const NSInteger margin = 10;
 
 @synthesize baseView;
 
-@synthesize inputView;
-@synthesize calculateView;
-
 @synthesize numberKeyButtons;
 @synthesize clearButton;
 @synthesize functionButton;
@@ -47,7 +44,7 @@ const NSInteger margin = 10;
 															 baseView.frame.origin.y,
 															 baseView.frame.size.width,
 															 baseView.frame.size.height);
-	inputView.hidden = YES;
+	inputView.hidden = NO;
 	[self.view addSubview:inputView];
 	[inputView arrangeInputView];
 	
@@ -74,8 +71,8 @@ const NSInteger margin = 10;
 			forControlEvents:UIControlEventTouchUpInside];
 	}
 	
-	//UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-	//[inputView.operatorSelectorView addGestureRecognizer:recognizer];
+	UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+	[inputView.operatorSelectorView addGestureRecognizer:recognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -86,6 +83,8 @@ const NSInteger margin = 10;
 
 - (void)context
 {
+	/*
+	 // Viewの切り替えテスト -> 成功 (Oct 28)
 	if (int_state % 2 == 0) {
 		inputView.hidden = NO;
 		calculateView.hidden = YES;
@@ -93,110 +92,104 @@ const NSInteger margin = 10;
 		inputView.hidden = YES;
 		calculateView.hidden = NO;
 	}
-	/*
-	 if (int_state == 0) {
-	 hissanView.aboveIntegerLabel.backgroundColor = [UIColor colorWithRed:90.0 / 255.0
-	 green:150.0 / 255.0
-	 blue:120.0 / 255.0
-	 alpha:1.0];
-	 hissanView.belowIntegerLabel.backgroundColor = hissanView.backgroundColor;
-	 } else if (int_state == 1) {
-	 hissanView.belowIntegerLabel.backgroundColor = [UIColor colorWithRed:90.0 / 255.0
-	 green:150.0 / 255.0
-	 blue:120.0 / 255.0
-	 alpha:1.0];
-	 hissanView.aboveIntegerLabel.backgroundColor = hissanView.backgroundColor;
-	 } else {
-	 hissanView.belowIntegerLabel.backgroundColor = hissanView.backgroundColor;
-	 [functionButton setTitle:@"計算開始" forState:UIControlStateNormal];
-	 [functionButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
-	 }
-	 */
+	*/
+	
+	if (int_state == 0) {
+		inputView.aboveIntegerLabel.backgroundColor = [UIColor colorWithRed:90.0 / 255.0
+																																	green:150.0 / 255.0
+																																	 blue:120.0 / 255.0
+																																	alpha:1.0];
+		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
+	} else if (int_state == 1) {
+		inputView.belowIntegerLabel.backgroundColor = [UIColor colorWithRed:90.0 / 255.0
+																																	green:150.0 / 255.0
+																																	 blue:120.0 / 255.0
+																																	alpha:1.0];
+		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
+	} else {
+		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
+		[functionButton setTitle:@"計算開始" forState:UIControlStateNormal];
+		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
+	}
+}
+
+- (void)tapped:(UITapGestureRecognizer *)recognizer {
+	[UIView animateWithDuration:0.5f
+									 animations:^{
+										 [inputView bringSubviewToFront:inputView.operatorSelectorView];
+										 
+										 CGFloat widthOfInputView = baseView.frame.size.width;
+										 inputView.operatorSelectorView.frame = CGRectMake(inputView.bounds.origin.x + margin,
+																																			 inputView.bounds.origin.y + margin,
+																																			 widthOfInputView - 2 * margin,
+																																			 widthOfInputView - 2 * margin);
+										 
+										 for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
+											 aButton.frame = CGRectMake(inputView.operatorSelectorView.bounds.origin.x + margin
+																									+ (aButton.tag % 2) * (int)(widthOfInputView / 2),
+																									inputView.operatorSelectorView.bounds.origin.y + margin
+																									+ (aButton.tag / 2) * (int)(widthOfInputView / 2),
+																									(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin,
+																									(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin);
+										 }
+									 } completion:^(BOOL par){
+										 for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
+											 [aButton.titleLabel setFont:[UIFont systemFontOfSize:180]];
+										 }
+									 }];
+	
+	for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
+		aButton.userInteractionEnabled = YES;
+		[aButton addTarget:self
+								action:@selector(operatorSelected:)
+			forControlEvents:UIControlEventTouchUpInside];
+	}
+	[self context];
 	
 }
 
-/*
- - (void)tapped:(UITapGestureRecognizer *)recognizer {
- [UIView animateWithDuration:0.5f
- animations:^{
- [hissanView bringSubviewToFront:hissanView.operatorSelectorView];
- CGFloat widthOfHissanView = hissanView.bounds.size.width;
- hissanView.operatorSelectorView.frame = CGRectMake(hissanView.bounds.origin.x + margin,
- hissanView.bounds.origin.y + margin,
- widthOfHissanView - 2 * margin,
- widthOfHissanView - 2 * margin);
- 
- for (UIButton *aButton in hissanView.operatorSelectorView.subviews) {
- aButton.frame = CGRectMake(hissanView.operatorSelectorView.bounds.origin.x + margin + (aButton.tag % 2) * (int)(widthOfHissanView / 2),
- hissanView.operatorSelectorView.bounds.origin.y + margin + (aButton.tag / 2) * (int)(widthOfHissanView / 2),
- (int)((widthOfHissanView - 2 * margin) / 2) - 2 * margin,
- (int)((widthOfHissanView - 2 * margin) / 2) - 2 * margin);
- }
- } completion:^(BOOL par){
- for (UIButton *aButton in hissanView.operatorSelectorView.subviews) {
- [aButton.titleLabel setFont:[UIFont systemFontOfSize:180]];
- }
- }];
- 
- for (UIButton *aButton in hissanView.operatorSelectorView.subviews) {
- aButton.userInteractionEnabled = YES;
- [aButton addTarget:self
- action:@selector(operatorSelected:)
- forControlEvents:UIControlEventTouchUpInside];
- }
- [self context];
- 
- }
- */
-
 - (void)operatorSelected:(UIButton *)button
 {
-	/*
-	 NSString *operator;
-	 switch (button.tag) {
-	 case 0:
-	 operator = [NSString stringWithFormat:@"+"];
-	 break;
-	 case 1:
-	 operator = [NSString stringWithFormat:@"-"];
-	 break;
-	 case 2:
-	 operator = [NSString stringWithFormat:@"×"];
-	 break;
-	 case 3:
-	 operator = [NSString stringWithFormat:@"÷"];
-	 break;
-	 default:
-	 break;
-	 }
-	 hissanView.operatorSelectorView.hidden = YES;
-	 hissanView.operatorLabel.hidden = NO;
-	 hissanView.operatorLabel.text = operator;
-	 */
+	NSString *operator;
+	switch (button.tag) {
+		case 0:
+			operator = [NSString stringWithFormat:@"+"];
+			break;
+		case 1:
+			operator = [NSString stringWithFormat:@"-"];
+			break;
+		case 2:
+			operator = [NSString stringWithFormat:@"×"];
+			break;
+		case 3:
+			operator = [NSString stringWithFormat:@"÷"];
+			break;
+		default:
+			break;
+	}
+	inputView.operatorSelectorView.hidden = YES;
+	inputView.operatorLabel.hidden = NO;
+	inputView.operatorLabel.text = operator;
 }
 
 - (void)numberKeyTapped:(UIButton *)aButton
 {
 	//NSLog(@"Tapped at %d button.", (int)aButton.tag);
 	
-	//UILabel *aLabel = [[UILabel alloc] init];
-	if (int_state > 4) int_state = 4;
-	
 	/*
+	 UILabel *aLabel = [[UILabel alloc] init];
 	 switch (int_state) {
 	 case 0:
-	 aLabel = ((UILabel *)[hissanView.labels objectAtIndex:2]);
+	 aLabel = ((UILabel *)[calculateView.labels objectAtIndex:2]);
 	 break;
 	 case 1:
-	 aLabel = ((UILabel *)[hissanView.labels objectAtIndex:3]);
+	 aLabel = ((UILabel *)[calculateView.labels objectAtIndex:3]);
 	 break;
 	 case 2:
-	 aLabel = ((UILabel *)[hissanView.labels objectAtIndex:6]);
+	 aLabel = ((UILabel *)[calculateView.labels objectAtIndex:6]);
 	 break;
 	 case 3:
-	 aLabel = ((UILabel *)[hissanView.labels objectAtIndex:7]);
-	 break;
-	 case 4:
+	 aLabel = ((UILabel *)[calculateView.labels objectAtIndex:7]);
 	 break;
 	 default:
 	 break;
@@ -205,17 +198,15 @@ const NSInteger margin = 10;
 	 int_state++;
 	 */
 	
-	/*
-	 if (int_state == 0) {
-	 leftNumber = leftNumber * 10 + aButton.tag;
-	 hissanView.aboveIntegerLabel.hidden = NO;
-	 hissanView.aboveIntegerLabel.text = [NSString stringWithFormat:@"%d", leftNumber];
-	 } else {
-	 rightNumber = rightNumber * 10 + aButton.tag;
-	 hissanView.belowIntegerLabel.hidden = NO;
-	 hissanView.belowIntegerLabel.text = [NSString stringWithFormat:@"%d", rightNumber];
-	 }
-	 */
+	if (int_state == 0) {
+		leftNumber = leftNumber * 10 + aButton.tag;
+		inputView.aboveIntegerLabel.hidden = NO;
+		inputView.aboveIntegerLabel.text = [NSString stringWithFormat:@"%d", leftNumber];
+	} else {
+		rightNumber = rightNumber * 10 + aButton.tag;
+		inputView.belowIntegerLabel.hidden = NO;
+		inputView.belowIntegerLabel.text = [NSString stringWithFormat:@"%d", rightNumber];
+	}
 }
 
 - (IBAction)clearButton:(id)sender {
@@ -225,38 +216,36 @@ const NSInteger margin = 10;
 	leftNumber = 0;
 	rightNumber = 0;
 	[self context];
-	/*
-	 for (UILabel *aLabel in hissanView.labels) {
-	 aLabel.text = @"";
-	 }
-	 
-	 hissanView.aboveIntegerLabel.hidden = YES;
-	 hissanView.belowIntegerLabel.hidden = YES;
-	 hissanView.operatorSelectorView.backgroundColor = [UIColor colorWithRed:90.0 / 255.0
-	 green:150.0 / 255.0
-	 blue:120.0 / 255.0
-	 alpha:1.0];
-	 
-	 hissanView.operatorSelectorView.frame = hissanView.operatorSelecterViewDefaultPosition;
-	 hissanView.operatorLabel.hidden = YES;
-	 hissanView.operatorSelectorView.hidden = NO;
-	 
-	 CGRect frame;
-	 for (UIButton *aButton in hissanView.operatorSelectorView.subviews) {
-	 // デフォルトの位置を読み込む。構造体のための処理。
-	 [(NSValue *)[hissanView.operatorSelectButtonDefaultPositions objectAtIndex:aButton.tag] getValue:&frame];
-	 aButton.frame = frame;
-	 [aButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
-	 aButton.hidden = NO;
-	 }
-	 inputView.hidden = YES;
-	 */
+	
+	for (UILabel *aLabel in calculateView.labels) {
+		aLabel.text = @"";
+	}
+	
+	inputView.aboveIntegerLabel.hidden = YES;
+	inputView.belowIntegerLabel.hidden = YES;
+	inputView.operatorSelectorView.backgroundColor = [UIColor colorWithRed:90.0 / 255.0
+																																	 green:150.0 / 255.0
+																																		blue:120.0 / 255.0
+																																	 alpha:1.0];
+	
+	inputView.operatorSelectorView.frame = inputView.operatorSelecterViewDefaultPosition;
+	inputView.operatorLabel.hidden = YES;
+	inputView.operatorSelectorView.hidden = NO;
+	
+	CGRect frame;
+	for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
+		// デフォルトの位置を読み込む。構造体をオブジェクトとして扱うための処理。
+		[(NSValue *)[inputView.operatorSelectButtonDefaultPositions objectAtIndex:aButton.tag] getValue:&frame];
+		aButton.frame = frame;
+		[aButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
+		aButton.hidden = NO;
+	}
+	inputView.hidden = YES;
 }
 
 
 - (IBAction)functionButton:(id)sender {
 	int_state++;
-	//[inputView arrangeInputView];
 	[self context];
 }
 
