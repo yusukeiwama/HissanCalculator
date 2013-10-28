@@ -7,23 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#import "HCCreateFomulaState.h"
-#import "HCCalculationState.h"
 #import "HCInputView.h"
+#import "HCCalculateView.h"
 
 /**
  画面のコントローラ。ボタンアクションなどの管理を行う。
  */
 
-@interface HCViewController : UIViewController {
-	id<HCState> state;
-	UIView *inputView;
-	UIView *calculateView;
-}
+@interface HCViewController : UIViewController
+
+@property	HCInputView *inputView;
+@property	HCCalculateView *calculateView;
 
 /** 入力内容を消去するボタンアクション */
-- (IBAction)clearButton:	(id)sender;
+- (IBAction)clearButton:(id)sender;
 
 /** 状態に応じて機能を変えるボタンアクション */
 - (IBAction)functionButton:(id)sender;
@@ -39,7 +36,5 @@
 
 /** 計算ボタン */
 @property (weak, nonatomic)	IBOutlet UIButton		*functionButton;
-
-
 
 @end

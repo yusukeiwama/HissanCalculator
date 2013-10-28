@@ -20,6 +20,9 @@ const NSInteger margin = 10;
 
 @synthesize baseView;
 
+@synthesize inputView;
+@synthesize calculateView;
+
 @synthesize numberKeyButtons;
 @synthesize clearButton;
 @synthesize functionButton;
@@ -30,62 +33,49 @@ const NSInteger margin = 10;
 {
 	[super viewDidLoad];
 	
+	baseView.layer.cornerRadius = 20.0f;
+	baseView.clipsToBounds = YES;
+	
 	// デバイスがiPhoneだった場合、サイズの調整を行う。
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
 		[self foriPhoneResizing];
 	}
 	
-	// xibから読み込むテスト -> 成功(Oct 27)
-	/*
-	NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"InputView"
-															 owner: self
-														   options: nil];
-	inputView = [nibObjects objectAtIndex:0];
+	// 以下の方針で確定。xibを読むのはカスタムクラスで行う。(Oct 28)
+	inputView = [[HCInputView alloc] init];
 	inputView.frame = CGRectMake(baseView.frame.origin.x,
-								 baseView.frame.origin.y,
-								 baseView.frame.size.width,
-								 baseView.frame.size.height);
+															 baseView.frame.origin.y,
+															 baseView.frame.size.width,
+															 baseView.frame.size.height);
 	inputView.hidden = YES;
 	[self.view addSubview:inputView];
-	*/
+	[inputView arrangeInputView];
 	
 	
-	// 以下の方針で確定。xibを読むのはカスタムクラスで行う。(Oct 28)
-	HCInputView *inputer = [[HCInputView alloc] init];
-	inputer.frame = CGRectMake(baseView.frame.origin.x,
-							   baseView.frame.origin.y,
-							   baseView.frame.size.width,
-							   baseView.frame.size.height);
-	inputer.hidden = NO;
-	[self.view addSubview:inputer];
-	
-	
-	NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"CalculateView"
-													owner: self
-												  options: nil];
-	calculateView = [nibObjects objectAtIndex:0];
+	calculateView = [[HCCalculateView alloc] init];
 	calculateView.frame = CGRectMake(baseView.frame.origin.x,
-									 baseView.frame.origin.y,
-									 baseView.frame.size.width,
-									 baseView.frame.size.height);
+																	 baseView.frame.origin.y,
+																	 baseView.frame.size.width,
+																	 baseView.frame.size.height);
 	calculateView.hidden = YES;
 	[self.view addSubview:calculateView];
+	[calculateView arrangeCalculateView];
 	
 	[self context];
 	
-	NSLog(@"%@", [inputView.subviews description]);
+	//NSLog(@"%@", [inputView.subviews description]);
+	//NSLog(@"%@", [calculateView.subviews description]);
 	
-	/*
-	 for (UIButton *aButton in numberKeyButtons) {
-	 [aButton addTarget:self
-	 action:@selector(numberKeyTapped:)
-	 forControlEvents:UIControlEventTouchUpInside];
-	 }
-	 
-	 
-	 UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-	 [hissanView.operatorSelectorView addGestureRecognizer:recognizer];
-	 */
+	
+	
+	for (UIButton *aButton in numberKeyButtons) {
+		[aButton addTarget:self
+								action:@selector(numberKeyTapped:)
+			forControlEvents:UIControlEventTouchUpInside];
+	}
+	
+	//UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+	//[inputView.operatorSelectorView addGestureRecognizer:recognizer];
 }
 
 - (void)didReceiveMemoryWarning
@@ -266,6 +256,7 @@ const NSInteger margin = 10;
 
 - (IBAction)functionButton:(id)sender {
 	int_state++;
+	//[inputView arrangeInputView];
 	[self context];
 }
 

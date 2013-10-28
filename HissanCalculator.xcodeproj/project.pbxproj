@@ -28,11 +28,11 @@
 		A602224218065AE900E7D932 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A602224018065AE900E7D932 /* Main.storyboard */; };
 		A620CD401814C6900030C1EC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A620CD3F1814C6900030C1EC /* QuartzCore.framework */; };
 		A68966A1180D09B300BD5CB5 /* HCCalculationState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A0180D09B300BD5CB5 /* HCCalculationState.m */; };
-		A68966A5180D160D00BD5CB5 /* HCHissanView.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A4180D160D00BD5CB5 /* HCHissanView.m */; };
 		A68966A8180DC75C00BD5CB5 /* HCCreateFomulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */; };
+		A6929813181DDFB600E5DE3B /* HCCalculateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6929812181DDFB600E5DE3B /* HCCalculateView.m */; };
+		A6929814181DDFB600E5DE3B /* HCCalculateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6929812181DDFB600E5DE3B /* HCCalculateView.m */; };
 		A6B342D718189AF400D63DAC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602220618065A9700E7D932 /* CoreGraphics.framework */; };
 		A6B342D818189AF700D63DAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A620CD3F1814C6900030C1EC /* QuartzCore.framework */; };
-		A6B342D918189BBF00D63DAC /* HCHissanView.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A4180D160D00BD5CB5 /* HCHissanView.m */; };
 		A6B342DA18189BCC00D63DAC /* HCCreateFomulaState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */; };
 		A6B342DB18189BCF00D63DAC /* HCCalculationState.m in Sources */ = {isa = PBXBuildFile; fileRef = A68966A0180D09B300BD5CB5 /* HCCalculationState.m */; };
 		A6CC80B01818B0E7005DEFB3 /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CC80AF1818B0E7005DEFB3 /* InputView.xib */; };
@@ -75,11 +75,11 @@
 		A620CD3F1814C6900030C1EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A689669F180D09B300BD5CB5 /* HCCalculationState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCalculationState.h; sourceTree = "<group>"; };
 		A68966A0180D09B300BD5CB5 /* HCCalculationState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculationState.m; sourceTree = "<group>"; };
-		A68966A3180D160D00BD5CB5 /* HCHissanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCHissanView.h; sourceTree = "<group>"; };
-		A68966A4180D160D00BD5CB5 /* HCHissanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HCHissanView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A68966A6180DC75C00BD5CB5 /* HCCreateFomulaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateFomulaState.h; sourceTree = "<group>"; };
 		A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateFomulaState.m; sourceTree = "<group>"; };
 		A68966A9180DCF6400BD5CB5 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = SOURCE_ROOT; };
+		A6929811181DDFB600E5DE3B /* HCCalculateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCalculateView.h; sourceTree = "<group>"; };
+		A6929812181DDFB600E5DE3B /* HCCalculateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculateView.m; sourceTree = "<group>"; };
 		A6CC80AF1818B0E7005DEFB3 /* InputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
 		A6CC80B21818B19B005DEFB3 /* CalculateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalculateView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,10 +149,10 @@
 				A602221418065A9700E7D932 /* HCAppDelegate.m */,
 				A602223C18065AD100E7D932 /* HCViewController.h */,
 				A602223D18065AD100E7D932 /* HCViewController.m */,
-				A68966A3180D160D00BD5CB5 /* HCHissanView.h */,
-				A68966A4180D160D00BD5CB5 /* HCHissanView.m */,
 				10E2D53E181CC2C10040C93D /* HCInputView.h */,
 				10E2D53F181CC2C10040C93D /* HCInputView.m */,
+				A6929811181DDFB600E5DE3B /* HCCalculateView.h */,
+				A6929812181DDFB600E5DE3B /* HCCalculateView.m */,
 				A6CC80B11818B17F005DEFB3 /* ViewDesign */,
 				A68966A2180D0D3800BD5CB5 /* StatePattern */,
 				A602221F18065A9800E7D932 /* Images.xcassets */,
@@ -318,9 +318,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6929813181DDFB600E5DE3B /* HCCalculateView.m in Sources */,
 				A68966A8180DC75C00BD5CB5 /* HCCreateFomulaState.m in Sources */,
 				10E2D540181CC2C10040C93D /* HCInputView.m in Sources */,
-				A68966A5180D160D00BD5CB5 /* HCHissanView.m in Sources */,
 				A602223E18065AD100E7D932 /* HCViewController.m in Sources */,
 				A602221118065A9700E7D932 /* main.m in Sources */,
 				A68966A1180D09B300BD5CB5 /* HCCalculationState.m in Sources */,
@@ -332,10 +332,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6929814181DDFB600E5DE3B /* HCCalculateView.m in Sources */,
 				A6B342DA18189BCC00D63DAC /* HCCreateFomulaState.m in Sources */,
 				A602223318065A9800E7D932 /* HissanCalculatorTests.m in Sources */,
 				10E2D541181CC2C10040C93D /* HCInputView.m in Sources */,
-				A6B342D918189BBF00D63DAC /* HCHissanView.m in Sources */,
 				A602223F18065AD100E7D932 /* HCViewController.m in Sources */,
 				A6B342DB18189BCF00D63DAC /* HCCalculationState.m in Sources */,
 			);

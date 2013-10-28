@@ -8,6 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HCInputView : UIView
+@interface HCInputView : UIView {
+	NSInteger margin;
+}
+
+@property UIView *operatorSelectorView;
+@property UILabel	*operatorLabel;
+
+@property CGRect operatorSelecterViewDefaultPosition;
+@property NSArray *operatorSelectButtonDefaultPositions;
+
+@property NSInteger downSpace;
+
+@property UILabel *aboveIntegerLabel;
+@property UILabel *belowIntegerLabel;
+
+- (void)arrangeInputView;
 
 @end

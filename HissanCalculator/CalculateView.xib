@@ -4,14 +4,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UIView"/>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HCCalculateView"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="CYY-zR-GDA" customClass="HCHissanView">
-            <rect key="frame" x="0.0" y="0.0" width="500" height="728"/>
+        <view contentMode="scaleToFill" id="CYY-zR-GDA" customClass="HCCalculateView">
+            <rect key="frame" x="0.0" y="0.0" width="500" height="668"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is CalculateView" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUa-vd-JwB">
-                    <rect key="frame" x="20" y="346" width="278" height="36"/>
+                    <rect key="frame" x="20" y="316" width="278" height="36"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" type="system" pointSize="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
