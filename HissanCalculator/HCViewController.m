@@ -16,6 +16,8 @@ NSInteger leftNumber = 0;
 NSInteger rightNumber = 0;
 const NSInteger margin = 10;
 
+UIColor *highlightColor;
+
 @implementation HCViewController
 
 @synthesize baseView;
@@ -30,15 +32,21 @@ const NSInteger margin = 10;
 {
 	[super viewDidLoad];
 	
+	highlightColor = [UIColor colorWithRed:90.0 / 255.0
+																	 green:150.0 / 255.0
+																		blue:120.0 / 255.0
+																	 alpha:1.0];
+	
+	
 	baseView.layer.cornerRadius = 20.0f;
 	baseView.clipsToBounds = YES;
 	
 	// デバイスがiPhoneだった場合、サイズの調整を行う。
 	// バグの原因になりうるので一旦コメントアウト(Oct 28)
-	 if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
-	 [self foriPhoneResizing];
-	 }
-	 
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+		[self foriPhoneResizing];
+	}
+	
 	// 以下の方針で確定。xibを読むのはカスタムクラスで行う(Oct 28)
 	inputView = [[HCInputView alloc] init];
 	inputView.frame = CGRectMake(baseView.frame.origin.x,
@@ -70,8 +78,12 @@ const NSInteger margin = 10;
 			forControlEvents:UIControlEventTouchUpInside];
 	}
 	
-	UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
-	[inputView.operatorSelectorView addGestureRecognizer:recognizer];
+	for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
+		aButton.userInteractionEnabled = NO;
+		[aButton addTarget:self
+								action:@selector(operatorSelected:)
+			forControlEvents:UIControlEventTouchUpInside];
+	}
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,63 +95,22 @@ const NSInteger margin = 10;
 - (void)context
 {
 	if (int_state == 0) {
-		inputView.aboveIntegerLabel.backgroundColor = [UIColor colorWithRed:90.0 / 255.0
-																																	green:150.0 / 255.0
-																																	 blue:120.0 / 255.0
-																																	alpha:1.0];
+		inputView.aboveIntegerLabel.backgroundColor = highlightColor;
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
 	} else if (int_state == 1) {
-		[self expandOperatorSelectView];
+		[inputView
+		 expandOperatorSelectView];
+		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
+		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
 	} else if (int_state == 2) {
-		inputView.belowIntegerLabel.backgroundColor = [UIColor colorWithRed:90.0 / 255.0
-																																	green:150.0 / 255.0
-																																	 blue:120.0 / 255.0
-																																	alpha:1.0];
+		inputView.belowIntegerLabel.backgroundColor = highlightColor;
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 	} else {
+		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
+		
 		[functionButton setTitle:@"計算開始" forState:UIControlStateNormal];
 		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
-	}
-}
-
-- (void)tapped:(UITapGestureRecognizer *)recognizer {
-	[self expandOperatorSelectView];
-	[self context];
-}
-
-- (void)expandOperatorSelectView
-{
-	[UIView animateWithDuration:0.5f
-									 animations:^{
-										 CGFloat widthOfInputView = inputView.frame.size.width - 2 * margin;
-										 inputView.operatorSelectorView.frame = CGRectMake(inputView.operatorSelectorView.frame.origin.x - margin,
-																																			 inputView.center.y - widthOfInputView / 2
-																																			 - inputView.operatorSelectorView.frame.size.height,
-																																			 widthOfInputView,
-																																			 widthOfInputView);
-										 
-										 for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
-											 aButton.frame = CGRectMake(inputView.operatorSelectorView.bounds.origin.x + margin
-																									+ (aButton.tag % 2) * (int)(widthOfInputView / 2),
-																									inputView.operatorSelectorView.bounds.origin.y + margin
-																									+ (aButton.tag / 2) * (int)(widthOfInputView / 2),
-																									(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin,
-																									(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin);
-										 }
-										 
-										 //inputView.operatorSelectorView.transform = CGAffineTransformMakeScale(3.0f, 3.0f);
-									 } completion:^(BOOL par){
-										 for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
-											 [aButton.titleLabel setFont:[UIFont systemFontOfSize:180]];
-										 }
-									 }];
-	
-	for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
-		aButton.userInteractionEnabled = YES;
-		[aButton addTarget:self
-								action:@selector(operatorSelected:)
-			forControlEvents:UIControlEventTouchUpInside];
 	}
 }
 
@@ -165,24 +136,24 @@ const NSInteger margin = 10;
 	inputView.operatorSelectorView.hidden = YES;
 	inputView.operatorLabel.hidden = NO;
 	inputView.operatorLabel.text = operator;
+	int_state++;
+	[self context];
 }
 
 - (void)numberKeyTapped:(UIButton *)aButton
 {
 	//NSLog(@"Tapped at %d button.", (int)aButton.tag);
 	
-	UILabel *aLabel = [[UILabel alloc] init];
-	
 	//ラベル参照の仕方
+	//UILabel *aLabel = [[UILabel alloc] init];
 	//aLabel = ((UILabel *)[calculateView.labels objectAtIndex:2]);
-	aLabel.text = [NSString stringWithFormat:@"%d", aButton.tag];
-	int_state++;
+	//aLabel.text = [NSString stringWithFormat:@"%d", aButton.tag];
 	
 	if (int_state == 0) {
 		leftNumber = leftNumber * 10 + aButton.tag;
 		inputView.aboveIntegerLabel.hidden = NO;
 		inputView.aboveIntegerLabel.text = [NSString stringWithFormat:@"%d", leftNumber];
-	} else {
+	} else if (int_state == 2) {
 		rightNumber = rightNumber * 10 + aButton.tag;
 		inputView.belowIntegerLabel.hidden = NO;
 		inputView.belowIntegerLabel.text = [NSString stringWithFormat:@"%d", rightNumber];
@@ -196,32 +167,24 @@ const NSInteger margin = 10;
 	leftNumber = 0;
 	rightNumber = 0;
 	
-	/*
+	/* calculateView側の処理
 	 for (UILabel *aLabel in calculateView.labels) {
 	 aLabel.text = @"";
 	 }
 	 */
 	
-	inputView.aboveIntegerLabel.hidden = YES;
-	inputView.belowIntegerLabel.hidden = YES;
-	inputView.operatorSelectorView.backgroundColor = [UIColor colorWithRed:90.0 / 255.0
-																																	 green:150.0 / 255.0
-																																		blue:120.0 / 255.0
-																																	 alpha:1.0];
+	[functionButton setTitle:@"入力" forState:UIControlStateNormal];
+	[functionButton.titleLabel setFont:[UIFont systemFontOfSize:90]];
+	
+	[inputView resetOperatorView];
+	
+	inputView.aboveIntegerLabel.text = @"";
+	inputView.belowIntegerLabel.text = @"";
 	
 	inputView.operatorSelectorView.frame = inputView.operatorSelecterViewDefaultPosition;
-	inputView.operatorLabel.hidden = YES;
 	inputView.operatorSelectorView.hidden = NO;
 	
-	CGRect frame;
-	for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
-		// デフォルトの位置を読み込む。構造体をオブジェクトとして扱うための処理。aButton.tagによって順序を乱さないで取り出し可能。
-		[(NSValue *)[inputView.operatorSelectButtonDefaultPositions objectAtIndex:aButton.tag] getValue:&frame];
-		aButton.frame = frame;
-		[aButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
-		aButton.hidden = NO;
-	}
-	
+	inputView.operatorLabel.hidden = YES;
 	[self context];
 }
 
@@ -231,10 +194,9 @@ const NSInteger margin = 10;
 	[self context];
 }
 
-
 - (void)foriPhoneResizing
 {
-	// フォントサイズの調整
+	// フォントサイズの調整を行う
 	int font_size = 1;
 	UIButton *refferenceButton = [numberKeyButtons objectAtIndex:0];
 	CGSize tmp_size = [refferenceButton.titleLabel.text sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:font_size]}];

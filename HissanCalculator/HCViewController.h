@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIView *baseView;
 /** 消去ボタン */
 @property (weak, nonatomic)	IBOutlet UIButton		*clearButton;
-/** 計算ボタン */
+/** 多機能ボタン */
 @property (weak, nonatomic)	IBOutlet UIButton		*functionButton;
 
 

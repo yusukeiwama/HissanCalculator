@@ -20,8 +20,10 @@
 @property UILabel	*operatorLabel;
 
 @property CGRect operatorSelecterViewDefaultPosition;
-@property NSArray *operatorSelectButtonDefaultPositions;
+@property NSMutableArray *operatorSelectButtonDefaultPositions;
 
 - (void)arrangeInputView;
+- (void)resetOperatorView;
+- (void)expandOperatorSelectView;
 
 @end
