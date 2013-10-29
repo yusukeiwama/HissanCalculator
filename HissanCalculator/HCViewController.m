@@ -8,36 +8,33 @@
 
 #import "HCViewController.h"
 
-@interface HCViewController ()
+@interface HCViewController () {
+	UIColor *highlightColor;
+}
 @end
 
-NSInteger int_state = 0;
-NSInteger leftNumber = 0;
-NSInteger rightNumber = 0;
-const NSInteger margin = 10;
+NSInteger inputState = 0;
+NSInteger calculateState = 0;
 
-UIColor *highlightColor;
+NSInteger aboveNumber = 0;
+NSInteger belowNumber = 0;
+NSInteger margin = 10;
 
 @implementation HCViewController
 
 @synthesize baseView;
-
 @synthesize numberKeyButtons;
-@synthesize clearButton;
+@synthesize allClearButton;
 @synthesize functionButton;
 
 /* コメントアウト部分が大量にあるが、参考のために残しておく。*/
-
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	
 	highlightColor = [UIColor colorWithRed:90.0 / 255.0
 																	 green:150.0 / 255.0
 																		blue:120.0 / 255.0
 																	 alpha:1.0];
-	
-	
 	baseView.layer.cornerRadius = 20.0f;
 	baseView.clipsToBounds = YES;
 	
@@ -94,18 +91,23 @@ UIColor *highlightColor;
 
 - (void)context
 {
-	if (int_state == 0) {
+	if (inputState < 0) inputState = 0;
+	if (inputState > 3) inputState = 3;
+	
+	if (inputState == 0) {
 		inputView.aboveIntegerLabel.backgroundColor = highlightColor;
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
-	} else if (int_state == 1) {
-		[inputView
-		 expandOperatorSelectView];
+	}
+	else if (inputState == 1) {
+		[inputView expandOperatorSelectView];
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
-	} else if (int_state == 2) {
+	}
+	else if (inputState == 2) {
 		inputView.belowIntegerLabel.backgroundColor = highlightColor;
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
-	} else {
+	}
+	else {
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
 		
@@ -136,7 +138,7 @@ UIColor *highlightColor;
 	inputView.operatorSelectorView.hidden = YES;
 	inputView.operatorLabel.hidden = NO;
 	inputView.operatorLabel.text = operator;
-	int_state++;
+	inputState++;
 	[self context];
 }
 
@@ -144,28 +146,27 @@ UIColor *highlightColor;
 {
 	//NSLog(@"Tapped at %d button.", (int)aButton.tag);
 	
-	//ラベル参照の仕方
+	//ラベル参照の仕方 for CalculateView
 	//UILabel *aLabel = [[UILabel alloc] init];
 	//aLabel = ((UILabel *)[calculateView.labels objectAtIndex:2]);
 	//aLabel.text = [NSString stringWithFormat:@"%d", aButton.tag];
 	
-	if (int_state == 0) {
-		leftNumber = leftNumber * 10 + aButton.tag;
+	if (inputState == 0) {
+		aboveNumber = aboveNumber * 10 + aButton.tag;
 		inputView.aboveIntegerLabel.hidden = NO;
-		inputView.aboveIntegerLabel.text = [NSString stringWithFormat:@"%d", leftNumber];
-	} else if (int_state == 2) {
-		rightNumber = rightNumber * 10 + aButton.tag;
+		inputView.aboveIntegerLabel.text = [NSString stringWithFormat:@"%d", aboveNumber];
+	} else if (inputState == 2) {
+		belowNumber = belowNumber * 10 + aButton.tag;
 		inputView.belowIntegerLabel.hidden = NO;
-		inputView.belowIntegerLabel.text = [NSString stringWithFormat:@"%d", rightNumber];
+		inputView.belowIntegerLabel.text = [NSString stringWithFormat:@"%d", belowNumber];
 	}
 }
 
-- (IBAction)clearButton:(id)sender {
-	//NSLog(@"clearButton tapped.");
+- (IBAction)allClearButtonAction:(id)sender {
+	//NSLog(@"allClearButton tapped.");
 	
-	int_state = 0;
-	leftNumber = 0;
-	rightNumber = 0;
+	inputState = 0;
+	aboveNumber = belowNumber = 0;
 	
 	/* calculateView側の処理
 	 for (UILabel *aLabel in calculateView.labels) {
@@ -177,20 +178,49 @@ UIColor *highlightColor;
 	[functionButton.titleLabel setFont:[UIFont systemFontOfSize:90]];
 	
 	[inputView resetOperatorView];
-	
-	inputView.aboveIntegerLabel.text = @"";
-	inputView.belowIntegerLabel.text = @"";
-	
+	inputView.aboveIntegerLabel.text = inputView.belowIntegerLabel.text = @"";
 	inputView.operatorSelectorView.frame = inputView.operatorSelecterViewDefaultPosition;
 	inputView.operatorSelectorView.hidden = NO;
-	
 	inputView.operatorLabel.hidden = YES;
+	
 	[self context];
 }
 
+- (IBAction)clearButtonAction:(id)sender {
+	/*
+	//NSLog(@"clearButton tapped.");
+	
+	switch (inputState) {
+		case 0:
+			inputView.aboveIntegerLabel.text = @"";
+			aboveNumber = 0;
+			break;
+		case 1:
+			[inputView resetOperatorView];
+			break;
+		case 2:
+			inputView.belowIntegerLabel.text = @"";
+			belowNumber = 0;
+			inputView.operatorSelectorView.hidden = NO;
+			[inputView expandOperatorSelectView];
+			break;
+		default:
+			break;
+	}
+	
+	
+	inputState--;
+	
+	[functionButton setTitle:@"入力" forState:UIControlStateNormal];
+	[functionButton.titleLabel setFont:[UIFont systemFontOfSize:90]];
+	
+	[self context];
+	 */
+	
+}
 
-- (IBAction)functionButton:(id)sender {
-	int_state++;
+- (IBAction)functionButtonAction:(id)sender {
+	inputState++;
 	[self context];
 }
 
@@ -209,7 +239,7 @@ UIColor *highlightColor;
 	for (UIButton *aButton in numberKeyButtons) {
 		[aButton.titleLabel setFont:[UIFont systemFontOfSize:font_size]];
 	}
-	[clearButton.titleLabel setFont:[UIFont systemFontOfSize:font_size]];
+	[allClearButton.titleLabel setFont:[UIFont systemFontOfSize:font_size]];
 	[functionButton.titleLabel setFont:[UIFont systemFontOfSize:font_size]];
 }
 

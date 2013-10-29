@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ 計算過程を表示、または入力受付するView
+ 
+ InputViewの入力終了と同時に現れる。
+ */
 
 @interface HCCalculateView : UIView
 

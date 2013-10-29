@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ 計算する内容を入力していくView
+ 
+ 入力終了と同時にCalculateViewと入れ替わる
+ */
+
 @interface HCInputView : UIView {
 	NSInteger margin;
 }
