@@ -28,19 +28,23 @@
 	return self;
 }
 
-
 // 桁数を引数に動的に生成できるようにする:現時点では2桁と2桁演算になっている
 // 数学的に一般化が必要
 - (void)arrangeCalculateView
 {
-	for (int i = 0; i < 5; i++) {
-		for (int k = 0; k < 4; k++) {
+	int row, column;
+	for (UIView *aView in [self subviews]) {
+    [aView removeFromSuperview];
+	}
+	
+	for (row = 0; row < 5; row++) {
+		for (column = 0; column < 4; column++) {
 			UILabel *aCellOfLabel = [[UILabel alloc] init];
-			aCellOfLabel.frame = CGRectMake(self.bounds.origin.x + k * self.bounds.size.width / 4,
-																			self.bounds.origin.y + i * self.bounds.size.height / 5,
+			aCellOfLabel.frame = CGRectMake(self.bounds.origin.x + column * self.bounds.size.width / 4,
+																			self.bounds.origin.y + row * self.bounds.size.height / 5,
 																			(int)self.bounds.size.width / 4,
 																			(int)self.bounds.size.height / 5);
-			aCellOfLabel.tag = k + i * 4;
+			aCellOfLabel.tag = column + row * 4;
 			aCellOfLabel.textAlignment = NSTextAlignmentCenter;
 			aCellOfLabel.backgroundColor = self.backgroundColor;
 			aCellOfLabel.textColor = [UIColor whiteColor];

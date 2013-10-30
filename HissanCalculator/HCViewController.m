@@ -14,6 +14,7 @@
 @end
 
 NSInteger inputState = 0;
+NSInteger modeState = 0;
 NSInteger calculateState = 0;
 
 NSInteger aboveNumber = 0;
@@ -91,6 +92,14 @@ NSInteger margin = 10;
 
 - (void)context
 {
+	if (modeState == 0) {
+		inputView.hidden = NO;
+		calculateView.hidden = YES;
+	} else {
+		inputView.hidden = YES;
+		calculateView.hidden = NO;
+	}
+	
 	if (inputState < 0) inputState = 0;
 	if (inputState > 3) inputState = 3;
 	
@@ -166,13 +175,13 @@ NSInteger margin = 10;
 	//NSLog(@"allClearButton tapped.");
 	
 	inputState = 0;
+	modeState = 0;
 	aboveNumber = belowNumber = 0;
 	
-	/* calculateView側の処理
-	 for (UILabel *aLabel in calculateView.labels) {
-	 aLabel.text = @"";
-	 }
-	 */
+	//calculateView側の処理
+	for (UILabel *aLabel in calculateView.labels) {
+		aLabel.text = @"";
+	}
 	
 	[functionButton setTitle:@"入力" forState:UIControlStateNormal];
 	[functionButton.titleLabel setFont:[UIFont systemFontOfSize:90]];
@@ -188,39 +197,43 @@ NSInteger margin = 10;
 
 - (IBAction)clearButtonAction:(id)sender {
 	/*
-	//NSLog(@"clearButton tapped.");
-	
-	switch (inputState) {
-		case 0:
-			inputView.aboveIntegerLabel.text = @"";
-			aboveNumber = 0;
-			break;
-		case 1:
-			[inputView resetOperatorView];
-			break;
-		case 2:
-			inputView.belowIntegerLabel.text = @"";
-			belowNumber = 0;
-			inputView.operatorSelectorView.hidden = NO;
-			[inputView expandOperatorSelectView];
-			break;
-		default:
-			break;
-	}
-	
-	
-	inputState--;
-	
-	[functionButton setTitle:@"入力" forState:UIControlStateNormal];
-	[functionButton.titleLabel setFont:[UIFont systemFontOfSize:90]];
-	
-	[self context];
+	 //NSLog(@"clearButton tapped.");
+	 
+	 switch (inputState) {
+	 case 0:
+	 inputView.aboveIntegerLabel.text = @"";
+	 aboveNumber = 0;
+	 break;
+	 case 1:
+	 [inputView resetOperatorView];
+	 break;
+	 case 2:
+	 inputView.belowIntegerLabel.text = @"";
+	 belowNumber = 0;
+	 inputView.operatorSelectorView.hidden = NO;
+	 [inputView expandOperatorSelectView];
+	 break;
+	 default:
+	 break;
+	 }
+	 
+	 
+	 inputState--;
+	 
+	 [functionButton setTitle:@"入力" forState:UIControlStateNormal];
+	 [functionButton.titleLabel setFont:[UIFont systemFontOfSize:90]];
+	 
+	 [self context];
 	 */
 	
 }
 
 - (IBAction)functionButtonAction:(id)sender {
 	inputState++;
+	if (modeState == 0 && inputState == 4) {
+		[calculateView arrangeCalculateView];
+		modeState = 1;
+	}
 	[self context];
 }
 

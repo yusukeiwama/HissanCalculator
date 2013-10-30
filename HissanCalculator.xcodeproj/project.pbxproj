@@ -77,7 +77,6 @@
 		A68966A0180D09B300BD5CB5 /* HCCalculationState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculationState.m; sourceTree = "<group>"; };
 		A68966A6180DC75C00BD5CB5 /* HCCreateFomulaState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCreateFomulaState.h; sourceTree = "<group>"; };
 		A68966A7180DC75C00BD5CB5 /* HCCreateFomulaState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCreateFomulaState.m; sourceTree = "<group>"; };
-		A68966A9180DCF6400BD5CB5 /* docs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = docs; sourceTree = SOURCE_ROOT; };
 		A6929811181DDFB600E5DE3B /* HCCalculateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCalculateView.h; sourceTree = "<group>"; };
 		A6929812181DDFB600E5DE3B /* HCCalculateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculateView.m; sourceTree = "<group>"; };
 		A6CC80AF1818B0E7005DEFB3 /* InputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
@@ -156,7 +155,6 @@
 				A6CC80B11818B17F005DEFB3 /* ViewDesign */,
 				A68966A2180D0D3800BD5CB5 /* StatePattern */,
 				A602221F18065A9800E7D932 /* Images.xcassets */,
-				A68966A9180DCF6400BD5CB5 /* docs */,
 				A602220B18065A9700E7D932 /* Supporting Files */,
 			);
 			path = HissanCalculator;
@@ -262,7 +260,10 @@
 				ORGANIZATIONNAME = "Daiki IIJIMA";
 				TargetAttributes = {
 					A602220018065A9700E7D932 = {
-						DevelopmentTeam = 6F7AWVE2J4;
+						DevelopmentTeam = RM3N4N4RRF;
+					};
+					A602222418065A9800E7D932 = {
+						TestTargetID = A602220018065A9700E7D932;
 					};
 				};
 			};
@@ -450,12 +451,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HissanCalculator/HissanCalculator-Prefix.pch";
 				INFOPLIST_FILE = "HissanCalculator/HissanCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -469,12 +472,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HissanCalculator/HissanCalculator-Prefix.pch";
 				INFOPLIST_FILE = "HissanCalculator/HissanCalculator-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				WRAPPER_EXTENSION = app;
@@ -485,6 +490,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HissanCalculator.app/HissanCalculator";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -498,6 +504,7 @@
 				);
 				INFOPLIST_FILE = "HissanCalculatorTests/HissanCalculatorTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -506,6 +513,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/HissanCalculator.app/HissanCalculator";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -515,6 +523,7 @@
 				GCC_PREFIX_HEADER = "HissanCalculator/HissanCalculator-Prefix.pch";
 				INFOPLIST_FILE = "HissanCalculatorTests/HissanCalculatorTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
