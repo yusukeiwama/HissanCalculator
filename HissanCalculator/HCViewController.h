@@ -17,6 +17,7 @@
 @interface HCViewController : UIViewController {
 	HCInputView *inputView;
 	HCCalculateView *calculateView;
+	NSString *operatorString;
 }
 
 /** 数字を入力するためのボタンのコレクション */

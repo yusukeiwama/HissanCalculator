@@ -24,31 +24,52 @@
 		self.layer.cornerRadius = 20.0f;
 		self.clipsToBounds = YES;
 		//NSLog(@"calView : %@", [nibObjects description]);
+		
+		labels = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
 
 // 桁数を引数に動的に生成できるようにする:現時点では2桁と2桁演算になっている
 // 数学的に一般化が必要
-- (void)arrangeCalculateView
+- (void)arrangeCalculateViewWithAbove:(NSInteger)aboveInteger WithBelow:(NSInteger)belowInteger WithOperator:(NSString *)operatorString
 {
 	int row, column;
 	for (UIView *aView in [self subviews]) {
     [aView removeFromSuperview];
 	}
 	
-	for (row = 0; row < 5; row++) {
-		for (column = 0; column < 4; column++) {
+	NSInteger rowMax = 0;
+	NSInteger columnMax = 0;
+	if ([operatorString compare:@"+"] == NSOrderedSame) {
+		rowMax = 3;
+		columnMax = 3;
+	} else if ([operatorString compare:@"-"] == NSOrderedSame) {
+		rowMax = 3;
+		columnMax = 3;
+	} else if ([operatorString compare:@"×"] == NSOrderedSame) {
+		rowMax = 5;
+		columnMax = 4;
+	} else if ([operatorString compare:@"÷"] == NSOrderedSame) {
+		rowMax = 3;
+		columnMax = 6;
+	}
+	
+	for (row = 0; row < rowMax; row++) {
+		for (column = 0; column < columnMax; column++) {
 			UILabel *aCellOfLabel = [[UILabel alloc] init];
-			aCellOfLabel.frame = CGRectMake(self.bounds.origin.x + column * self.bounds.size.width / 4,
-																			self.bounds.origin.y + row * self.bounds.size.height / 5,
-																			(int)self.bounds.size.width / 4,
-																			(int)self.bounds.size.height / 5);
-			aCellOfLabel.tag = column + row * 4;
+			aCellOfLabel.frame = CGRectMake(self.bounds.origin.x + column * self.bounds.size.width / columnMax,
+																			self.bounds.origin.y + row * self.bounds.size.height / rowMax,
+																			(int)self.bounds.size.width / columnMax,
+																			(int)self.bounds.size.height / rowMax);
+			aCellOfLabel.tag = column + row * columnMax;
 			aCellOfLabel.textAlignment = NSTextAlignmentCenter;
+			
+			aCellOfLabel.adjustsFontSizeToFitWidth = YES;
+			aCellOfLabel.minimumScaleFactor = 100.0f;
 			aCellOfLabel.backgroundColor = self.backgroundColor;
 			aCellOfLabel.textColor = [UIColor whiteColor];
-			[aCellOfLabel setFont:[UIFont systemFontOfSize:90]];
+			[aCellOfLabel setFont:[UIFont systemFontOfSize:125]];
 			[self addSubview:aCellOfLabel];
 			
 			UILabel *superScriptLabel = [[UILabel alloc] init];
@@ -60,8 +81,21 @@
 			[superScriptLabel setFont:[UIFont systemFontOfSize:30]];
 			superScriptLabel.backgroundColor = aCellOfLabel.backgroundColor;
 			[aCellOfLabel addSubview:superScriptLabel];
+			
 			[labels addObject:aCellOfLabel];
 		}
+	}
+	//NSLog(@"%d,%d", aboveInteger, belowInteger);
+	
+	
+	if ([operatorString compare:@"÷"] == NSOrderedSame) {
+	}
+	else {
+		((UILabel *)[labels objectAtIndex:columnMax - 2]).text = [NSString stringWithFormat:@"%d", (aboveInteger / 10)];
+		((UILabel *)[labels objectAtIndex:columnMax - 1]).text = [NSString stringWithFormat:@"%d", (aboveInteger % 10)];
+		((UILabel *)[labels objectAtIndex:columnMax]).text = operatorString;
+		((UILabel *)[labels objectAtIndex:(2 * columnMax - 2)]).text = [NSString stringWithFormat:@"%d", (belowInteger / 10)];
+		((UILabel *)[labels objectAtIndex:(2 * columnMax - 1)]).text = [NSString stringWithFormat:@"%d", (belowInteger % 10)];
 	}
 }
 

@@ -19,6 +19,6 @@
 /** 表示するラベルを格納しておく*/
 @property NSMutableArray *labels;
 
-- (void)arrangeCalculateView;
+- (void)arrangeCalculateViewWithAbove:(NSInteger)aboveInteger WithBelow:(NSInteger)belowInteger WithOperator:(NSString *)operatorString;
 
 @end

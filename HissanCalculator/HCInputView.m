@@ -91,25 +91,24 @@
 		// ------------------------------------------ ここまで。
 		
 		// すべての演算子に対応させる
-		NSString *operator;
 		switch (i) {
 			case 0:
-				operator = @"+";
+				operatorString = @"+";
 				break;
 			case 1:
-				operator = @"-";
+				operatorString = @"-";
 				break;
 			case 2:
-				operator = @"×";
+				operatorString = @"×";
 				break;
 			case 3:
-				operator = @"÷";
+				operatorString = @"÷";
 				break;
 			default:
 				break;
 		}
 		
-		[aButton setTitle:operator forState:UIControlStateNormal];
+		[aButton setTitle:operatorString forState:UIControlStateNormal];
 		[aButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 		[aButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
 		aButton.tag = i;

@@ -16,6 +16,7 @@
 
 @interface HCInputView : UIView {
 	NSInteger margin;
+	NSString *operatorString;
 }
 
 @property UIView *aLine;

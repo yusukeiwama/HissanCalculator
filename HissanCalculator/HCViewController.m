@@ -63,7 +63,7 @@ NSInteger margin = 10;
 																	 baseView.frame.size.height);
 	calculateView.hidden = YES;
 	[self.view addSubview:calculateView];
-	[calculateView arrangeCalculateView];
+	//[calculateView arrangeCalculateView];
 	
 	[self context];
 	
@@ -127,26 +127,25 @@ NSInteger margin = 10;
 
 - (void)operatorSelected:(UIButton *)button
 {
-	NSString *operator;
 	switch (button.tag) {
 		case 0:
-			operator = [NSString stringWithFormat:@"+"];
+			operatorString = @"+";
 			break;
 		case 1:
-			operator = [NSString stringWithFormat:@"-"];
+			operatorString = @"-";
 			break;
 		case 2:
-			operator = [NSString stringWithFormat:@"×"];
+			operatorString = @"×";
 			break;
 		case 3:
-			operator = [NSString stringWithFormat:@"÷"];
+			operatorString = @"÷";
 			break;
 		default:
 			break;
 	}
 	inputView.operatorSelectorView.hidden = YES;
 	inputView.operatorLabel.hidden = NO;
-	inputView.operatorLabel.text = operator;
+	inputView.operatorLabel.text = operatorString;
 	inputState++;
 	[self context];
 }
@@ -177,6 +176,8 @@ NSInteger margin = 10;
 	inputState = 0;
 	modeState = 0;
 	aboveNumber = belowNumber = 0;
+	
+	operatorString = @"";
 	
 	//calculateView側の処理
 	for (UILabel *aLabel in calculateView.labels) {
@@ -230,8 +231,8 @@ NSInteger margin = 10;
 
 - (IBAction)functionButtonAction:(id)sender {
 	inputState++;
-	if (modeState == 0 && inputState == 4) {
-		[calculateView arrangeCalculateView];
+	if (modeState == 0 && inputState == 3) {
+		[calculateView arrangeCalculateViewWithAbove:aboveNumber WithBelow:belowNumber WithOperator:operatorString];
 		modeState = 1;
 	}
 	[self context];

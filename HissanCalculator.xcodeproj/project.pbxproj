@@ -260,7 +260,7 @@
 				ORGANIZATIONNAME = "Daiki IIJIMA";
 				TargetAttributes = {
 					A602220018065A9700E7D932 = {
-						DevelopmentTeam = RM3N4N4RRF;
+						DevelopmentTeam = 6F7AWVE2J4;
 					};
 					A602222418065A9800E7D932 = {
 						TestTargetID = A602220018065A9700E7D932;
