@@ -66,11 +66,12 @@
 			aCellOfLabel.textAlignment = NSTextAlignmentCenter;
 			
 			aCellOfLabel.adjustsFontSizeToFitWidth = YES;
-			aCellOfLabel.minimumScaleFactor = 100.0f;
+			aCellOfLabel.minimumScaleFactor = 90.0f;
 			aCellOfLabel.backgroundColor = self.backgroundColor;
 			aCellOfLabel.textColor = [UIColor whiteColor];
-			[aCellOfLabel setFont:[UIFont systemFontOfSize:125]];
+			[aCellOfLabel setFont:[UIFont systemFontOfSize:200]];
 			[self addSubview:aCellOfLabel];
+			
 			
 			UILabel *superScriptLabel = [[UILabel alloc] init];
 			superScriptLabel.frame = CGRectMake(aCellOfLabel.bounds.origin.x + 3 * (int)(aCellOfLabel.bounds.size.width / 5),
@@ -80,6 +81,7 @@
 			superScriptLabel.textAlignment = NSTextAlignmentCenter;
 			[superScriptLabel setFont:[UIFont systemFontOfSize:30]];
 			superScriptLabel.backgroundColor = aCellOfLabel.backgroundColor;
+			superScriptLabel.hidden = YES;
 			[aCellOfLabel addSubview:superScriptLabel];
 			
 			[labels addObject:aCellOfLabel];

@@ -1,5 +1,5 @@
 //
-//  HCState.h
+//  HCInputState.h
 //  HissanCalculator
 //
 //  Created by Daiki IIJIMA on 10/9/13.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-/*
+/**
  デザインパターンの1つ、Stateパターンを実装するプロコトル。
  通常のOOP言語における、Interfaceにあたる。
  Stateパターンは、「状態」を表すためのパターンである。
@@ -18,7 +18,7 @@
 
 // 今のところ使わないかもしれない。
 
-@protocol HCState <NSObject>
+@protocol HCInputState <NSObject>
 
 /* 更新処理を行い、次状態を返すメソッド
  
@@ -27,6 +27,6 @@
 	_state = [_state getNextState];
  
  */
-- (id <HCState>) getNextState;
+- (id <HCInputState>) getNextState;
 
 @end
