@@ -18,8 +18,8 @@
 	if (self) {
 		// Initialization code
 		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"CalculateView"
-																												owner: self
-																											options: nil];
+															owner: self
+														  options: nil];
 		self = [nibObjects objectAtIndex:0];
 		self.layer.cornerRadius = 20.0f;
 		self.clipsToBounds = YES;
@@ -36,7 +36,7 @@
 {
 	int row, column;
 	for (UIView *aView in [self subviews]) {
-    [aView removeFromSuperview];
+		[aView removeFromSuperview];
 	}
 	
 	NSInteger rowMax = 0;
@@ -59,25 +59,25 @@
 		for (column = 0; column < columnMax; column++) {
 			UILabel *aCellOfLabel = [[UILabel alloc] init];
 			aCellOfLabel.frame = CGRectMake(self.bounds.origin.x + column * self.bounds.size.width / columnMax,
-																			self.bounds.origin.y + row * self.bounds.size.height / rowMax,
-																			(int)self.bounds.size.width / columnMax,
-																			(int)self.bounds.size.height / rowMax);
+											self.bounds.origin.y + row * self.bounds.size.height / rowMax,
+											(int)self.bounds.size.width / columnMax,
+											(int)self.bounds.size.height / rowMax);
 			aCellOfLabel.tag = column + row * columnMax;
 			aCellOfLabel.textAlignment = NSTextAlignmentCenter;
 			
-			aCellOfLabel.adjustsFontSizeToFitWidth = YES;
-			aCellOfLabel.minimumScaleFactor = 90.0f;
+			//aCellOfLabel.adjustsFontSizeToFitWidth = YES;
+			//aCellOfLabel.minimumScaleFactor = 90.0f;
 			aCellOfLabel.backgroundColor = self.backgroundColor;
 			aCellOfLabel.textColor = [UIColor whiteColor];
-			[aCellOfLabel setFont:[UIFont systemFontOfSize:200]];
+			[aCellOfLabel setFont:[UIFont systemFontOfSize:100]];
 			[self addSubview:aCellOfLabel];
 			
 			
 			UILabel *superScriptLabel = [[UILabel alloc] init];
 			superScriptLabel.frame = CGRectMake(aCellOfLabel.bounds.origin.x + 3 * (int)(aCellOfLabel.bounds.size.width / 5),
-																					aCellOfLabel.bounds.origin.y,
-																					(int)(aCellOfLabel.bounds.size.width / 5),
-																					(int)(aCellOfLabel.bounds.size.height / 5));
+												aCellOfLabel.bounds.origin.y,
+												(int)(aCellOfLabel.bounds.size.width / 5),
+												(int)(aCellOfLabel.bounds.size.height / 5));
 			superScriptLabel.textAlignment = NSTextAlignmentCenter;
 			[superScriptLabel setFont:[UIFont systemFontOfSize:30]];
 			superScriptLabel.backgroundColor = aCellOfLabel.backgroundColor;

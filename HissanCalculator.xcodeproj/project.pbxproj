@@ -10,6 +10,8 @@
 		10E2D540181CC2C10040C93D /* HCInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E2D53F181CC2C10040C93D /* HCInputView.m */; };
 		10E2D541181CC2C10040C93D /* HCInputView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10E2D53F181CC2C10040C93D /* HCInputView.m */; };
 		10E2D546181DA1D80040C93D /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CC80AF1818B0E7005DEFB3 /* InputView.xib */; };
+		10F355941828FBB40049B609 /* HCState.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F355931828FBB40049B609 /* HCState.m */; };
+		10F355971828FE360049B609 /* HCContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 10F355961828FE360049B609 /* HCContext.m */; };
 		A602220518065A9700E7D932 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602220418065A9700E7D932 /* Foundation.framework */; };
 		A602220718065A9700E7D932 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602220618065A9700E7D932 /* CoreGraphics.framework */; };
 		A602220918065A9700E7D932 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602220818065A9700E7D932 /* UIKit.framework */; };
@@ -50,6 +52,9 @@
 /* Begin PBXFileReference section */
 		10E2D53E181CC2C10040C93D /* HCInputView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCInputView.h; sourceTree = "<group>"; };
 		10E2D53F181CC2C10040C93D /* HCInputView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCInputView.m; sourceTree = "<group>"; };
+		10F355931828FBB40049B609 /* HCState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCState.m; sourceTree = "<group>"; };
+		10F355951828FE360049B609 /* HCContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCContext.h; sourceTree = "<group>"; };
+		10F355961828FE360049B609 /* HCContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCContext.m; sourceTree = "<group>"; };
 		A602220118065A9700E7D932 /* HissanCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HissanCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A602220418065A9700E7D932 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A602220618065A9700E7D932 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -69,11 +74,10 @@
 		A602223C18065AD100E7D932 /* HCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = HCViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A602223D18065AD100E7D932 /* HCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = HCViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A602224018065AE900E7D932 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		A602224718065B6800E7D932 /* HCStateForInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCStateForInput.h; sourceTree = "<group>"; };
+		A602224718065B6800E7D932 /* HCState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCState.h; sourceTree = "<group>"; };
 		A60C3FCC1822160C005CFD3F /* HCCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCalculator.h; sourceTree = "<group>"; };
 		A60C3FCD1822160C005CFD3F /* HCCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculator.m; sourceTree = "<group>"; };
 		A620CD3F1814C6900030C1EC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		A63EC848182227AE00A64AE9 /* HCStateForCalcuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCStateForCalcuration.h; sourceTree = "<group>"; };
 		A6929811181DDFB600E5DE3B /* HCCalculateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCalculateView.h; sourceTree = "<group>"; };
 		A6929812181DDFB600E5DE3B /* HCCalculateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculateView.m; sourceTree = "<group>"; };
 		A6CC80AF1818B0E7005DEFB3 /* InputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
@@ -141,8 +145,8 @@
 		A602220A18065A9700E7D932 /* HissanCalculator */ = {
 			isa = PBXGroup;
 			children = (
-				A60C3FCA1822157D005CFD3F /* View */,
 				A60C3FC918221575005CFD3F /* Model */,
+				A60C3FCA1822157D005CFD3F /* View */,
 				A60C3FCB18221585005CFD3F /* Controller */,
 				A6CC80B11818B17F005DEFB3 /* ViewDesign */,
 				A602221F18065A9800E7D932 /* Images.xcassets */,
@@ -185,8 +189,7 @@
 			children = (
 				A60C3FCC1822160C005CFD3F /* HCCalculator.h */,
 				A60C3FCD1822160C005CFD3F /* HCCalculator.m */,
-				A68966A2180D0D3800BD5CB5 /* InputStatePattern */,
-				A63EC849182227FB00A64AE9 /* StatePatternForCalcuration */,
+				A68966A2180D0D3800BD5CB5 /* StatePatternManagement */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -213,20 +216,15 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		A63EC849182227FB00A64AE9 /* StatePatternForCalcuration */ = {
+		A68966A2180D0D3800BD5CB5 /* StatePatternManagement */ = {
 			isa = PBXGroup;
 			children = (
-				A63EC848182227AE00A64AE9 /* HCStateForCalcuration.h */,
+				10F355951828FE360049B609 /* HCContext.h */,
+				10F355961828FE360049B609 /* HCContext.m */,
+				A602224718065B6800E7D932 /* HCState.h */,
+				10F355931828FBB40049B609 /* HCState.m */,
 			);
-			name = StatePatternForCalcuration;
-			sourceTree = "<group>";
-		};
-		A68966A2180D0D3800BD5CB5 /* InputStatePattern */ = {
-			isa = PBXGroup;
-			children = (
-				A602224718065B6800E7D932 /* HCStateForInput.h */,
-			);
-			name = InputStatePattern;
+			name = StatePatternManagement;
 			sourceTree = "<group>";
 		};
 		A6CC80B11818B17F005DEFB3 /* ViewDesign */ = {
@@ -346,8 +344,10 @@
 			files = (
 				A6929813181DDFB600E5DE3B /* HCCalculateView.m in Sources */,
 				10E2D540181CC2C10040C93D /* HCInputView.m in Sources */,
+				10F355941828FBB40049B609 /* HCState.m in Sources */,
 				A602223E18065AD100E7D932 /* HCViewController.m in Sources */,
 				A602221118065A9700E7D932 /* main.m in Sources */,
+				10F355971828FE360049B609 /* HCContext.m in Sources */,
 				A60C3FCE1822160C005CFD3F /* HCCalculator.m in Sources */,
 				A602221518065A9700E7D932 /* HCAppDelegate.m in Sources */,
 			);

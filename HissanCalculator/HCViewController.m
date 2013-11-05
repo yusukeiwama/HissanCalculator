@@ -7,15 +7,17 @@
 //
 
 #import "HCViewController.h"
+#import "HCContext.h"
 
 @interface HCViewController () {
+	HCContext *context;
 	UIColor *highlightColor;
 }
 @end
 
-NSInteger inputState = 0;
-NSInteger modeState = 0;
-NSInteger calculateState = 0;
+//NSInteger inputState = 0;
+//NSInteger modeState = 0;
+//NSInteger calculateState = 0;
 
 NSInteger aboveNumber = 0;
 NSInteger belowNumber = 0;
@@ -33,14 +35,13 @@ NSInteger margin = 10;
 {
 	[super viewDidLoad];
 	highlightColor = [UIColor colorWithRed:90.0 / 255.0
-																	 green:150.0 / 255.0
-																		blue:120.0 / 255.0
-																	 alpha:1.0];
+									 green:150.0 / 255.0
+									  blue:120.0 / 255.0
+									 alpha:1.0];
 	baseView.layer.cornerRadius = 20.0f;
 	baseView.clipsToBounds = YES;
 	
 	// デバイスがiPhoneだった場合、サイズの調整を行う。
-	// バグの原因になりうるので一旦コメントアウト(Oct 28)
 	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
 		[self foriPhoneResizing];
 	}
@@ -48,9 +49,9 @@ NSInteger margin = 10;
 	// 以下の方針で確定。xibを読むのはカスタムクラスで行う(Oct 28)
 	inputView = [[HCInputView alloc] init];
 	inputView.frame = CGRectMake(baseView.frame.origin.x,
-															 baseView.frame.origin.y,
-															 baseView.frame.size.width,
-															 baseView.frame.size.height);
+								 baseView.frame.origin.y,
+								 baseView.frame.size.width,
+								 baseView.frame.size.height);
 	inputView.hidden = NO;
 	[self.view addSubview:inputView];
 	[inputView arrangeInputView];
@@ -58,9 +59,9 @@ NSInteger margin = 10;
 	
 	calculateView = [[HCCalculateView alloc] init];
 	calculateView.frame = CGRectMake(baseView.frame.origin.x,
-																	 baseView.frame.origin.y,
-																	 baseView.frame.size.width,
-																	 baseView.frame.size.height);
+									 baseView.frame.origin.y,
+									 baseView.frame.size.width,
+									 baseView.frame.size.height);
 	calculateView.hidden = YES;
 	[self.view addSubview:calculateView];
 	//[calculateView arrangeCalculateView];
@@ -72,15 +73,15 @@ NSInteger margin = 10;
 	
 	for (UIButton *aButton in numberKeyButtons) {
 		[aButton addTarget:self
-								action:@selector(numberKeyTapped:)
-			forControlEvents:UIControlEventTouchUpInside];
+					action:@selector(numberKeyTapped:)
+		  forControlEvents:UIControlEventTouchUpInside];
 	}
 	
 	for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
 		aButton.userInteractionEnabled = NO;
 		[aButton addTarget:self
-								action:@selector(operatorSelected:)
-			forControlEvents:UIControlEventTouchUpInside];
+					action:@selector(operatorSelected:)
+		  forControlEvents:UIControlEventTouchUpInside];
 	}
 }
 
@@ -92,7 +93,7 @@ NSInteger margin = 10;
 
 - (void)context
 {
-	if (modeState == 0) {
+	if ([context.currentState class] == [HCCalculateState class]) {
 		inputView.hidden = NO;
 		calculateView.hidden = YES;
 	} else {
@@ -100,19 +101,19 @@ NSInteger margin = 10;
 		calculateView.hidden = NO;
 	}
 	
-	if (inputState < 0) inputState = 0;
-	if (inputState > 3) inputState = 3;
+	//if (inputState < 0) inputState = 0;
+	//if (inputState > 3) inputState = 3;
 	
-	if (inputState == 0) {
+	if ([context.currentState class] == [HCAboveNumberState class]) {
 		inputView.aboveIntegerLabel.backgroundColor = highlightColor;
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
 	}
-	else if (inputState == 1) {
+	else if ([context.currentState class] == [HCSelectOperatorState class]) {
 		[inputView expandOperatorSelectView];
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
 	}
-	else if (inputState == 2) {
+	else if ([context.currentState class] == [HCBelowNumberState class]) {
 		inputView.belowIntegerLabel.backgroundColor = highlightColor;
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 	}
@@ -146,7 +147,7 @@ NSInteger margin = 10;
 	inputView.operatorSelectorView.hidden = YES;
 	inputView.operatorLabel.hidden = NO;
 	inputView.operatorLabel.text = operatorString;
-	inputState++;
+	//inputState++;
 	[self context];
 }
 
@@ -159,11 +160,11 @@ NSInteger margin = 10;
 	//aLabel = ((UILabel *)[calculateView.labels objectAtIndex:2]);
 	//aLabel.text = [NSString stringWithFormat:@"%d", aButton.tag];
 	
-	if (inputState == 0) {
+	if ([context.currentState class] == [HCAboveNumberState class]) {
 		aboveNumber = aboveNumber * 10 + aButton.tag;
 		inputView.aboveIntegerLabel.hidden = NO;
 		inputView.aboveIntegerLabel.text = [NSString stringWithFormat:@"%d", aboveNumber];
-	} else if (inputState == 2) {
+	} else if ([context.currentState class] == [HCBelowNumberState class]) {
 		belowNumber = belowNumber * 10 + aButton.tag;
 		inputView.belowIntegerLabel.hidden = NO;
 		inputView.belowIntegerLabel.text = [NSString stringWithFormat:@"%d", belowNumber];
@@ -173,8 +174,8 @@ NSInteger margin = 10;
 - (IBAction)allClearButtonAction:(id)sender {
 	//NSLog(@"allClearButton tapped.");
 	
-	inputState = 0;
-	modeState = 0;
+	//inputState = 0;
+	//modeState = 0;
 	aboveNumber = belowNumber = 0;
 	
 	operatorString = @"";
@@ -230,12 +231,14 @@ NSInteger margin = 10;
 }
 
 - (IBAction)functionButtonAction:(id)sender {
-	inputState++;
+	//inputState++;
+	/*
 	if (modeState == 0 && inputState == 3) {
 		[calculateView arrangeCalculateViewWithAbove:aboveNumber WithBelow:belowNumber WithOperator:operatorString];
 		modeState = 1;
 	}
 	[self context];
+	 */
 }
 
 - (void)foriPhoneResizing
