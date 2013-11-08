@@ -12,6 +12,7 @@
 
 int main(int argc, char * argv[])
 {
+	sleep(1);
 	@autoreleasepool {
 	    return UIApplicationMain(argc, argv, nil, NSStringFromClass([HCAppDelegate class]));
 	}

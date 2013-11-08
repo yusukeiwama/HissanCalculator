@@ -36,7 +36,6 @@
 		A6B342D718189AF400D63DAC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602220618065A9700E7D932 /* CoreGraphics.framework */; };
 		A6B342D818189AF700D63DAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A620CD3F1814C6900030C1EC /* QuartzCore.framework */; };
 		A6CC80B01818B0E7005DEFB3 /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CC80AF1818B0E7005DEFB3 /* InputView.xib */; };
-		A6CC80B31818B19B005DEFB3 /* CalculateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CC80B21818B19B005DEFB3 /* CalculateView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,7 +80,6 @@
 		A6929811181DDFB600E5DE3B /* HCCalculateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCalculateView.h; sourceTree = "<group>"; };
 		A6929812181DDFB600E5DE3B /* HCCalculateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculateView.m; sourceTree = "<group>"; };
 		A6CC80AF1818B0E7005DEFB3 /* InputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
-		A6CC80B21818B19B005DEFB3 /* CalculateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CalculateView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,7 +230,6 @@
 			children = (
 				A602224018065AE900E7D932 /* Main.storyboard */,
 				A6CC80AF1818B0E7005DEFB3 /* InputView.xib */,
-				A6CC80B21818B19B005DEFB3 /* CalculateView.xib */,
 			);
 			name = ViewDesign;
 			sourceTree = "<group>";
@@ -318,7 +315,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A602224118065AE900E7D932 /* Main.storyboard in Resources */,
-				A6CC80B31818B19B005DEFB3 /* CalculateView.xib in Resources */,
 				A6CC80B01818B0E7005DEFB3 /* InputView.xib in Resources */,
 				A602222018065A9800E7D932 /* Images.xcassets in Resources */,
 				A602220F18065A9700E7D932 /* InfoPlist.strings in Resources */,

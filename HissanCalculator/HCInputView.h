@@ -14,17 +14,14 @@
  入力終了と同時にCalculateViewと入れ替わる
  */
 
-@interface HCInputView : UIView {
-	NSInteger margin;
-	NSString *operatorString;
-}
-
-@property UIView *aLine;
+@interface HCInputView : UIView
 
 @property UILabel *aboveIntegerLabel;
 @property UILabel *belowIntegerLabel;
 @property UIView *operatorSelectorView;
 @property UILabel	*operatorLabel;
+
+@property NSMutableArray *buttons;
 
 @property CGRect operatorSelecterViewDefaultPosition;
 @property NSMutableArray *operatorSelectButtonDefaultPositions;

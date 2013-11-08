@@ -9,10 +9,18 @@
 #import "HCContext.h"
 
 @implementation HCContext {
-	HCAboveNumberState *previousState;
+	id previousState;
 }
 
 @synthesize currentState;
+
+- (id)init
+{
+	if (self = [super init]) {
+		currentState = [[HCAboveNumberState alloc] init];
+	}
+	return self;
+}
 
 - (void)inputEvent:(NSInteger)identifier
 {
