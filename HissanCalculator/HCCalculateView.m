@@ -28,9 +28,9 @@
 		self.layer.cornerRadius = 20.0f;
 		self.clipsToBounds = YES;
 		self.backgroundColor = [UIColor colorWithRed:60.0 / 255.0
-																					 green:100.0 / 255.0
-																						blue:80.0 / 255.0
-																					 alpha:1.0];
+											   green:100.0 / 255.0
+												blue:80.0 / 255.0
+											   alpha:1.0];
 		calculator = [[HCCalculator alloc] init];
 	}
 	return self;
@@ -56,12 +56,12 @@
 		rowMax = 3;
 		columnMax = [calculator getDigitWithInteger:aboveInteger] + 1;
 	} else if ([operatorString compare:@"×"] == NSOrderedSame) {
-		rowMax = 5;
-		columnMax = [calculator getDigitWithInteger:aboveInteger] + 2;
+		rowMax = [calculator getDigitWithInteger:belowInteger] + 3;
+		columnMax = [calculator getDigitWithInteger:aboveInteger] + [calculator getDigitWithInteger:belowInteger];
 	} else if ([operatorString compare:@"÷"] == NSOrderedSame) {
 		rowMax = 2 * ([calculator getDigitWithInteger:aboveInteger] + 1);
 		columnMax = [calculator getDigitWithInteger:aboveInteger] + [calculator
-																																 getDigitWithInteger:belowInteger];
+																	 getDigitWithInteger:belowInteger];
 	}
 	
 	for (row = 0; row < rowMax; row++) {
@@ -112,9 +112,9 @@
 		((UILabel *)[labels objectAtIndex:columnMax]).text = operatorString;
 		aLine = [[UIView alloc] init];
 		aLine.frame = CGRectMake(((UILabel *)[labels objectAtIndex:2*columnMax]).frame.origin.x + margin,
-														 ((UILabel *)[labels objectAtIndex:2*columnMax]).frame.origin.y,
-														 self.frame.size.width - 2 * margin,
-														 5);
+								 ((UILabel *)[labels objectAtIndex:2*columnMax]).frame.origin.y,
+								 self.frame.size.width - 2 * margin,
+								 5);
 		aLine.backgroundColor = [UIColor whiteColor];
 		[self addSubview:aLine];
 	}
@@ -133,9 +133,80 @@
 			}
 			((UILabel *)[labels objectAtIndex:3 * columnMax - (i + 1)]).textColor = [UIColor clearColor];
 		}
-		for (int i = 0; i < columnMax; i++) {
+		for (int i = 0; i < columnMax - 1; i++) {
 			if ([((UILabel *)[labels objectAtIndex:2 * columnMax + i]).text compare:@"0"] == NSOrderedSame) {
 				((UILabel *)[labels objectAtIndex:2 * columnMax + i]).text = @"";
+			} else {
+				break;
+			}
+		}
+	} else if ([operatorString compare:@"-"] == NSOrderedSame) {
+		[calculator subtractionWithAboveInteger:aboveInteger WithBelowInteger:belowInteger];
+		for (int i = 0; i < [calculator.resultArray count]; i++) {
+			((UILabel *)[labels objectAtIndex:3 * columnMax - (i + 1)]).text =
+			[NSString stringWithFormat:@"%d", [[calculator.resultArray objectAtIndex:i] integerValue]];
+			((UILabel *)[labels objectAtIndex:3 * columnMax - (i + 1)]).textColor = [UIColor clearColor];
+			if ([[calculator.borrowReferenceArray objectAtIndex:i] integerValue]
+				!= [[calculator.aboveOriginalIntegerArray objectAtIndex:i] integerValue]) {
+				((UILabel *)((UIView *)[labels objectAtIndex:columnMax - (i + 1)]).subviews[0]).text =
+				[NSString stringWithFormat:@"%d", [[calculator.borrowReferenceArray objectAtIndex:i] integerValue]];
+				((UILabel *)((UIView *)[labels objectAtIndex:columnMax - (i + 1)]).subviews[0]).textColor = [UIColor clearColor];
+			}
+			
+		}
+		for (int i = 0; i < columnMax - 1; i++) {
+			if ([((UILabel *)[labels objectAtIndex:2 * columnMax + i]).text compare:@"0"] == NSOrderedSame) {
+				((UILabel *)[labels objectAtIndex:2 * columnMax + i]).text = @"";
+			} else {
+				break;
+			}
+		}
+		
+	} else if ([operatorString compare:@"×"] == NSOrderedSame) {
+		[calculator multiplicationWithAboveInteger:aboveInteger WithBelowInteger:belowInteger];
+		
+		aLine = [[UIView alloc] init];
+		aLine.frame = CGRectMake(((UILabel *)[labels objectAtIndex:columnMax * (rowMax - 1)]).frame.origin.x + margin,
+								 ((UILabel *)[labels objectAtIndex:columnMax * (rowMax - 1)]).frame.origin.y,
+								 self.frame.size.width - 2 * margin,
+								 5);
+		aLine.backgroundColor = [UIColor whiteColor];
+		[self addSubview:aLine];
+		
+		NSInteger aboveDigit = [calculator getDigitWithInteger:aboveInteger];
+		NSInteger belowDigit = [calculator getDigitWithInteger:belowInteger];
+		
+		for (int i = 0; i < belowDigit; i++) {
+			for (int j = 0; j <= aboveDigit + belowDigit - 1; j++) {
+				((UILabel *)[labels objectAtIndex:(i + 3) * columnMax - (j + 1)]).text =
+				[NSString stringWithFormat:@"%d",
+				 [(NSNumber *)([[calculator.belowResultArray objectAtIndex:i] objectAtIndex:j]) integerValue]];
+				
+			}
+		}
+		
+		for (int i = 0; i < [calculator.resultArray count]; i++) {
+			((UILabel *)[labels objectAtIndex:columnMax * rowMax - (i + 1)]).text =
+			[NSString stringWithFormat:@"%d", [[calculator.resultArray objectAtIndex:i] integerValue]];
+		}
+		
+		BOOL flg = NO;
+		for (int j = 0; j < rowMax - 3; j++) {
+			flg = NO;
+			for (int i = 0; i < columnMax; i++) {
+				if ([((UILabel *)[labels objectAtIndex:(j + 2) * columnMax + i]).text compare:@"-1"] == NSOrderedSame) {
+					((UILabel *)[labels objectAtIndex:(j + 2) * columnMax + i]).text = @"";
+				} else {
+					if (flg == NO) {
+						i += aboveDigit - 1;
+						flg = YES;
+					}
+				}
+			}
+		}
+		for (int i = 0; i < columnMax; i++) {
+			if ([((UILabel *)[labels objectAtIndex:columnMax * (rowMax - 1) + i]).text compare:@"0"] == NSOrderedSame) {
+				((UILabel *)[labels objectAtIndex:columnMax * (rowMax - 1) + i]).text = @"";
 			} else {
 				break;
 			}

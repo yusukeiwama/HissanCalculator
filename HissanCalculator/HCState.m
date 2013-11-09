@@ -22,9 +22,9 @@
 		case 7:
 		case 8:
 		case 9:
-			return [[HCAboveNumberState alloc] init];
+			return self;
 		case 10:
-			return [[HCSelectOperatorState alloc] init];
+			return self;
 		case 11:
 			return [[HCAboveNumberState alloc] init];
 		case 12:
@@ -86,7 +86,7 @@
 		case 9:
 			return [[HCBelowNumberState alloc] init];
 		case 10:
-			return [[HCCalculateState alloc] init];
+			return [[HCUserAnswerState alloc] init];
 		case 11:
 			return [[HCAboveNumberState alloc] init];
 		case 12:
@@ -101,7 +101,7 @@
 }
 @end
 
-@implementation HCUserAnswer
+@implementation HCUserAnswerState
 - (id)getNextStateWithIdentifier:(NSInteger)identifier
 {
 	switch (identifier) {
@@ -115,8 +115,9 @@
 		case 7:
 		case 8:
 		case 9:
-		case 10:
 			return self;
+		case 10:
+			return [[HCCalculateState alloc] init];
 		case 11:
 			return [[HCAboveNumberState alloc] init];
 		case 12:
@@ -148,7 +149,7 @@
 		case 9:
 			return self;
 		case 10:
-			return [[HCUserAnswer alloc] init];
+			return self;
 		case 11:
 			return [[HCAboveNumberState alloc] init];
 		case 12:

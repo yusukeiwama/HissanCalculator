@@ -33,8 +33,8 @@
 		
 		// xibファイルを読み込み、クラスのカスタムビューとして指定
 		NSArray *nibObjects = [[NSBundle mainBundle] loadNibNamed:@"InputView"
-																												owner: self
-																											options: nil];
+															owner: self
+														  options: nil];
 		self = (HCInputView *)[nibObjects objectAtIndex:0];
 		
 		self.layer.cornerRadius = 20.0f;
@@ -78,14 +78,14 @@
 	NSValue *value;
 	CGRect rect;
 	
-	for (int i = 0; i < 4; i++) {
+	for (int i = 0; i < 3; i++) {
 		UIButton *aButton = [[UIButton alloc] init];
 		aButton.frame = CGRectMake(operatorSelectorView.bounds.origin.x
-															 + (i % 2) * (int)(operatorSelectorView.bounds.size.width / 2) + margin,
-															 operatorSelectorView.bounds.origin.y
-															 + (i / 2) * (int)(operatorSelectorView.bounds.size.height / 2) + margin,
-															 (int)(operatorSelectorView.bounds.size.width / 2) - 2 * margin,
-															 (int)(operatorSelectorView.bounds.size.height / 2) - 2 * margin);
+								   + (i % 2) * (int)(operatorSelectorView.bounds.size.width / 2) + margin,
+								   operatorSelectorView.bounds.origin.y
+								   + (i / 2) * (int)(operatorSelectorView.bounds.size.height / 2) + margin,
+								   (int)(operatorSelectorView.bounds.size.width / 2) - 2 * margin,
+								   (int)(operatorSelectorView.bounds.size.height / 2) - 2 * margin);
 		aButton.backgroundColor = operatorSelectorView.backgroundColor;
 		
 		// ボタンのデフォルトの位置をNSArrayに格納する。構造体のための処理。
@@ -128,29 +128,29 @@
 		aButton.backgroundColor = operatorSelectorView.backgroundColor;
 	}
 	[UIView animateWithDuration:0.5f
-									 animations:^{
-										 CGFloat widthOfInputView = self.frame.size.width - 2 * margin;
-										 operatorSelectorView.frame = CGRectMake(self.bounds.origin.x + margin,
-																														 self.center.y - (int)(widthOfInputView / 2)
-																														 - operatorSelectorView.frame.size.height,
-																														 widthOfInputView,
-																														 widthOfInputView);
-										 
-										 for (UIButton *aButton in operatorSelectorView.subviews) {
-											 aButton.frame = CGRectMake(operatorSelectorView.bounds.origin.x + margin
-																									+ ((aButton.tag - 20) % 2) * (int)(widthOfInputView / 2),
-																									operatorSelectorView.bounds.origin.y + margin
-																									+ ((aButton.tag - 20) / 2) * (int)(widthOfInputView / 2),
-																									(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin,
-																									(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin);
-											 aButton.backgroundColor = operatorSelectorView.backgroundColor;
-										 }
-									 } completion:^(BOOL parameter){
-										 for (UIButton *aButton in operatorSelectorView.subviews) {
-											 [aButton.titleLabel setFont:[UIFont systemFontOfSize:180]];
-											 aButton.userInteractionEnabled = YES;
-										 }
-									 }];
+					 animations:^{
+						 CGFloat widthOfInputView = self.frame.size.width - 2 * margin;
+						 operatorSelectorView.frame = CGRectMake(self.bounds.origin.x + margin,
+																 self.center.y - (int)(widthOfInputView / 2)
+																 - operatorSelectorView.frame.size.height,
+																 widthOfInputView,
+																 widthOfInputView);
+						 
+						 for (UIButton *aButton in operatorSelectorView.subviews) {
+							 aButton.frame = CGRectMake(operatorSelectorView.bounds.origin.x + margin
+														+ ((aButton.tag - 20) % 2) * (int)(widthOfInputView / 2),
+														operatorSelectorView.bounds.origin.y + margin
+														+ ((aButton.tag - 20) / 2) * (int)(widthOfInputView / 2),
+														(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin,
+														(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin);
+							 aButton.backgroundColor = operatorSelectorView.backgroundColor;
+						 }
+					 } completion:^(BOOL parameter){
+						 for (UIButton *aButton in operatorSelectorView.subviews) {
+							 [aButton.titleLabel setFont:[UIFont systemFontOfSize:180]];
+							 aButton.userInteractionEnabled = YES;
+						 }
+					 }];
 }
 
 

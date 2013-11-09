@@ -36,7 +36,7 @@
 @end
 
 /** ユーザが答えを入力する状態 */
-@interface HCUserAnswer : NSObject
+@interface HCUserAnswerState : NSObject
 @end
 
 /** 最終的な計算結果を表示する状態 */

@@ -14,7 +14,13 @@
 
 @interface HCCalculator : NSObject
 
+@property NSMutableArray *aboveOriginalIntegerArray;
+
+@property NSMutableArray *aboveResultArray;
+@property NSMutableArray *belowResultArray;
+
 @property NSMutableArray *carryArray;
+@property NSMutableArray *borrowReferenceArray;
 @property NSMutableArray *resultArray;
 
 @property NSInteger digitNum;
@@ -23,10 +29,16 @@
 - (NSInteger)getDigitWithInteger:(NSInteger)number;
 
 - (void)additionWithAboveInteger:(NSInteger)aboveInteger WithBelowInteger:(NSInteger)belowInteger;
+- (void)subtractionWithAboveInteger:(NSInteger)aboveInteger WithBelowInteger:(NSInteger)belowInteger;
+- (void)multiplicationWithAboveInteger:(NSInteger)aboveInteger WithBelowInteger:(NSInteger)belowInteger;
 
 @end
 
+
+
+
+
 /*
- 初期段階では、コントローラの部分に計算するすべてを書いてしまう。
+ 初期段階では、コントローラの部分に計算する一部を書いてしまう。
  後に、リファクタリングにより分離していく。(Nov 5)
  */
