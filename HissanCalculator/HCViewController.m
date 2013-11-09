@@ -110,8 +110,8 @@ NSInteger labelIndex = 0;
 	} else if (button.tag == 10) {
 		if ([context.currentState class] == [HCAboveNumberState class]) {
 			if ([calculator getDigitWithInteger:aboveNumber] >= 2) {
-			inputView.operatorSelectorView.backgroundColor = highlightColor;
-			[inputView expandOperatorSelectView];
+				inputView.operatorSelectorView.backgroundColor = highlightColor;
+				[inputView expandOperatorSelectView];
 				context.currentState = [[HCSelectOperatorState alloc] init];
 			} else {
 				aboveNumber = 0;
@@ -198,8 +198,13 @@ NSInteger labelIndex = 0;
 		inputView.operatorLabel.hidden = YES;
 	}
 	else if ([context.currentState class] == [HCBelowNumberState class]) {
-		[functionButton setTitle:@"回答" forState:UIControlStateNormal];
-		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:100]];
+		if ([operatorString compare:@"×"] == NSOrderedSame) {
+			[functionButton setTitle:@"計算結果" forState:UIControlStateNormal];
+			[functionButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
+		} else {
+			[functionButton setTitle:@"回答" forState:UIControlStateNormal];
+			[functionButton.titleLabel setFont:[UIFont systemFontOfSize:100]];
+		}
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.belowIntegerLabel.backgroundColor = highlightColor;
 		inputView.operatorSelectorView.backgroundColor = inputView.backgroundColor;
@@ -277,7 +282,7 @@ NSInteger labelIndex = 0;
 		} else {
 			aLabel.backgroundColor = [UIColor magentaColor];
 			((UILabel *)aLabel.subviews[0]).backgroundColor = [UIColor magentaColor];
-			}
+		}
 		
 	} else if ([operatorString compare:@"×"] == NSOrderedSame) {
 		

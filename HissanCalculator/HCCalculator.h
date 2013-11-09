@@ -23,6 +23,10 @@
 @property NSMutableArray *borrowReferenceArray;
 @property NSMutableArray *resultArray;
 
+@property NSMutableArray *aboveIntegerArray;
+@property NSMutableArray *belowIntegerArray;
+
+
 @property NSInteger digitNum;
 
 - (NSInteger)pickUpDigitWithTargetNumber:(NSInteger)targetNumber WithDigit:(NSInteger)digit;

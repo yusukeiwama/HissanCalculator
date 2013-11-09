@@ -79,7 +79,12 @@
 			
 			aCellOfLabel.backgroundColor = self.backgroundColor;
 			aCellOfLabel.textColor = [UIColor whiteColor];
+			if ([operatorString compare:@"×"] == NSOrderedSame) {
+				[aCellOfLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:90]];
+				aCellOfLabel.adjustsFontSizeToFitWidth = YES;
+			} else {
 			[aCellOfLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:100]];
+			}
 			[self addSubview:aCellOfLabel];
 			
 			UILabel *superScriptLabel = [[UILabel alloc] init];
@@ -90,7 +95,14 @@
 			superScriptLabel.textAlignment = NSTextAlignmentCenter;
 			superScriptLabel.layer.cornerRadius = 5.0f;
 			superScriptLabel.clipsToBounds = YES;
-			[superScriptLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:30]];
+			superScriptLabel.adjustsFontSizeToFitWidth = YES;
+			if ([operatorString compare:@"×"] == NSOrderedSame) {
+				[superScriptLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:20]];
+				
+			} else {
+				[superScriptLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:30]];
+			}
+			
 			[superScriptLabel setTextColor:[UIColor whiteColor]];
 			superScriptLabel.backgroundColor = aCellOfLabel.backgroundColor;
 			[aCellOfLabel addSubview:superScriptLabel];
@@ -182,12 +194,23 @@
 				[NSString stringWithFormat:@"%d",
 				 [(NSNumber *)([[calculator.belowResultArray objectAtIndex:i] objectAtIndex:j]) integerValue]];
 				
+				if ([(NSNumber *)([[calculator.belowIntegerArray objectAtIndex:i] objectAtIndex:j]) integerValue] > 0) {
+					((UILabel *)((UILabel *)[labels objectAtIndex:(i + 3) * columnMax - (j + 1)]).subviews[0]).text =
+					[NSString stringWithFormat:@"%d",
+					 [(NSNumber *)([[calculator.belowIntegerArray objectAtIndex:i] objectAtIndex:j]) integerValue]];
+				}
 			}
 		}
 		
 		for (int i = 0; i < [calculator.resultArray count]; i++) {
 			((UILabel *)[labels objectAtIndex:columnMax * rowMax - (i + 1)]).text =
 			[NSString stringWithFormat:@"%d", [[calculator.resultArray objectAtIndex:i] integerValue]];
+			
+			if ([[[calculator.belowIntegerArray objectAtIndex:belowDigit] objectAtIndex:i] integerValue] > 0) {
+				
+				((UILabel *)((UILabel *)[labels objectAtIndex:columnMax * rowMax - (i + 1)]).subviews[0]).text =
+				[NSString stringWithFormat:@"%d", [[[calculator.belowIntegerArray objectAtIndex:belowDigit] objectAtIndex:i] integerValue]];
+			}
 		}
 		
 		BOOL flg = NO;

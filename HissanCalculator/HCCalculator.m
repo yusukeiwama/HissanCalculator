@@ -8,10 +8,7 @@
 
 #import "HCCalculator.h"
 
-@implementation HCCalculator {
-	NSMutableArray *aboveIntegerArray;
-	NSMutableArray *belowIntegerArray;
-}
+@implementation HCCalculator
 
 @synthesize aboveOriginalIntegerArray;
 
@@ -22,6 +19,9 @@
 
 @synthesize aboveResultArray;
 @synthesize belowResultArray;
+
+@synthesize aboveIntegerArray;
+@synthesize belowIntegerArray;
 
 - (NSInteger)pickUpDigitWithTargetNumber:(NSInteger)targetNumber WithDigit:(NSInteger)digit
 {
@@ -101,7 +101,7 @@
 
 - (void)multiplicationWithAboveInteger:(NSInteger)aboveInteger WithBelowInteger:(NSInteger)belowInteger
 {
-	aboveIntegerArray = [[NSMutableArray alloc] init];
+	aboveIntegerArray = [[NSMutableArray alloc] init]; // carryに利用
 	belowIntegerArray = [[NSMutableArray alloc] init];
 	resultArray = [[NSMutableArray alloc] init];
 	
@@ -114,33 +114,46 @@
 	for (int j = 0; j < belowDigit; j++) {
 		NSInteger aBelowNumber = [self pickUpDigitWithTargetNumber:belowInteger WithDigit:j + 1];
 		aboveResultArray = [[NSMutableArray alloc] init];
+		aboveIntegerArray = [[NSMutableArray alloc] init];
 		for (int i = 0; i <= aboveDigit + belowDigit - 1; i++) {
 			[aboveResultArray addObject:[NSNumber numberWithInteger:-1]];
+			[aboveIntegerArray addObject:[NSNumber numberWithInteger:0]];
 		}
 		for (int i = 0; i < aboveDigit; i++) {
 			NSInteger aAboveNumber = [self pickUpDigitWithTargetNumber:aboveInteger WithDigit:i + 1];
 			[aboveResultArray replaceObjectAtIndex:i + j
 										withObject:[NSNumber numberWithInteger:((aAboveNumber * aBelowNumber) % 10 + carryInteger) % 10 ]];
+			[aboveIntegerArray replaceObjectAtIndex:i + j
+										 withObject:[NSNumber numberWithInteger:carryInteger]];
 			carryInteger = ((aAboveNumber * aBelowNumber) % 10 + carryInteger) / 10;
 			carryInteger += (aAboveNumber * aBelowNumber) / 10;
 		}
 		if (carryInteger > 0) {
 			[aboveResultArray replaceObjectAtIndex:aboveDigit + j
 										withObject:[NSNumber numberWithInteger:carryInteger]];
+			[aboveIntegerArray replaceObjectAtIndex:aboveDigit + j
+										 withObject:[NSNumber numberWithInteger:carryInteger]];
 		}
 		[belowResultArray addObject:aboveResultArray];
+		[belowIntegerArray addObject:aboveIntegerArray];
 		carryInteger = 0;
 	}
 	//NSLog(@"%@", belowResultArray);
 	NSInteger carry = 0;
 	for (int j = 0; j < aboveDigit + belowDigit - 1 ; j++) {
 		NSInteger result = 0;
+		aboveIntegerArray = [[NSMutableArray alloc] init];
+		for (int i = 0; i <= aboveDigit + belowDigit - 1; i++) {
+			[aboveIntegerArray addObject:[NSNumber numberWithInteger:0]];
+		}
 		for (int i = 0; i < belowDigit; i++) {
 			if ([[[belowResultArray objectAtIndex:i] objectAtIndex:j] integerValue] >= 0) {
 				result += [[[belowResultArray objectAtIndex:i] objectAtIndex:j] integerValue];
 			}
 		}
 		result += carry;
+		[aboveIntegerArray replaceObjectAtIndex:j
+									 withObject:[NSNumber numberWithInteger:carry]];
 		carry = result / 10;
 		result = result % 10;
 		[resultArray addObject:[NSNumber numberWithInteger:result]];
@@ -148,7 +161,10 @@
 	carry += [[[belowResultArray objectAtIndex:belowDigit - 1] objectAtIndex:aboveDigit + belowDigit - 1] integerValue];
 	if (carry > 0) {
 		[resultArray addObject:[NSNumber numberWithInteger:carry]];
+		[aboveIntegerArray replaceObjectAtIndex:aboveDigit + belowDigit - 1
+									 withObject:[NSNumber numberWithInteger:carry]];
 	}
+	[belowIntegerArray addObject:aboveIntegerArray];
 	//NSLog(@"%@", resultArray);
 }
 
