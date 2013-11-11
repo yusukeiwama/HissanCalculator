@@ -36,6 +36,7 @@
 		A6B342D718189AF400D63DAC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A602220618065A9700E7D932 /* CoreGraphics.framework */; };
 		A6B342D818189AF700D63DAC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A620CD3F1814C6900030C1EC /* QuartzCore.framework */; };
 		A6CC80B01818B0E7005DEFB3 /* InputView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A6CC80AF1818B0E7005DEFB3 /* InputView.xib */; };
+		A6E652101830607B00FF4C9A /* HCColor.m in Sources */ = {isa = PBXBuildFile; fileRef = A6E6520F1830607B00FF4C9A /* HCColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		A6929811181DDFB600E5DE3B /* HCCalculateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCCalculateView.h; sourceTree = "<group>"; };
 		A6929812181DDFB600E5DE3B /* HCCalculateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCCalculateView.m; sourceTree = "<group>"; };
 		A6CC80AF1818B0E7005DEFB3 /* InputView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputView.xib; sourceTree = "<group>"; };
+		A6E6520E1830607B00FF4C9A /* HCColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCColor.h; sourceTree = "<group>"; };
+		A6E6520F1830607B00FF4C9A /* HCColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HCColor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +190,8 @@
 			children = (
 				A60C3FCC1822160C005CFD3F /* HCCalculator.h */,
 				A60C3FCD1822160C005CFD3F /* HCCalculator.m */,
+				A6E6520E1830607B00FF4C9A /* HCColor.h */,
+				A6E6520F1830607B00FF4C9A /* HCColor.m */,
 				A68966A2180D0D3800BD5CB5 /* StatePatternManagement */,
 			);
 			name = Model;
@@ -342,6 +347,7 @@
 				10E2D540181CC2C10040C93D /* HCInputView.m in Sources */,
 				10F355941828FBB40049B609 /* HCState.m in Sources */,
 				A602223E18065AD100E7D932 /* HCViewController.m in Sources */,
+				A6E652101830607B00FF4C9A /* HCColor.m in Sources */,
 				A602221118065A9700E7D932 /* main.m in Sources */,
 				10F355971828FE360049B609 /* HCContext.m in Sources */,
 				A60C3FCE1822160C005CFD3F /* HCCalculator.m in Sources */,

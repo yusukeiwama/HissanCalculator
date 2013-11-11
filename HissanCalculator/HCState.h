@@ -10,15 +10,17 @@
 
 /**
  デザインパターンの1つ、Stateパターンの実装。
- カテゴリにより実装している。
+ Obj-Cのカテゴリにより実装している。
  */
 
 @interface NSObject (HCState)
+
 /** 更新処理を行い、次状態を返すメソッド
  
  返り値がid型となっているので、以下のようにして使う。
  
 	state = [state getNextStateWithIdentifier:identifier];
+
  */
 - (id)getNextStateWithIdentifier:(NSInteger)identifier;
 @end

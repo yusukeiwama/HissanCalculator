@@ -159,6 +159,7 @@
 	CGRect frame;
 	operatorSelectorView.frame = operatorSelecterViewDefaultPosition;
 	for (UIButton *aButton in operatorSelectorView.subviews) {
+		
 		// デフォルトの位置を読み込む。構造体をオブジェクトとして扱うための処理。aButton.tagによって順序を乱さないで取り出し可能(Oct 26)
 		[(NSValue *)[operatorSelectButtonDefaultPositions objectAtIndex:aButton.tag - 20] getValue:&frame];
 		aButton.frame = frame;

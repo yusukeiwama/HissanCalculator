@@ -11,7 +11,8 @@
 #import "HCCalculateView.h"
 
 /**
- 画面のコントローラ。ボタンアクションなどの管理を行う。
+ 画面のコントローラ。ボタンアクションなどの管理や、
+ ユーザ入力による計算の表示の制御を行う。
  */
 
 @interface HCViewController : UIViewController {
@@ -22,8 +23,10 @@
 /** 筆算を表示するViewのベースとなる部分 */
 @property (weak, nonatomic) IBOutlet UIView *baseView;
 
+/** 入力を受け付けるインターフェースをまとめたもの */
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttons;
 
+/** 入力確定や計算を行うボタン 動的に機能が変化するので、プロパティとして持たせる */
 @property (weak, nonatomic) IBOutlet UIButton *functionButton;
 
 @end

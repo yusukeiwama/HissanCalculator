@@ -13,6 +13,7 @@
 @interface HCViewController () {
 	HCContext *context;
 	HCCalculator *calculator;
+	
 	UIColor *highlightColor;
 	NSString *operatorString;
 	NSInteger userInput;
@@ -40,9 +41,9 @@ NSInteger labelIndex = 0;
 	userInput = 0;
 	userAnswerModeState =	0;
 	highlightColor = [UIColor colorWithRed:90.0 / 255.0
-									 green:150.0 / 255.0
-									  blue:120.0 / 255.0
-									 alpha:1.0];
+																	 green:150.0 / 255.0
+																		blue:120.0 / 255.0
+																	 alpha:1.0];
 	
 	baseView.layer.cornerRadius = 20.0f;
 	baseView.clipsToBounds = YES;
@@ -50,18 +51,18 @@ NSInteger labelIndex = 0;
 	// init view for input. this xib file is loaded in its custom class.
 	inputView = [[HCInputView alloc] init];
 	inputView.frame = CGRectMake(baseView.frame.origin.x,
-								 baseView.frame.origin.y,
-								 baseView.frame.size.width,
-								 baseView.frame.size.height);
+															 baseView.frame.origin.y,
+															 baseView.frame.size.width,
+															 baseView.frame.size.height);
 	[self.view addSubview:inputView];
 	[inputView arrangeInputView];
 	
 	// init view for culculation. don't have xib.
 	calculateView = [[HCCalculateView alloc] init];
 	calculateView.frame = CGRectMake(baseView.frame.origin.x,
-									 baseView.frame.origin.y,
-									 baseView.frame.size.width,
-									 baseView.frame.size.height);
+																	 baseView.frame.origin.y,
+																	 baseView.frame.size.width,
+																	 baseView.frame.size.height);
 	calculateView.hidden = YES; // first, hidden.
 	[self.view addSubview:calculateView];
 	
@@ -74,7 +75,7 @@ NSInteger labelIndex = 0;
 	// 入力を受け付けるためのメソッドと関連付ける
 	for (UIButton *aButton in self.buttons) {
 		[aButton addTarget:self
-					action:@selector(buttonTapped:)
+								action:@selector(buttonTapped:)
 		  forControlEvents:UIControlEventTouchUpInside];
 	}
 	
@@ -90,9 +91,11 @@ NSInteger labelIndex = 0;
 // 時間あるときに構造を整理する。一旦放置。
 - (void)buttonTapped:(UIButton *)button
 {
-	NSLog(@"ButtonTaped at %d in state of %@", button.tag, [context.currentState class]);
+	//NSLog(@"ButtonTaped at %d in state of %@", button.tag, [context.currentState class]);
+	
 	userInput = button.tag;
-	if (button.tag < 10) {
+	
+	if (userInput < 10) {
 		if ([context.currentState class] == [HCAboveNumberState class]) {
 			if ([calculator getDigitWithInteger:aboveNumber] < 4) {
 				aboveNumber = aboveNumber * 10 + button.tag;
@@ -107,7 +110,9 @@ NSInteger labelIndex = 0;
 				belowNumber = (belowNumber - button.tag) / 10;
 			}
 		}
-	} else if (button.tag == 10) {
+	}
+	
+	else if (userInput == 10) {
 		if ([context.currentState class] == [HCAboveNumberState class]) {
 			if ([calculator getDigitWithInteger:aboveNumber] >= 2) {
 				inputView.operatorSelectorView.backgroundColor = highlightColor;
@@ -124,7 +129,9 @@ NSInteger labelIndex = 0;
 		} else if ([context.currentState class] == [HCCalculateState class]) {
 			//[self userAnswerModeContext];
 		}
-	} else if (button.tag == 11) {
+	}
+	
+	else if (userInput == 11) {
 		aboveNumber = 0;
 		belowNumber = 0;
 		userAnswerModeState = 0;
@@ -135,17 +142,20 @@ NSInteger labelIndex = 0;
 		for (UIView *aView in [calculateView subviews]) {
 			[aView removeFromSuperview];
 		}
-	} else if (button.tag == 12) {
+	}
+	
+	else if (userInput == 12) {
 		if ([context.currentState class] == [HCAboveNumberState class]
-			|| [context.currentState class] == [HCSelectOperatorState class]) {
+				|| [context.currentState class] == [HCSelectOperatorState class]) {
 			aboveNumber = 0;
 		} else if ([context.currentState class] == [HCBelowNumberState class]) {
 			belowNumber = 0;
 		}
 	}
 	
+	
 	if ([context.currentState class] == [HCSelectOperatorState class]) {
-		switch (button.tag) {
+		switch (userInput) {
 			case 20:
 				operatorString = @"+";
 				break;
@@ -164,16 +174,18 @@ NSInteger labelIndex = 0;
 	}
 	
 	if ([context.currentState class] == [HCUserAnswerState class]) {
-		[self userAnswerModeWithTapped:button];
+		[self userAnswerWithButton:button];
 	}
+	
 	[context inputEvent:button.tag];
 	[self contextSwitch];
 }
 
 -(void)contextSwitch
 {
-	inputView.aboveIntegerLabel.text = [self getNumberStringWithInteger:aboveNumber];
-	inputView.belowIntegerLabel.text = [self getNumberStringWithInteger:belowNumber];
+	// 入力された数字を逐次反映
+	inputView.aboveIntegerLabel.text = [self getNotZeroNumberStringWithInteger:aboveNumber];
+	inputView.belowIntegerLabel.text = [self getNotZeroNumberStringWithInteger:belowNumber];
 	inputView.operatorLabel.text = operatorString;
 	
 	
@@ -242,13 +254,13 @@ NSInteger labelIndex = 0;
 	}
 }
 
-- (void)userAnswerModeWithTapped:(UIButton *)button
+- (void)userAnswerWithButton:(UIButton *)button
 {
 	if ([operatorString compare:@"+"] == NSOrderedSame) {
 		if (userAnswerModeState % 2 == 1) {
 			UILabel *aLabel = (UILabel *)[calculateView.labels objectAtIndex:(calculateView.columnMax * calculateView.rowMax - (labelIndex + 1))];
 			
-			if ([self equalToInputInteger:button.tag WithString:aLabel.text] == YES) {
+			if ([self isEqualInputInteger:button.tag ToString:aLabel.text] == YES) {
 				if (labelIndex < calculateView.columnMax - 1) {
 					userAnswerModeState++;
 					labelIndex++;
@@ -264,7 +276,7 @@ NSInteger labelIndex = 0;
 			UILabel *aLabel =
 			(UILabel *)[calculateView.labels objectAtIndex:(calculateView.columnMax * calculateView.rowMax - (labelIndex + 2))];
 			
-			if ([self equalToInputInteger:button.tag WithString:((UILabel *)aLabel.subviews[0]).text] == 1) {
+			if ([self isEqualInputInteger:button.tag ToString:((UILabel *)aLabel.subviews[0]).text] == 1) {
 				if (labelIndex < calculateView.columnMax - 1) userAnswerModeState++;
 				((UILabel *)aLabel.subviews[0]).textColor = [UIColor whiteColor];
 				[self userAnswerModeContext];
@@ -273,9 +285,11 @@ NSInteger labelIndex = 0;
 				((UILabel *)aLabel.subviews[0]).backgroundColor = [UIColor magentaColor];
 			}
 		}
-	} else if ([operatorString compare:@"-"] == NSOrderedSame) {
+	}
+	
+	else if ([operatorString compare:@"-"] == NSOrderedSame) {
 		UILabel *aLabel = (UILabel *)[calculateView.labels objectAtIndex:(calculateView.columnMax * calculateView.rowMax - (labelIndex + 1))];
-		if ([self equalToInputInteger:button.tag WithString:aLabel.text] == YES) {
+		if ([self isEqualInputInteger:button.tag ToString:aLabel.text] == YES) {
 			labelIndex++;
 			aLabel.textColor = [UIColor whiteColor];
 			[self userAnswerModeContext];
@@ -284,21 +298,27 @@ NSInteger labelIndex = 0;
 			((UILabel *)aLabel.subviews[0]).backgroundColor = [UIColor magentaColor];
 		}
 		
-	} else if ([operatorString compare:@"×"] == NSOrderedSame) {
+	}
+	
+	else if ([operatorString compare:@"×"] == NSOrderedSame) {
 		
-	} else {
+	}
+	
+	else if ([operatorString compare:@"÷"] == NSOrderedSame) {
 		
 	}
 }
 
 - (void)userAnswerModeContext
 {
+	// フォーカス対象を一旦クリア
 	for (UILabel *aLabel in calculateView.labels) {
 		aLabel.backgroundColor = calculateView.backgroundColor;
 		((UILabel *)aLabel.subviews[0]).backgroundColor = calculateView.backgroundColor;
 	}
 	
 	UILabel *aLabel, *sLabel;
+	
 	if ([operatorString compare:@"+"] == NSOrderedSame) {
 		if (labelIndex == calculateView.columnMax - 1) {
 			context.currentState = [[HCCalculateState alloc] init];
@@ -318,7 +338,9 @@ NSInteger labelIndex = 0;
 			aLabel = (UILabel *)[calculateView.labels objectAtIndex:calculateView.columnMax * calculateView.rowMax - (labelIndex + 2)];
 			((UILabel *)aLabel.subviews[0]).backgroundColor = highlightColor;
 		}
-	} else if ([operatorString compare:@"-"] == NSOrderedSame) {
+	}
+	
+	else if ([operatorString compare:@"-"] == NSOrderedSame) {
 		if (labelIndex == calculateView.columnMax - 1) {
 			context.currentState = [[HCCalculateState alloc] init];
 			return;
@@ -328,21 +350,28 @@ NSInteger labelIndex = 0;
 		((UILabel *)aLabel.subviews[0]).backgroundColor = highlightColor;
 		aLabel.backgroundColor = highlightColor;
 		((UILabel *)sLabel.subviews[0]).textColor = [UIColor whiteColor];
-	} else if ([operatorString compare:@"×"] == NSOrderedSame) {
+	}
+	
+	else if ([operatorString compare:@"×"] == NSOrderedSame) {
 		
-	} else {
+	}
+	
+	else if ([operatorString compare:@"÷"] == NSOrderedSame) {
 		
+	}
+	
+	else {
+		NSLog(@"Operator Error : Check operatorString.");
 	}
 	
 }
 
-- (BOOL)equalToInputInteger:(NSInteger)input WithString:(NSString *)string
+// 入力した数字と文字列内の数字が等しいかどうか(BOOL)
+- (BOOL)isEqualInputInteger:(NSInteger)input ToString:(NSString *)string
 {
 	if ([string compare:@""] == NSOrderedSame) {
 		if (input == 0) {
 			return YES;
-		} else {
-			return NO;
 		}
 	} else if ([string compare:[NSString stringWithFormat:@"%d", input]] == NSOrderedSame) {
 		return YES;
@@ -351,7 +380,7 @@ NSInteger labelIndex = 0;
 }
 
 // ゼロを表示しないためのメソッド
-- (NSString *)getNumberStringWithInteger:(NSInteger)number
+- (NSString *)getNotZeroNumberStringWithInteger:(NSInteger)number
 {
 	if (number == 0) {
 		return @"";

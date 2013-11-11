@@ -9,6 +9,10 @@
 #import "HCCalculateView.h"
 #import "HCCalculator.h"
 
+/*
+ プロジェクト中、最も汚いコードなので早急に対処。
+ */
+
 @implementation HCCalculateView {
 	NSInteger margin;
 	UIView *aLine;
@@ -36,10 +40,11 @@
 	return self;
 }
 
-// 桁数を引数に動的に生成できるようにする:現時点では2桁と2桁演算になっている
+// 桁数を引数に動的に生成できるようにする
 - (void)arrangeCalculateViewWithAbove:(NSInteger)aboveInteger WithBelow:(NSInteger)belowInteger WithOperator:(NSString *)operatorString
 {
 	NSInteger row, column;
+	
 	// 動的に生成するために一度画面をクリア
 	for (UIView *aView in [self subviews]) {
 		[aView removeFromSuperview];
@@ -52,13 +57,16 @@
 	if ([operatorString compare:@"+"] == NSOrderedSame) {
 		rowMax = 3;
 		columnMax = [calculator getDigitWithInteger:aboveInteger] + 1;
-	} else if ([operatorString compare:@"-"] == NSOrderedSame) {
+	}
+	else if ([operatorString compare:@"-"] == NSOrderedSame) {
 		rowMax = 3;
 		columnMax = [calculator getDigitWithInteger:aboveInteger] + 1;
-	} else if ([operatorString compare:@"×"] == NSOrderedSame) {
+	}
+	else if ([operatorString compare:@"×"] == NSOrderedSame) {
 		rowMax = [calculator getDigitWithInteger:belowInteger] + 3;
 		columnMax = [calculator getDigitWithInteger:aboveInteger] + [calculator getDigitWithInteger:belowInteger];
-	} else if ([operatorString compare:@"÷"] == NSOrderedSame) {
+	}
+	else if ([operatorString compare:@"÷"] == NSOrderedSame) {
 		rowMax = 2 * ([calculator getDigitWithInteger:aboveInteger] + 1);
 		columnMax = [calculator getDigitWithInteger:aboveInteger] + [calculator
 																	 getDigitWithInteger:belowInteger];
@@ -213,7 +221,7 @@
 			}
 		}
 		
-		BOOL flg = NO;
+		BOOL flg = NO; // 一回だけ実行したいので一旦。
 		for (int j = 0; j < rowMax - 3; j++) {
 			flg = NO;
 			for (int i = 0; i < columnMax; i++) {
