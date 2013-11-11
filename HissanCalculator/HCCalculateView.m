@@ -8,6 +8,7 @@
 
 #import "HCCalculateView.h"
 #import "HCCalculator.h"
+#import "HCColor.h"
 
 /*
  プロジェクト中、最も汚いコードなので早急に対処。
@@ -31,10 +32,7 @@
 		margin = 10;
 		self.layer.cornerRadius = 20.0f;
 		self.clipsToBounds = YES;
-		self.backgroundColor = [UIColor colorWithRed:60.0 / 255.0
-											   green:100.0 / 255.0
-												blue:80.0 / 255.0
-											   alpha:1.0];
+		self.backgroundColor = [HCColor blackBoardColor];
 		calculator = [[HCCalculator alloc] init];
 	}
 	return self;
@@ -43,8 +41,6 @@
 // 桁数を引数に動的に生成できるようにする
 - (void)arrangeCalculateViewWithAbove:(NSInteger)aboveInteger WithBelow:(NSInteger)belowInteger WithOperator:(NSString *)operatorString
 {
-	NSInteger row, column;
-	
 	// 動的に生成するために一度画面をクリア
 	for (UIView *aView in [self subviews]) {
 		[aView removeFromSuperview];
@@ -52,8 +48,7 @@
 	
 	labels = [[NSMutableArray alloc] init];
 	
-	rowMax = 0;
-	columnMax = 0;
+	rowMax = columnMax = 0;
 	if ([operatorString compare:@"+"] == NSOrderedSame) {
 		rowMax = 3;
 		columnMax = [calculator getDigitWithInteger:aboveInteger] + 1;
@@ -68,17 +63,17 @@
 	}
 	else if ([operatorString compare:@"÷"] == NSOrderedSame) {
 		rowMax = 2 * ([calculator getDigitWithInteger:aboveInteger] + 1);
-		columnMax = [calculator getDigitWithInteger:aboveInteger] + [calculator
-																	 getDigitWithInteger:belowInteger];
+		columnMax = [calculator getDigitWithInteger:aboveInteger]
+		+ [calculator getDigitWithInteger:belowInteger];
 	}
 	
-	for (row = 0; row < rowMax; row++) {
-		for (column = 0; column < columnMax; column++) {
+	for (int row = 0; row < rowMax; row++) {
+		for (int column = 0; column < columnMax; column++) {
 			UILabel *aCellOfLabel = [[UILabel alloc] init];
 			aCellOfLabel.frame = CGRectMake(self.bounds.origin.x + column * self.bounds.size.width / columnMax,
-											self.bounds.origin.y + row * self.bounds.size.height / rowMax,
-											(int)self.bounds.size.width / columnMax,
-											(int)self.bounds.size.height / rowMax);
+																			self.bounds.origin.y + row * self.bounds.size.height / rowMax,
+																			(int)self.bounds.size.width / columnMax,
+																			(int)self.bounds.size.height / rowMax);
 			aCellOfLabel.tag = column + row * columnMax;
 			aCellOfLabel.textAlignment = NSTextAlignmentCenter;
 			
@@ -91,15 +86,15 @@
 				[aCellOfLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:90]];
 				aCellOfLabel.adjustsFontSizeToFitWidth = YES;
 			} else {
-			[aCellOfLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:100]];
+				[aCellOfLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:100]];
 			}
 			[self addSubview:aCellOfLabel];
 			
 			UILabel *superScriptLabel = [[UILabel alloc] init];
 			superScriptLabel.frame = CGRectMake(aCellOfLabel.bounds.origin.x + 3 * (int)(aCellOfLabel.bounds.size.width / 5),
-												aCellOfLabel.bounds.origin.y,
-												(int)(aCellOfLabel.bounds.size.width / 5),
-												(int)(aCellOfLabel.bounds.size.height / 5));
+																					aCellOfLabel.bounds.origin.y,
+																					(int)(aCellOfLabel.bounds.size.width / 5),
+																					(int)(aCellOfLabel.bounds.size.height / 5));
 			superScriptLabel.textAlignment = NSTextAlignmentCenter;
 			superScriptLabel.layer.cornerRadius = 5.0f;
 			superScriptLabel.clipsToBounds = YES;
@@ -119,22 +114,26 @@
 	}
 	
 	if ([operatorString compare:@"÷"] == NSOrderedSame) {
-	}
-	else {
+		
+	} else {
+		
 		for (int i = 0; i < [calculator getDigitWithInteger:aboveInteger]; i++) {
 			((UILabel *)[labels objectAtIndex:columnMax - (i + 1)]).text =
 			[NSString stringWithFormat:@"%d", [calculator pickUpDigitWithTargetNumber:aboveInteger WithDigit:i + 1]];
 		}
+		
 		for (int i = 0; i < [calculator getDigitWithInteger:belowInteger]; i++) {
 			((UILabel *)[labels objectAtIndex:2 * columnMax - (i + 1)]).text =
 			[NSString stringWithFormat:@"%d", [calculator pickUpDigitWithTargetNumber:belowInteger WithDigit:i + 1]];
 		}
+		
 		((UILabel *)[labels objectAtIndex:columnMax]).text = operatorString;
+		
 		aLine = [[UIView alloc] init];
 		aLine.frame = CGRectMake(((UILabel *)[labels objectAtIndex:2*columnMax]).frame.origin.x + margin,
-								 ((UILabel *)[labels objectAtIndex:2*columnMax]).frame.origin.y,
-								 self.frame.size.width - 2 * margin,
-								 5);
+														 ((UILabel *)[labels objectAtIndex:2*columnMax]).frame.origin.y,
+														 self.frame.size.width - 2 * margin,
+														 5);
 		aLine.backgroundColor = [UIColor whiteColor];
 		[self addSubview:aLine];
 	}
@@ -160,14 +159,16 @@
 				break;
 			}
 		}
-	} else if ([operatorString compare:@"-"] == NSOrderedSame) {
+	}
+	
+	else if ([operatorString compare:@"-"] == NSOrderedSame) {
 		[calculator subtractionWithAboveInteger:aboveInteger WithBelowInteger:belowInteger];
 		for (int i = 0; i < [calculator.resultArray count]; i++) {
 			((UILabel *)[labels objectAtIndex:3 * columnMax - (i + 1)]).text =
 			[NSString stringWithFormat:@"%d", [[calculator.resultArray objectAtIndex:i] integerValue]];
 			((UILabel *)[labels objectAtIndex:3 * columnMax - (i + 1)]).textColor = [UIColor clearColor];
 			if ([[calculator.borrowReferenceArray objectAtIndex:i] integerValue]
-				!= [[calculator.aboveOriginalIntegerArray objectAtIndex:i] integerValue]) {
+					!= [[calculator.aboveOriginalIntegerArray objectAtIndex:i] integerValue]) {
 				((UILabel *)((UIView *)[labels objectAtIndex:columnMax - (i + 1)]).subviews[0]).text =
 				[NSString stringWithFormat:@"%d", [[calculator.borrowReferenceArray objectAtIndex:i] integerValue]];
 				((UILabel *)((UIView *)[labels objectAtIndex:columnMax - (i + 1)]).subviews[0]).textColor = [UIColor clearColor];
@@ -182,14 +183,16 @@
 			}
 		}
 		
-	} else if ([operatorString compare:@"×"] == NSOrderedSame) {
+	}
+	
+	else if ([operatorString compare:@"×"] == NSOrderedSame) {
 		[calculator multiplicationWithAboveInteger:aboveInteger WithBelowInteger:belowInteger];
 		
 		aLine = [[UIView alloc] init];
 		aLine.frame = CGRectMake(((UILabel *)[labels objectAtIndex:columnMax * (rowMax - 1)]).frame.origin.x + margin,
-								 ((UILabel *)[labels objectAtIndex:columnMax * (rowMax - 1)]).frame.origin.y,
-								 self.frame.size.width - 2 * margin,
-								 5);
+														 ((UILabel *)[labels objectAtIndex:columnMax * (rowMax - 1)]).frame.origin.y,
+														 self.frame.size.width - 2 * margin,
+														 5);
 		aLine.backgroundColor = [UIColor whiteColor];
 		[self addSubview:aLine];
 		

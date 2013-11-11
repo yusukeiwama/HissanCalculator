@@ -9,12 +9,12 @@
 #import "HCViewController.h"
 #import "HCContext.h"
 #import "HCCalculator.h"
+#import "HCColor.h"
 
 @interface HCViewController () {
 	HCContext *context;
 	HCCalculator *calculator;
 	
-	UIColor *highlightColor;
 	NSString *operatorString;
 	NSInteger userInput;
 	NSInteger userAnswerModeState;
@@ -40,10 +40,6 @@ NSInteger labelIndex = 0;
 	calculator = [[HCCalculator alloc] init];
 	userInput = 0;
 	userAnswerModeState =	0;
-	highlightColor = [UIColor colorWithRed:90.0 / 255.0
-																	 green:150.0 / 255.0
-																		blue:120.0 / 255.0
-																	 alpha:1.0];
 	
 	baseView.layer.cornerRadius = 20.0f;
 	baseView.clipsToBounds = YES;
@@ -79,6 +75,10 @@ NSInteger labelIndex = 0;
 		  forControlEvents:UIControlEventTouchUpInside];
 	}
 	
+	UIGestureRecognizer *selectOperator = [[UITapGestureRecognizer alloc] init];
+	[selectOperator addTarget:self action:@selector(selectOperator:)];
+	[inputView.operatorSelectorView addGestureRecognizer:selectOperator];
+	
 	[self contextSwitch];
 }
 
@@ -86,6 +86,19 @@ NSInteger labelIndex = 0;
 {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+
+- (void)selectOperator:(id)ges
+{
+	if ([calculator getDigitWithInteger:aboveNumber] >= 2) {
+		inputView.operatorSelectorView.backgroundColor = [HCColor highlightColor];
+		[inputView expandOperatorSelectView];
+		context.currentState = [[HCSelectOperatorState alloc] init];
+	} else {
+		aboveNumber = 0;
+		context.currentState = [[HCAboveNumberState alloc] init];
+	}
+	[self contextSwitch];
 }
 
 // 時間あるときに構造を整理する。一旦放置。
@@ -115,7 +128,7 @@ NSInteger labelIndex = 0;
 	else if (userInput == 10) {
 		if ([context.currentState class] == [HCAboveNumberState class]) {
 			if ([calculator getDigitWithInteger:aboveNumber] >= 2) {
-				inputView.operatorSelectorView.backgroundColor = highlightColor;
+				inputView.operatorSelectorView.backgroundColor = [HCColor highlightColor];
 				[inputView expandOperatorSelectView];
 				context.currentState = [[HCSelectOperatorState alloc] init];
 			} else {
@@ -192,7 +205,7 @@ NSInteger labelIndex = 0;
 	if ([context.currentState class] == [HCAboveNumberState class]) {
 		[functionButton setTitle:@"入力" forState:UIControlStateNormal];
 		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:100]];
-		inputView.aboveIntegerLabel.backgroundColor = highlightColor;
+		inputView.aboveIntegerLabel.backgroundColor = [HCColor highlightColor];
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.operatorSelectorView.backgroundColor = inputView.backgroundColor;
 		[inputView resetOperatorView];
@@ -218,7 +231,7 @@ NSInteger labelIndex = 0;
 			[functionButton.titleLabel setFont:[UIFont systemFontOfSize:100]];
 		}
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
-		inputView.belowIntegerLabel.backgroundColor = highlightColor;
+		inputView.belowIntegerLabel.backgroundColor = [HCColor highlightColor];
 		inputView.operatorSelectorView.backgroundColor = inputView.backgroundColor;
 		inputView.operatorSelectorView.hidden = YES;
 		inputView.operatorLabel.hidden = NO;
@@ -326,8 +339,8 @@ NSInteger labelIndex = 0;
 		}
 		if (userAnswerModeState % 2 == 1) {
 			aLabel = (UILabel *)[calculateView.labels objectAtIndex:calculateView.columnMax * calculateView.rowMax - (labelIndex + 1)];
-			((UILabel *)aLabel.subviews[0]).backgroundColor = highlightColor;
-			aLabel.backgroundColor = highlightColor;
+			((UILabel *)aLabel.subviews[0]).backgroundColor = [HCColor highlightColor];
+			aLabel.backgroundColor = [HCColor highlightColor];
 		} else {
 			if (labelIndex == calculateView.columnMax - 1) {
 				userAnswerModeState++;
@@ -336,7 +349,7 @@ NSInteger labelIndex = 0;
 				return;
 			}
 			aLabel = (UILabel *)[calculateView.labels objectAtIndex:calculateView.columnMax * calculateView.rowMax - (labelIndex + 2)];
-			((UILabel *)aLabel.subviews[0]).backgroundColor = highlightColor;
+			((UILabel *)aLabel.subviews[0]).backgroundColor = [HCColor highlightColor];
 		}
 	}
 	
@@ -347,8 +360,10 @@ NSInteger labelIndex = 0;
 		}
 		aLabel = (UILabel *)[calculateView.labels objectAtIndex:calculateView.columnMax * calculateView.rowMax - (labelIndex + 1)];
 		sLabel = (UILabel *)[calculateView.labels objectAtIndex:calculateView.columnMax - (labelIndex + 1)];
-		((UILabel *)aLabel.subviews[0]).backgroundColor = highlightColor;
-		aLabel.backgroundColor = highlightColor;
+		
+		((UILabel *)aLabel.subviews[0]).backgroundColor = [HCColor highlightColor];
+		aLabel.backgroundColor = [HCColor highlightColor];
+		
 		((UILabel *)sLabel.subviews[0]).textColor = [UIColor whiteColor];
 	}
 	

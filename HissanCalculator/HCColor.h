@@ -14,4 +14,7 @@
 
 @interface HCColor : UIColor
 
++ (UIColor *)blackBoardColor;
++ (UIColor *)highlightColor;
+
 @end
