@@ -26,8 +26,14 @@
 @property CGRect operatorSelecterViewDefaultPosition;
 @property NSMutableArray *operatorSelectButtonDefaultPositions;
 
+
+/** 入力状態を反映するViewを整形 */
 - (void)arrangeInputView;
+
+/** Viewを初期化 */
 - (void)resetOperatorView;
+
+/** 演算子選択用のViewを拡大 */
 - (void)expandOperatorSelectView;
 
 @end
