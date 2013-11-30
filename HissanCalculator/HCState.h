@@ -25,12 +25,12 @@
 - (id)getNextStateWithIdentifier:(NSInteger)identifier;
 @end
 
-/** 筆算上で上の数字を入力している状態 */
-@interface HCAboveNumberState : NSObject
-@end
-
 /** 筆算上で演算子の選択を行う状態 */
 @interface HCSelectOperatorState : NSObject
+@end
+
+/** 筆算上で上の数字を入力している状態 */
+@interface HCAboveNumberState : NSObject
 @end
 
 /** 筆算上で下の数字を入力している状態 */

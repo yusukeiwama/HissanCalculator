@@ -19,6 +19,7 @@
 	NSInteger userInput;
 	NSInteger userAnswerModeState;
 }
+
 @end
 
 const NSInteger margin = 10;
@@ -33,13 +34,15 @@ NSInteger labelIndex = 0;
 @synthesize buttons;
 @synthesize functionButton;
 
+
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+	
 	context = [[HCContext alloc] init];
 	calculator = [[HCCalculator alloc] init];
+	
 	userInput = 0;
-	userAnswerModeState =	0;
 	
 	baseView.layer.cornerRadius = 20.0f;
 	baseView.clipsToBounds = YES;
@@ -47,22 +50,23 @@ NSInteger labelIndex = 0;
 	// init view for input. this xib file is loaded in its custom class.
 	inputView = [[HCInputView alloc] init];
 	inputView.frame = CGRectMake(baseView.frame.origin.x,
-															 baseView.frame.origin.y,
-															 baseView.frame.size.width,
-															 baseView.frame.size.height);
+								 baseView.frame.origin.y,
+								 baseView.frame.size.width,
+								 baseView.frame.size.height);
 	[self.view addSubview:inputView];
-	[inputView arrangeInputView];
 	
 	// init view for culculation. don't have xib.
 	calculateView = [[HCCalculateView alloc] init];
 	calculateView.frame = CGRectMake(baseView.frame.origin.x,
-																	 baseView.frame.origin.y,
-																	 baseView.frame.size.width,
-																	 baseView.frame.size.height);
+									 baseView.frame.origin.y,
+									 baseView.frame.size.width,
+									 baseView.frame.size.height);
 	calculateView.hidden = YES; // first, hidden.
 	[self.view addSubview:calculateView];
 	
+	[inputView arrangeInputView];
 	
+	// inputView内のボタンも、一括管理のため
 	for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
 		aButton.userInteractionEnabled = YES;
 		self.buttons = [self.buttons arrayByAddingObject:aButton];
@@ -71,7 +75,7 @@ NSInteger labelIndex = 0;
 	// 入力を受け付けるためのメソッドと関連付ける
 	for (UIButton *aButton in self.buttons) {
 		[aButton addTarget:self
-								action:@selector(buttonTapped:)
+					action:@selector(buttonTapped:)
 		  forControlEvents:UIControlEventTouchUpInside];
 	}
 	
@@ -79,6 +83,7 @@ NSInteger labelIndex = 0;
 	[selectOperator addTarget:self action:@selector(selectOperator:)];
 	[inputView.operatorSelectorView addGestureRecognizer:selectOperator];
 	
+	[inputView expandOperatorSelectView];
 	[self contextSwitch];
 }
 
@@ -92,7 +97,7 @@ NSInteger labelIndex = 0;
 {
 	if ([calculator getDigitWithInteger:aboveNumber] >= 2) {
 		inputView.operatorSelectorView.backgroundColor = [HCColor highlightColor];
-		[inputView expandOperatorSelectView];
+		//[inputView expandOperatorSelectView];
 		context.currentState = [[HCSelectOperatorState alloc] init];
 	} else {
 		aboveNumber = 0;
@@ -101,72 +106,13 @@ NSInteger labelIndex = 0;
 	[self contextSwitch];
 }
 
-// 時間あるときに構造を整理する。一旦放置。
+
+
 - (void)buttonTapped:(UIButton *)button
 {
-	//NSLog(@"ButtonTaped at %d in state of %@", button.tag, [context.currentState class]);
-	
 	userInput = button.tag;
 	
-	if (userInput < 10) {
-		if ([context.currentState class] == [HCAboveNumberState class]) {
-			if ([calculator getDigitWithInteger:aboveNumber] < 4) {
-				aboveNumber = aboveNumber * 10 + button.tag;
-			}
-		} else if ([context.currentState class] == [HCBelowNumberState class]) {
-			if ([calculator getDigitWithInteger:belowNumber] < [calculator getDigitWithInteger:aboveNumber]) {
-				belowNumber = belowNumber * 10 + button.tag;
-			} else if ([calculator getDigitWithInteger:belowNumber] == 1) {
-				belowNumber = button.tag;
-			}
-			if ([operatorString compare:@"-"] == NSOrderedSame && aboveNumber < belowNumber) {
-				belowNumber = (belowNumber - button.tag) / 10;
-			}
-		}
-	}
-	
-	else if (userInput == 10) {
-		if ([context.currentState class] == [HCAboveNumberState class]) {
-			if ([calculator getDigitWithInteger:aboveNumber] >= 2) {
-				inputView.operatorSelectorView.backgroundColor = [HCColor highlightColor];
-				[inputView expandOperatorSelectView];
-				context.currentState = [[HCSelectOperatorState alloc] init];
-			} else {
-				aboveNumber = 0;
-				context.currentState = [[HCAboveNumberState alloc] init];
-				[self contextSwitch];
-			}
-		} else if ([context.currentState class] == [HCBelowNumberState class]) {
-			[calculateView arrangeCalculateViewWithAbove:aboveNumber WithBelow:belowNumber WithOperator:operatorString];
-			[self userAnswerModeContext];
-		} else if ([context.currentState class] == [HCCalculateState class]) {
-			//[self userAnswerModeContext];
-		}
-	}
-	
-	else if (userInput == 11) {
-		aboveNumber = 0;
-		belowNumber = 0;
-		userAnswerModeState = 0;
-		labelIndex = 0;
-		for (UILabel *aLabel in calculateView.labels) {
-			aLabel.text = @"";
-		}
-		for (UIView *aView in [calculateView subviews]) {
-			[aView removeFromSuperview];
-		}
-	}
-	
-	else if (userInput == 12) {
-		if ([context.currentState class] == [HCAboveNumberState class]
-				|| [context.currentState class] == [HCSelectOperatorState class]) {
-			aboveNumber = 0;
-		} else if ([context.currentState class] == [HCBelowNumberState class]) {
-			belowNumber = 0;
-		}
-	}
-	
-	
+	// 最初に行うのは演算子選択
 	if ([context.currentState class] == [HCSelectOperatorState class]) {
 		switch (userInput) {
 			case 20:
@@ -186,6 +132,55 @@ NSInteger labelIndex = 0;
 		}
 	}
 	
+	if (userInput < 10) {
+		if ([context.currentState class] == [HCAboveNumberState class]) {
+			if ([calculator getDigitWithInteger:aboveNumber] < 4) {
+				aboveNumber = aboveNumber * 10 + button.tag;
+			}
+		} else if ([context.currentState class] == [HCBelowNumberState class]) {
+			
+			if ([calculator getDigitWithInteger:belowNumber] < [calculator getDigitWithInteger:aboveNumber]) {
+				belowNumber = belowNumber * 10 + button.tag;
+			} else if ([calculator getDigitWithInteger:belowNumber] == 1) {
+				belowNumber = button.tag;
+			}
+			if ([operatorString compare:@"-"] == NSOrderedSame && aboveNumber < belowNumber) {
+				belowNumber = (belowNumber - button.tag) / 10;
+			}
+		}
+	}
+	
+	else if (userInput == 10) {
+		if ([context.currentState class] == [HCAboveNumberState class]) {
+			
+		} else if ([context.currentState class] == [HCBelowNumberState class]) {
+			
+			[calculateView arrangeCalculateViewWithAbove:aboveNumber WithBelow:belowNumber WithOperator:operatorString];
+			[self userAnswerModeContext];
+		}
+	}
+	
+	else if (userInput == 11) {
+		aboveNumber = 0;
+		belowNumber = 0;
+		userAnswerModeState = 0;
+		labelIndex = 0;
+		for (UILabel *aLabel in calculateView.labels) {
+			aLabel.text = @"";
+		}
+		for (UIView *aView in [calculateView subviews]) {
+			[aView removeFromSuperview];
+		}
+	}
+	
+	else if (userInput == 12) {
+		if ([context.currentState class] == [HCAboveNumberState class] || [context.currentState class] == [HCSelectOperatorState class]) {
+			aboveNumber = 0;
+		} else if ([context.currentState class] == [HCBelowNumberState class]) {
+			belowNumber = 0;
+		}
+	}
+	
 	if ([context.currentState class] == [HCUserAnswerState class]) {
 		[self userAnswerWithButton:button];
 	}
@@ -202,34 +197,24 @@ NSInteger labelIndex = 0;
 	inputView.operatorLabel.text = operatorString;
 	
 	
-	if ([context.currentState class] == [HCAboveNumberState class]) {
-		[functionButton setTitle:@"入力" forState:UIControlStateNormal];
-		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:100]];
-		inputView.aboveIntegerLabel.backgroundColor = [HCColor highlightColor];
-		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
-		inputView.operatorSelectorView.backgroundColor = inputView.backgroundColor;
-		[inputView resetOperatorView];
-		inputView.operatorSelectorView.hidden = NO;
-		inputView.operatorLabel.hidden = YES;
-		inputView.hidden = NO;
-		calculateView.hidden = YES;
-	}
-	else if ([context.currentState class] == [HCSelectOperatorState class]) {
-		[functionButton setTitle:@"入力" forState:UIControlStateNormal];
-		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:100]];
+	if ([context.currentState class] == [HCSelectOperatorState class]) {
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.operatorSelectorView.hidden = NO;
 		inputView.operatorLabel.hidden = YES;
 	}
+	
+	else if ([context.currentState class] == [HCAboveNumberState class]) {
+		inputView.aboveIntegerLabel.backgroundColor = [HCColor highlightColor];
+		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
+		inputView.operatorSelectorView.backgroundColor = inputView.backgroundColor;
+		inputView.operatorSelectorView.hidden = NO;
+		inputView.operatorLabel.hidden = YES;
+		inputView.hidden = NO;
+		calculateView.hidden = YES;
+	}
+	
 	else if ([context.currentState class] == [HCBelowNumberState class]) {
-		if ([operatorString compare:@"×"] == NSOrderedSame) {
-			[functionButton setTitle:@"計算結果" forState:UIControlStateNormal];
-			[functionButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
-		} else {
-			[functionButton setTitle:@"回答" forState:UIControlStateNormal];
-			[functionButton.titleLabel setFont:[UIFont systemFontOfSize:100]];
-		}
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.belowIntegerLabel.backgroundColor = [HCColor highlightColor];
 		inputView.operatorSelectorView.backgroundColor = inputView.backgroundColor;
@@ -237,8 +222,6 @@ NSInteger labelIndex = 0;
 		inputView.operatorLabel.hidden = NO;
 	}
 	else if ([context.currentState class] == [HCCalculateState class]) {
-		[functionButton setTitle:@"計算結果" forState:UIControlStateNormal];
-		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.operatorSelectorView.backgroundColor = inputView.backgroundColor;
@@ -252,8 +235,6 @@ NSInteger labelIndex = 0;
 		}
 	}
 	else if ([context.currentState class] == [HCUserAnswerState class]) {
-		[functionButton setTitle:@"計算結果" forState:UIControlStateNormal];
-		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.belowIntegerLabel.backgroundColor = inputView.backgroundColor;
 		inputView.operatorSelectorView.backgroundColor = inputView.backgroundColor;
@@ -310,15 +291,13 @@ NSInteger labelIndex = 0;
 			aLabel.backgroundColor = [UIColor magentaColor];
 			((UILabel *)aLabel.subviews[0]).backgroundColor = [UIColor magentaColor];
 		}
-		
 	}
 	
 	else if ([operatorString compare:@"×"] == NSOrderedSame) {
-		
+		// 未実装
 	}
-	
 	else if ([operatorString compare:@"÷"] == NSOrderedSame) {
-		
+		// 未実装
 	}
 }
 
@@ -368,11 +347,11 @@ NSInteger labelIndex = 0;
 	}
 	
 	else if ([operatorString compare:@"×"] == NSOrderedSame) {
-		
+		//未実装
 	}
 	
 	else if ([operatorString compare:@"÷"] == NSOrderedSame) {
-		
+		//未実装
 	}
 	
 	else {

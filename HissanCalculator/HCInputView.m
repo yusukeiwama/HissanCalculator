@@ -127,20 +127,21 @@
 	for (UIButton *aButton in operatorSelectorView.subviews) {
 		aButton.backgroundColor = operatorSelectorView.backgroundColor;
 	}
+	
 	[UIView animateWithDuration:0.5f
 					 animations:^{
 						 CGFloat widthOfInputView = self.frame.size.width - 2 * margin;
+						 NSLog(@"width : %f", widthOfInputView);
 						 operatorSelectorView.frame = CGRectMake(self.bounds.origin.x + margin,
-																 self.center.y - (int)(widthOfInputView / 2)
-																 - operatorSelectorView.frame.size.height,
+																 self.center.y - (int)(widthOfInputView / 2) - operatorSelectorView.frame.size.height,
 																 widthOfInputView,
 																 widthOfInputView);
 						 
+						 NSLog(@"%f", operatorSelectorView.frame.size.width);
+						 
 						 for (UIButton *aButton in operatorSelectorView.subviews) {
-							 aButton.frame = CGRectMake(operatorSelectorView.bounds.origin.x + margin
-														+ ((aButton.tag - 20) % 2) * (int)(widthOfInputView / 2),
-														operatorSelectorView.bounds.origin.y + margin
-														+ ((aButton.tag - 20) / 2) * (int)(widthOfInputView / 2),
+							 aButton.frame = CGRectMake(operatorSelectorView.bounds.origin.x + margin + ((aButton.tag - 20) % 2) * (int)(widthOfInputView / 2),
+														operatorSelectorView.bounds.origin.y + margin + ((aButton.tag - 20) / 2) * (int)(widthOfInputView / 2),
 														(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin,
 														(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin);
 							 aButton.backgroundColor = operatorSelectorView.backgroundColor;

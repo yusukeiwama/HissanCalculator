@@ -17,7 +17,7 @@
 - (id)init
 {
 	if (self = [super init]) {
-		currentState = [[HCAboveNumberState alloc] init];
+		currentState = [[HCSelectOperatorState alloc] init];
 	}
 	return self;
 }
