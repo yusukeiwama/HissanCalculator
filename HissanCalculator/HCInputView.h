@@ -16,9 +16,16 @@
 
 @interface HCInputView : UIView
 
+/** 最初に入力する数字 **/
 @property UILabel *aboveIntegerLabel;
+
+/** 後に入力する数字 **/
 @property UILabel *belowIntegerLabel;
+
+/** 演算子の選択のView **/
 @property UIView *operatorSelectorView;
+
+/** 選択確定後の演算子表示ラベル **/
 @property UILabel	*operatorLabel;
 
 @property NSMutableArray *buttons;
