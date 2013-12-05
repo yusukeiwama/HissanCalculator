@@ -19,7 +19,6 @@
 	NSInteger userInput;
 	NSInteger userAnswerModeState;
 }
-
 @end
 
 const NSInteger margin = 10;
@@ -39,10 +38,9 @@ NSInteger labelIndex = 0;
 {
 	[super viewDidLoad];
 	
+	userInput = 0;
 	context = [[HCContext alloc] init];
 	calculator = [[HCCalculator alloc] init];
-	
-	userInput = 0;
 	
 	baseView.layer.cornerRadius = 20.0f;
 	baseView.clipsToBounds = YES;
@@ -54,6 +52,7 @@ NSInteger labelIndex = 0;
 								 baseView.frame.size.width,
 								 baseView.frame.size.height);
 	[self.view addSubview:inputView];
+	[inputView arrangeInputView];
 	
 	// init view for culculation. don't have xib.
 	calculateView = [[HCCalculateView alloc] init];
@@ -64,9 +63,7 @@ NSInteger labelIndex = 0;
 	calculateView.hidden = YES; // first, hidden.
 	[self.view addSubview:calculateView];
 	
-	[inputView arrangeInputView];
-	
-	// inputView内のボタンも、一括管理のため
+	// inputView内のボタンも、一括管理のためボタンのArrayに組み込む
 	for (UIButton *aButton in inputView.operatorSelectorView.subviews) {
 		aButton.userInteractionEnabled = YES;
 		self.buttons = [self.buttons arrayByAddingObject:aButton];
@@ -82,9 +79,11 @@ NSInteger labelIndex = 0;
 	UIGestureRecognizer *selectOperator = [[UITapGestureRecognizer alloc] init];
 	[selectOperator addTarget:self action:@selector(selectOperator:)];
 	[inputView.operatorSelectorView addGestureRecognizer:selectOperator];
-	
-	[inputView expandOperatorSelectView];
+
+	NSLog(@"current state : %@", context.currentState);
+	[context inputEvent:30];
 	[self contextSwitch];
+	NSLog(@"current state : %@", context.currentState);
 }
 
 - (void)didReceiveMemoryWarning
@@ -95,24 +94,13 @@ NSInteger labelIndex = 0;
 
 - (void)selectOperator:(id)ges
 {
-	if ([calculator getDigitWithInteger:aboveNumber] >= 2) {
-		inputView.operatorSelectorView.backgroundColor = [HCColor highlightColor];
-		//[inputView expandOperatorSelectView];
-		context.currentState = [[HCSelectOperatorState alloc] init];
-	} else {
-		aboveNumber = 0;
-		context.currentState = [[HCAboveNumberState alloc] init];
-	}
-	[self contextSwitch];
+	//[self contextSwitch];
 }
-
-
 
 - (void)buttonTapped:(UIButton *)button
 {
 	userInput = button.tag;
 	
-	// 最初に行うのは演算子選択
 	if ([context.currentState class] == [HCSelectOperatorState class]) {
 		switch (userInput) {
 			case 20:
@@ -138,7 +126,6 @@ NSInteger labelIndex = 0;
 				aboveNumber = aboveNumber * 10 + button.tag;
 			}
 		} else if ([context.currentState class] == [HCBelowNumberState class]) {
-			
 			if ([calculator getDigitWithInteger:belowNumber] < [calculator getDigitWithInteger:aboveNumber]) {
 				belowNumber = belowNumber * 10 + button.tag;
 			} else if ([calculator getDigitWithInteger:belowNumber] == 1) {
@@ -151,12 +138,9 @@ NSInteger labelIndex = 0;
 	}
 	
 	else if (userInput == 10) {
-		if ([context.currentState class] == [HCAboveNumberState class]) {
-			
-		} else if ([context.currentState class] == [HCBelowNumberState class]) {
-			
-			[calculateView arrangeCalculateViewWithAbove:aboveNumber WithBelow:belowNumber WithOperator:operatorString];
-			[self userAnswerModeContext];
+		if ([context.currentState class] == [HCBelowNumberState class]) {
+			//[calculateView arrangeCalculateViewWithAbove:aboveNumber WithBelow:belowNumber WithOperator:operatorString];
+			//[self userAnswerModeContext];
 		}
 	}
 	
@@ -196,6 +180,11 @@ NSInteger labelIndex = 0;
 	inputView.belowIntegerLabel.text = [self getNotZeroNumberStringWithInteger:belowNumber];
 	inputView.operatorLabel.text = operatorString;
 	
+	// 演算子選択に遷移すると拡大
+	if ([context.currentState class] == [HCSelectOperatorState class]
+		|| [context.previousState class] != [HCSelectOperatorState class]) {
+		[inputView expandOperatorSelectView];
+	}
 	
 	if ([context.currentState class] == [HCSelectOperatorState class]) {
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;

@@ -8,6 +8,15 @@
 
 #import "HCState.h"
 
+@implementation HCInitializeState
+
+- (id)getNextStateWithIdentifier:(NSInteger)identifier
+{
+	return [[HCSelectOperatorState alloc] init];
+}
+
+@end
+
 @implementation HCSelectOperatorState
 - (id)getNextStateWithIdentifier:(NSInteger)identifier
 {

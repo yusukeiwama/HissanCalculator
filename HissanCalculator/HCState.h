@@ -25,6 +25,10 @@
 - (id)getNextStateWithIdentifier:(NSInteger)identifier;
 @end
 
+/** 初期化を行う状態 */
+@interface HCInitializeState : NSObject
+@end
+
 /** 筆算上で演算子の選択を行う状態 */
 @interface HCSelectOperatorState : NSObject
 @end

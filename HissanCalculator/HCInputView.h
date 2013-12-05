@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
 /**
  計算する内容を入力していくView
@@ -15,6 +16,9 @@
  */
 
 @interface HCInputView : UIView
+
+/** 指示文 **/
+@property UILabel *descriptionLabel;
 
 /** 最初に入力する数字 **/
 @property UILabel *aboveIntegerLabel;

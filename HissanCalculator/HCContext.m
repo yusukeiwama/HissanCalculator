@@ -8,16 +8,15 @@
 
 #import "HCContext.h"
 
-@implementation HCContext {
-	id previousState;
-}
+@implementation HCContext
 
 @synthesize currentState;
+@synthesize previousState;
 
 - (id)init
 {
 	if (self = [super init]) {
-		currentState = [[HCSelectOperatorState alloc] init];
+		currentState = [[HCInitializeState alloc] init];
 	}
 	return self;
 }

@@ -10,6 +10,13 @@
             <rect key="frame" x="0.0" y="0.0" width="500" height="668"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="数字を入力してください" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agF-2w-tXe">
+                    <rect key="frame" x="20" y="20" width="460" height="70"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="30"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TsT-AI-Fv9">
                     <rect key="frame" x="20" y="405" width="460" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -59,13 +66,6 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="数字を入力してください" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="agF-2w-tXe">
-                    <rect key="frame" x="20" y="20" width="460" height="73"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="30"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="0.23529411759999999" green="0.3921568627" blue="0.31372549020000001" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
@@ -74,21 +74,17 @@
                 <constraint firstItem="Z92-AB-dmr" firstAttribute="height" secondItem="3bH-zX-nB9" secondAttribute="height" id="3N2-vk-SQg"/>
                 <constraint firstAttribute="trailing" secondItem="3bH-zX-nB9" secondAttribute="trailing" constant="20" id="3yh-DT-EMQ"/>
                 <constraint firstItem="VNh-IP-PCf" firstAttribute="leading" secondItem="wHF-aT-zeE" secondAttribute="leading" constant="20" id="4dl-ks-Vj7"/>
-                <constraint firstItem="agF-2w-tXe" firstAttribute="top" secondItem="wHF-aT-zeE" secondAttribute="top" constant="20" id="6bg-Ec-T6d"/>
                 <constraint firstItem="3bH-zX-nB9" firstAttribute="height" secondItem="wgE-KH-3i0" secondAttribute="height" id="CQv-3M-bvW"/>
                 <constraint firstItem="TsT-AI-Fv9" firstAttribute="top" secondItem="VNh-IP-PCf" secondAttribute="bottom" constant="11" id="Hj9-Zk-gaB"/>
                 <constraint firstAttribute="centerY" secondItem="wgE-KH-3i0" secondAttribute="centerY" id="IqW-0R-kId"/>
                 <constraint firstItem="TsT-AI-Fv9" firstAttribute="leading" secondItem="wHF-aT-zeE" secondAttribute="leading" constant="20" id="L5W-EF-yYr"/>
                 <constraint firstItem="Z92-AB-dmr" firstAttribute="height" secondItem="wgE-KH-3i0" secondAttribute="height" id="Mg4-Sv-BnL"/>
-                <constraint firstItem="3bH-zX-nB9" firstAttribute="top" secondItem="agF-2w-tXe" secondAttribute="bottom" constant="8" id="VL2-Hq-iV6"/>
                 <constraint firstItem="wgE-KH-3i0" firstAttribute="leading" secondItem="VNh-IP-PCf" secondAttribute="trailing" id="Z7W-X2-dNQ"/>
                 <constraint firstItem="wgE-KH-3i0" firstAttribute="top" secondItem="3bH-zX-nB9" secondAttribute="bottom" constant="20" id="bYe-4v-pWc"/>
-                <constraint firstItem="agF-2w-tXe" firstAttribute="leading" secondItem="wHF-aT-zeE" secondAttribute="leading" constant="20" id="eXS-TF-5dk"/>
                 <constraint firstItem="Z92-AB-dmr" firstAttribute="leading" secondItem="wHF-aT-zeE" secondAttribute="leading" constant="20" id="gWK-dX-qqO"/>
                 <constraint firstAttribute="trailing" secondItem="wgE-KH-3i0" secondAttribute="trailing" constant="20" placeholder="YES" id="gc4-go-xkr"/>
                 <constraint firstItem="wgE-KH-3i0" firstAttribute="leading" secondItem="Z92-AB-dmr" secondAttribute="trailing" id="h3k-ui-IOk"/>
                 <constraint firstAttribute="centerY" secondItem="VNh-IP-PCf" secondAttribute="centerY" id="lcp-b3-6Fv"/>
-                <constraint firstAttribute="trailing" secondItem="agF-2w-tXe" secondAttribute="trailing" constant="20" id="p7t-sZ-gOv"/>
                 <constraint firstItem="3bH-zX-nB9" firstAttribute="width" secondItem="wgE-KH-3i0" secondAttribute="width" id="tse-rd-kbl"/>
                 <constraint firstAttribute="centerY" secondItem="Z92-AB-dmr" secondAttribute="centerY" id="vUL-6p-cJD"/>
             </constraints>

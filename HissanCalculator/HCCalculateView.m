@@ -10,10 +10,6 @@
 #import "HCCalculator.h"
 #import "HCColor.h"
 
-/*
- プロジェクト中、最も汚いコードなので早急に対処。
- */
-
 @implementation HCCalculateView {
 	NSInteger margin;
 	UIView *aLine;
@@ -71,9 +67,9 @@
 		for (int column = 0; column < columnMax; column++) {
 			UILabel *aCellOfLabel = [[UILabel alloc] init];
 			aCellOfLabel.frame = CGRectMake(self.bounds.origin.x + column * self.bounds.size.width / columnMax,
-																			self.bounds.origin.y + row * self.bounds.size.height / rowMax,
-																			(int)self.bounds.size.width / columnMax,
-																			(int)self.bounds.size.height / rowMax);
+											self.bounds.origin.y + row * self.bounds.size.height / rowMax,
+											(int)self.bounds.size.width / columnMax,
+											(int)self.bounds.size.height / rowMax);
 			aCellOfLabel.tag = column + row * columnMax;
 			aCellOfLabel.textAlignment = NSTextAlignmentCenter;
 			
@@ -92,9 +88,9 @@
 			
 			UILabel *superScriptLabel = [[UILabel alloc] init];
 			superScriptLabel.frame = CGRectMake(aCellOfLabel.bounds.origin.x + 3 * (int)(aCellOfLabel.bounds.size.width / 5),
-																					aCellOfLabel.bounds.origin.y,
-																					(int)(aCellOfLabel.bounds.size.width / 5),
-																					(int)(aCellOfLabel.bounds.size.height / 5));
+												aCellOfLabel.bounds.origin.y,
+												(int)(aCellOfLabel.bounds.size.width / 5),
+												(int)(aCellOfLabel.bounds.size.height / 5));
 			superScriptLabel.textAlignment = NSTextAlignmentCenter;
 			superScriptLabel.layer.cornerRadius = 5.0f;
 			superScriptLabel.clipsToBounds = YES;
@@ -131,9 +127,9 @@
 		
 		aLine = [[UIView alloc] init];
 		aLine.frame = CGRectMake(((UILabel *)[labels objectAtIndex:2*columnMax]).frame.origin.x + margin,
-														 ((UILabel *)[labels objectAtIndex:2*columnMax]).frame.origin.y,
-														 self.frame.size.width - 2 * margin,
-														 5);
+								 ((UILabel *)[labels objectAtIndex:2*columnMax]).frame.origin.y,
+								 self.frame.size.width - 2 * margin,
+								 5);
 		aLine.backgroundColor = [UIColor whiteColor];
 		[self addSubview:aLine];
 	}
@@ -168,7 +164,7 @@
 			[NSString stringWithFormat:@"%d", [[calculator.resultArray objectAtIndex:i] integerValue]];
 			((UILabel *)[labels objectAtIndex:3 * columnMax - (i + 1)]).textColor = [UIColor clearColor];
 			if ([[calculator.borrowReferenceArray objectAtIndex:i] integerValue]
-					!= [[calculator.aboveOriginalIntegerArray objectAtIndex:i] integerValue]) {
+				!= [[calculator.aboveOriginalIntegerArray objectAtIndex:i] integerValue]) {
 				((UILabel *)((UIView *)[labels objectAtIndex:columnMax - (i + 1)]).subviews[0]).text =
 				[NSString stringWithFormat:@"%d", [[calculator.borrowReferenceArray objectAtIndex:i] integerValue]];
 				((UILabel *)((UIView *)[labels objectAtIndex:columnMax - (i + 1)]).subviews[0]).textColor = [UIColor clearColor];
@@ -190,9 +186,9 @@
 		
 		aLine = [[UIView alloc] init];
 		aLine.frame = CGRectMake(((UILabel *)[labels objectAtIndex:columnMax * (rowMax - 1)]).frame.origin.x + margin,
-														 ((UILabel *)[labels objectAtIndex:columnMax * (rowMax - 1)]).frame.origin.y,
-														 self.frame.size.width - 2 * margin,
-														 5);
+								 ((UILabel *)[labels objectAtIndex:columnMax * (rowMax - 1)]).frame.origin.y,
+								 self.frame.size.width - 2 * margin,
+								 5);
 		aLine.backgroundColor = [UIColor whiteColor];
 		[self addSubview:aLine];
 		

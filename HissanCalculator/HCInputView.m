@@ -14,6 +14,7 @@
 	NSString *operatorString;
 }
 
+@synthesize descriptionLabel;
 @synthesize aboveIntegerLabel;
 @synthesize belowIntegerLabel;
 @synthesize operatorSelectorView;
@@ -24,9 +25,9 @@
 @synthesize operatorSelecterViewDefaultPosition;
 @synthesize operatorSelectButtonDefaultPositions;
 
-- (id)initWithFrame:(CGRect)frame
+- (id)init
 {
-	self = [super initWithFrame:frame];
+	self = [super init];
 	if (self) {
 		// Initialization code
 		margin = 10;
@@ -41,13 +42,15 @@
 		self.clipsToBounds = YES;
 		
 		// 次のようにSubViewを読み込まないと操作できないので注意。
-		aLine = self.subviews[0];
-		aboveIntegerLabel = self.subviews[1];
-		belowIntegerLabel = self.subviews[2];
-		operatorSelectorView = self.subviews[3];
-		operatorLabel = self.subviews[4];
+		descriptionLabel = self.subviews[0];
+		aLine = self.subviews[1];
+		aboveIntegerLabel = self.subviews[2];
+		belowIntegerLabel = self.subviews[3];
+		operatorSelectorView = self.subviews[4];
+		operatorLabel = self.subviews[5];
 		
 		operatorSelectButtonDefaultPositions = [[NSMutableArray alloc] init];
+		buttons = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
@@ -67,8 +70,8 @@
 	operatorSelectorView.layer.cornerRadius = 20.0f;
 	operatorSelectorView.clipsToBounds = YES;
 	
-	operatorSelecterViewDefaultPosition = operatorSelectorView.frame;
 	[self dynamicOperatorButtonArrange];
+	operatorSelecterViewDefaultPosition = operatorSelectorView.frame;
 	operatorLabel.hidden = YES;
 }
 
@@ -77,22 +80,22 @@
 {
 	NSValue *value;
 	CGRect rect;
-	
+	margin = 10;
 	for (int i = 0; i < 3; i++) {
 		UIButton *aButton = [[UIButton alloc] init];
-		aButton.frame = CGRectMake(operatorSelectorView.bounds.origin.x
-								   + (i % 2) * (int)(operatorSelectorView.bounds.size.width / 2) + margin,
-								   operatorSelectorView.bounds.origin.y
-								   + (i / 2) * (int)(operatorSelectorView.bounds.size.height / 2) + margin,
-								   (int)(operatorSelectorView.bounds.size.width / 2) - 2 * margin,
-								   (int)(operatorSelectorView.bounds.size.height / 2) - 2 * margin);
+		aButton.frame = CGRectMake(operatorSelectorView.frame.origin.x + margin
+								   + (i % 2) * (int)(operatorSelectorView.frame.size.width / 2),
+								   operatorSelectorView.frame.origin.y + margin
+								   + (i / 2) * (int)(operatorSelectorView.frame.size.height / 2),
+								   (int)(operatorSelectorView.frame.size.width / 2) - 2 * margin,
+								   (int)(operatorSelectorView.frame.size.height / 2) - 2 * margin);
 		aButton.backgroundColor = operatorSelectorView.backgroundColor;
+		aButton.layer.cornerRadius = 20.0f;
+		aButton.clipsToBounds = YES;
 		
 		// ボタンのデフォルトの位置をNSArrayに格納する。構造体のための処理。
 		rect = aButton.frame;
-		//NSLog(@"%@", NSStringFromCGRect(rect));
 		value = [NSValue value:&rect withObjCType:@encode(CGRect)];
-		//NSLog(@"%@", value);
 		[operatorSelectButtonDefaultPositions addObject:value];
 		// ------------------------------------------ ここまで。
 		
@@ -117,37 +120,38 @@
 		[aButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 		[aButton.titleLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:60]];
 		aButton.tag = 20 + i;
-		[operatorSelectorView addSubview:aButton];
+		aButton.userInteractionEnabled = NO;
+		[self addSubview:aButton];
+		[buttons addObject:aButton];
 	}
 }
 
 - (void)expandOperatorSelectView
 {
 	margin = 10;
-	for (UIButton *aButton in operatorSelectorView.subviews) {
+	for (UIButton *aButton in buttons) {
 		aButton.backgroundColor = operatorSelectorView.backgroundColor;
 	}
 	
 	[UIView animateWithDuration:0.5f
 					 animations:^{
-						 CGFloat widthOfInputView = self.frame.size.width - 2 * margin;
-						 NSLog(@"width : %f", widthOfInputView);
+						 CGFloat widthOfInputView = self.bounds.size.width;
 						 operatorSelectorView.frame = CGRectMake(self.bounds.origin.x + margin,
-																 self.center.y - (int)(widthOfInputView / 2) - operatorSelectorView.frame.size.height,
-																 widthOfInputView,
-																 widthOfInputView);
+																 self.bounds.origin.y + margin,
+																 widthOfInputView - 2 * margin,
+																 widthOfInputView - 2 * margin);
 						 
-						 NSLog(@"%f", operatorSelectorView.frame.size.width);
-						 
-						 for (UIButton *aButton in operatorSelectorView.subviews) {
-							 aButton.frame = CGRectMake(operatorSelectorView.bounds.origin.x + margin + ((aButton.tag - 20) % 2) * (int)(widthOfInputView / 2),
-														operatorSelectorView.bounds.origin.y + margin + ((aButton.tag - 20) / 2) * (int)(widthOfInputView / 2),
+						 for (UIButton *aButton in buttons) {
+							 aButton.frame = CGRectMake(operatorSelectorView.frame.origin.x + margin
+														+ ((aButton.tag - 20) % 2) * (int)(widthOfInputView / 2),
+														operatorSelectorView.frame.origin.y + margin
+														+ ((aButton.tag - 20) / 2) * (int)(widthOfInputView / 2),
 														(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin,
 														(int)((widthOfInputView - 2 * margin) / 2) - 2 * margin);
 							 aButton.backgroundColor = operatorSelectorView.backgroundColor;
 						 }
 					 } completion:^(BOOL parameter){
-						 for (UIButton *aButton in operatorSelectorView.subviews) {
+						 for (UIButton *aButton in buttons) {
 							 [aButton.titleLabel setFont:[UIFont systemFontOfSize:180]];
 							 aButton.userInteractionEnabled = YES;
 						 }
@@ -160,7 +164,6 @@
 	CGRect frame;
 	operatorSelectorView.frame = operatorSelecterViewDefaultPosition;
 	for (UIButton *aButton in operatorSelectorView.subviews) {
-		
 		// デフォルトの位置を読み込む。構造体をオブジェクトとして扱うための処理。aButton.tagによって順序を乱さないで取り出し可能(Oct 26)
 		[(NSValue *)[operatorSelectButtonDefaultPositions objectAtIndex:aButton.tag - 20] getValue:&frame];
 		aButton.frame = frame;
