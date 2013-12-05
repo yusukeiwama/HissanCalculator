@@ -47,18 +47,18 @@ NSInteger labelIndex = 0;
 	// init view for input. this xib file is loaded in its custom class.
 	inputView = [[HCInputView alloc] init];
 	inputView.frame = CGRectMake(baseView.frame.origin.x,
-															 baseView.frame.origin.y,
-															 baseView.frame.size.width,
-															 baseView.frame.size.height);
+								 baseView.frame.origin.y,
+								 baseView.frame.size.width,
+								 baseView.frame.size.height);
 	[self.view addSubview:inputView];
 	[inputView arrangeInputView];
 	
 	// init view for culculation. don't have xib.
 	calculateView = [[HCCalculateView alloc] init];
 	calculateView.frame = CGRectMake(baseView.frame.origin.x,
-																	 baseView.frame.origin.y,
-																	 baseView.frame.size.width,
-																	 baseView.frame.size.height);
+									 baseView.frame.origin.y,
+									 baseView.frame.size.width,
+									 baseView.frame.size.height);
 	calculateView.hidden = YES; // first, hidden.
 	[self.view addSubview:calculateView];
 	
@@ -71,7 +71,7 @@ NSInteger labelIndex = 0;
 	// 入力を受け付けるためのメソッドと関連付ける
 	for (UIButton *aButton in self.buttons) {
 		[aButton addTarget:self
-								action:@selector(buttonTapped:)
+					action:@selector(buttonTapped:)
 		  forControlEvents:UIControlEventTouchUpInside];
 	}
 	
@@ -104,8 +104,6 @@ NSInteger labelIndex = 0;
 // 時間あるときに構造を整理する。一旦放置。
 - (void)buttonTapped:(UIButton *)button
 {
-	//NSLog(@"ButtonTaped at %d in state of %@", button.tag, [context.currentState class]);
-	
 	userInput = button.tag;
 	
 	if (userInput < 10) {
@@ -139,6 +137,9 @@ NSInteger labelIndex = 0;
 		} else if ([context.currentState class] == [HCBelowNumberState class]) {
 			[calculateView arrangeCalculateViewWithAbove:aboveNumber WithBelow:belowNumber WithOperator:operatorString];
 			[self userAnswerModeContext];
+			if ([operatorString compare:@"×"] == NSOrderedSame) {
+				context.currentState = [[HCCalculateState alloc] init];
+			}
 		} else if ([context.currentState class] == [HCCalculateState class]) {
 			//[self userAnswerModeContext];
 		}
@@ -155,11 +156,12 @@ NSInteger labelIndex = 0;
 		for (UIView *aView in [calculateView subviews]) {
 			[aView removeFromSuperview];
 		}
+		[self contextSwitch];
 	}
 	
 	else if (userInput == 12) {
 		if ([context.currentState class] == [HCAboveNumberState class]
-				|| [context.currentState class] == [HCSelectOperatorState class]) {
+			|| [context.currentState class] == [HCSelectOperatorState class]) {
 			aboveNumber = 0;
 		} else if ([context.currentState class] == [HCBelowNumberState class]) {
 			belowNumber = 0;
@@ -190,6 +192,11 @@ NSInteger labelIndex = 0;
 		[self userAnswerWithButton:button];
 	}
 	
+	if ([context.currentState class] == [HCCalculateState class] && userInput < 10) {
+		aboveNumber = userInput;
+		belowNumber = 0;
+	}
+	
 	[context inputEvent:button.tag];
 	[self contextSwitch];
 }
@@ -203,6 +210,7 @@ NSInteger labelIndex = 0;
 	
 	
 	if ([context.currentState class] == [HCAboveNumberState class]) {
+		inputView.descriptionLabel.text = @"数字を入力し、入力が完了したら入力ボタンを押してください。";
 		[functionButton setTitle:@"入力" forState:UIControlStateNormal];
 		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:100]];
 		inputView.aboveIntegerLabel.backgroundColor = [HCColor highlightColor];
@@ -224,9 +232,11 @@ NSInteger labelIndex = 0;
 	}
 	else if ([context.currentState class] == [HCBelowNumberState class]) {
 		if ([operatorString compare:@"×"] == NSOrderedSame) {
+			inputView.descriptionLabel.text = @"計算結果ボタンを押すと結果を表示できます。";
 			[functionButton setTitle:@"計算結果" forState:UIControlStateNormal];
 			[functionButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
 		} else {
+			inputView.descriptionLabel.text = @"回答ボタンを押すと回答を開始できます。";
 			[functionButton setTitle:@"回答" forState:UIControlStateNormal];
 			[functionButton.titleLabel setFont:[UIFont systemFontOfSize:100]];
 		}
@@ -237,6 +247,7 @@ NSInteger labelIndex = 0;
 		inputView.operatorLabel.hidden = NO;
 	}
 	else if ([context.currentState class] == [HCCalculateState class]) {
+		calculateView.descriptionLabel.text = @"";
 		[functionButton setTitle:@"計算結果" forState:UIControlStateNormal];
 		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
@@ -252,6 +263,7 @@ NSInteger labelIndex = 0;
 		}
 	}
 	else if ([context.currentState class] == [HCUserAnswerState class]) {
+		calculateView.descriptionLabel.text = @"回答を入力してください。入力する数字がない場合は0を入力してください。";
 		[functionButton setTitle:@"計算結果" forState:UIControlStateNormal];
 		[functionButton.titleLabel setFont:[UIFont systemFontOfSize:60]];
 		inputView.aboveIntegerLabel.backgroundColor = inputView.backgroundColor;
@@ -337,6 +349,7 @@ NSInteger labelIndex = 0;
 			context.currentState = [[HCCalculateState alloc] init];
 			return;
 		}
+		
 		if (userAnswerModeState % 2 == 1) {
 			aLabel = (UILabel *)[calculateView.labels objectAtIndex:calculateView.columnMax * calculateView.rowMax - (labelIndex + 1)];
 			((UILabel *)aLabel.subviews[0]).backgroundColor = [HCColor highlightColor];

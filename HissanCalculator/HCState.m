@@ -147,7 +147,6 @@
 		case 7:
 		case 8:
 		case 9:
-			return [[HCAboveNumberState alloc] init];
 		case 10:
 			return self;
 		case 11:

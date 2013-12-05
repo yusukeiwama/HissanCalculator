@@ -26,6 +26,8 @@
 @property CGRect operatorSelecterViewDefaultPosition;
 @property NSMutableArray *operatorSelectButtonDefaultPositions;
 
+@property UILabel *descriptionLabel;
+
 
 /** 入力状態を反映するViewを整形 */
 - (void)arrangeInputView;

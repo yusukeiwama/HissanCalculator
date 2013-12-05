@@ -8,16 +8,16 @@
 
 #import "HCContext.h"
 
-@implementation HCContext {
-	id previousState;
-}
+@implementation HCContext
 
 @synthesize currentState;
+@synthesize previousState;
 
 - (id)init
 {
 	if (self = [super init]) {
 		currentState = [[HCAboveNumberState alloc] init];
+		previousState = [[HCAboveNumberState alloc] init];
 	}
 	return self;
 }

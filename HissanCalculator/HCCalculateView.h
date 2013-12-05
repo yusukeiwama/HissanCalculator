@@ -25,6 +25,8 @@
 /** 横マスの最大値 */
 @property NSInteger columnMax;
 
+@property UILabel *descriptionLabel;
+
 /** Viewを整列する */
 - (void)arrangeCalculateViewWithAbove:(NSInteger)aboveInteger WithBelow:(NSInteger)belowInteger WithOperator:(NSString *)operatorString;
 

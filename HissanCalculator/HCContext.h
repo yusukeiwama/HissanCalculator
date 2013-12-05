@@ -18,6 +18,8 @@
 /** 現在の状態 */
 @property id currentState;
 
+@property id previousState;
+
 /** 入力イベントにより状態を遷移する */
 - (void)inputEvent:(NSInteger)identifier;
 

@@ -24,6 +24,8 @@
 @synthesize operatorSelecterViewDefaultPosition;
 @synthesize operatorSelectButtonDefaultPositions;
 
+@synthesize descriptionLabel;
+
 - (id)initWithFrame:(CGRect)frame
 {
 	self = [super initWithFrame:frame];
@@ -41,11 +43,12 @@
 		self.clipsToBounds = YES;
 		
 		// 次のようにSubViewを読み込まないと操作できないので注意。
-		aLine = self.subviews[0];
-		aboveIntegerLabel = self.subviews[1];
-		belowIntegerLabel = self.subviews[2];
-		operatorSelectorView = self.subviews[3];
-		operatorLabel = self.subviews[4];
+		descriptionLabel = self.subviews[0];
+		aLine = self.subviews[1];
+		aboveIntegerLabel = self.subviews[2];
+		belowIntegerLabel = self.subviews[3];
+		operatorSelectorView = self.subviews[4];
+		operatorLabel = self.subviews[5];
 		
 		operatorSelectButtonDefaultPositions = [[NSMutableArray alloc] init];
 	}
@@ -66,6 +69,8 @@
 	[[operatorSelectorView layer] setBorderWidth:1.0];
 	operatorSelectorView.layer.cornerRadius = 20.0f;
 	operatorSelectorView.clipsToBounds = YES;
+	
+	[descriptionLabel adjustsFontSizeToFitWidth];
 	
 	operatorSelecterViewDefaultPosition = operatorSelectorView.frame;
 	[self dynamicOperatorButtonArrange];

@@ -10,10 +10,6 @@
 #import "HCCalculator.h"
 #import "HCColor.h"
 
-/*
- プロジェクト中、最も汚いコードなので早急に対処。
- */
-
 @implementation HCCalculateView {
 	NSInteger margin;
 	UIView *aLine;
@@ -23,6 +19,7 @@
 @synthesize labels;
 @synthesize rowMax;
 @synthesize columnMax;
+@synthesize descriptionLabel;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -34,7 +31,7 @@
 		self.clipsToBounds = YES;
 		self.backgroundColor = [HCColor blackBoardColor];
 		calculator = [[HCCalculator alloc] init];
-	}
+		}
 	return self;
 }
 
@@ -45,6 +42,17 @@
 	for (UIView *aView in [self subviews]) {
 		[aView removeFromSuperview];
 	}
+
+	descriptionLabel = [[UILabel alloc] init];
+	descriptionLabel.frame = CGRectMake(10, 10, self.bounds.size.width - 20, 60);
+	descriptionLabel.textColor = [UIColor whiteColor];
+	descriptionLabel.backgroundColor = self.backgroundColor;
+	descriptionLabel.text = @"";
+	[descriptionLabel adjustsFontSizeToFitWidth];
+	descriptionLabel.numberOfLines = 2;
+	[descriptionLabel setFont:[UIFont systemFontOfSize:25]];
+	[self addSubview:descriptionLabel];
+	
 	
 	labels = [[NSMutableArray alloc] init];
 	
@@ -71,9 +79,9 @@
 		for (int column = 0; column < columnMax; column++) {
 			UILabel *aCellOfLabel = [[UILabel alloc] init];
 			aCellOfLabel.frame = CGRectMake(self.bounds.origin.x + column * self.bounds.size.width / columnMax,
-																			self.bounds.origin.y + row * self.bounds.size.height / rowMax,
+																			self.bounds.origin.y + row * (self.bounds.size.height - 80) / rowMax + 80,
 																			(int)self.bounds.size.width / columnMax,
-																			(int)self.bounds.size.height / rowMax);
+																			((int)self.bounds.size.height - 80) / rowMax);
 			aCellOfLabel.tag = column + row * columnMax;
 			aCellOfLabel.textAlignment = NSTextAlignmentCenter;
 			
@@ -83,10 +91,10 @@
 			aCellOfLabel.backgroundColor = self.backgroundColor;
 			aCellOfLabel.textColor = [UIColor whiteColor];
 			if ([operatorString compare:@"×"] == NSOrderedSame) {
-				[aCellOfLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:90]];
+				[aCellOfLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:80]];
 				aCellOfLabel.adjustsFontSizeToFitWidth = YES;
 			} else {
-				[aCellOfLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:100]];
+				[aCellOfLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:90]];
 			}
 			[self addSubview:aCellOfLabel];
 			
@@ -100,10 +108,10 @@
 			superScriptLabel.clipsToBounds = YES;
 			superScriptLabel.adjustsFontSizeToFitWidth = YES;
 			if ([operatorString compare:@"×"] == NSOrderedSame) {
-				[superScriptLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:20]];
+				[superScriptLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:15]];
 				
 			} else {
-				[superScriptLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:30]];
+				[superScriptLabel setFont:[UIFont fontWithName:@"ChalkboardSE-Light" size:25]];
 			}
 			
 			[superScriptLabel setTextColor:[UIColor whiteColor]];
